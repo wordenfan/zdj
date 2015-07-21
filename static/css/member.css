@@ -1,0 +1,39 @@
+@charset "utf-8";
+/* CSS Document */
+.member_cnt{margin-top:22px;overflow:hidden;margin-bottom:90px;}
+/*member_title*/
+.member_title{width:950px;height:40px;border-bottom:2px solid #ff6600;line-height:40px;padding-left:30px;background:url(../images/boxTitle_bg.png) 20px center no-repeat;margin-bottom:20px;font-weight:normal;}
+.member_btm{width:950px;overflow:hidden;margin:0 auto;}
+/*member_nav*/
+.member_nav{width:168px;overflow:hidden;border:1px solid #ccc;padding-bottom:40px;}
+.member_nav .nav_item{width:168px;overflow:hidden;}
+.member_nav h3{font-weight:normal;width:152px;border-bottom:1px solid #ccc;background:#ededed;height:36px;line-height:36px;padding-left:16px;font-size:14px;}
+.member_nav ul{width:152px;overflow:hidden;padding-left:16px;padding:15px 0 15px 16px;}
+.member_nav li{padding-left:12px;height:22px;line-height:22px;background:url(../images/arrow.gif) left center no-repeat;}
+/*member_right*/
+.member_right{width:750px;border:1px solid #ccc;overflow:hidden; min-height:365px;}
+.memberR_title{border-bottom:1px solid #ccc;height:36px;line-height:36px;padding-left:50px;font-size:14px;background:url(../images/boxTitle_bg.png) 35px center no-repeat;width:700px;font-weight:normal;background-color:#ededed;}
+.memberR_cnt{padding:26px 0 27px 23px;width:710px;overflow:hidden;}
+/*mem_accountCnt*/
+.mem_info_btm{margin-top:10px;width:710px;overflow:hidden;}
+.mem_info_item{width:750px;overflow:hidden;margin-bottom:11px;}
+span.account_name{width:50px;height:30px;line-height:30px; text-align:right;margin-right:20px;display:block;}
+.account_input{width:300px;overflow:hidden;}
+.account_input input{width:290px;height:28px;line-height:28px;border:1px solid #ccc;padding-left:8px;}
+.member_btn{width:80px;height:30px;line-height:30px; text-align:center;color:#fff; font-size:14px;background:#FF4600; cursor:pointer;}
+/*member_send*/
+.send_name{width:76px;height:30px;line-height:30px;text-align:right;margin-right:12px;}
+.sendInfo_input{width:130px;overflow:hidden;}
+.sendInfo_input input{width:120px;height:28px;line-height:28px;border:1px solid #ccc;padding-left:8px;}
+.send_sex{height:30px;line-height:30px;}
+.send_sex input{margin-left:0px;}
+.sendPlace_input{width:400px;overflow:hidden;}
+.sendPlace_input input{width:390px;height:28px;line-height:28px;border:1px solid #ccc;padding-left:8px;}
+/*mem_order_lists*/
+.mem_order_lists{width:710px;border:1px solid #ccc;border-bottom:none;font-size:12px;}
+.mem_order_lists th{border-bottom:1px solid #ccc;height:40px;padding-left:16px; vertical-align:middle; text-align:left;}
+.mem_order_lists td{border-bottom:1px solid #ccc;padding-top:10px;padding-bottom:10px;padding-left:16px; vertical-align:middle; text-align:left;}
+.mem_order_lists a{color:#578ec5;}
+.order_number{color:#578ec5;}
+
+
