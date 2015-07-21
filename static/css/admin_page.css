@@ -1,0 +1,9 @@
+.pages {float:right;}
+.pages li {display:inline;float:left;padding:0px 5px;height:25px;line-height:25px;color:#666;margin-right: 0.3em;border: 1px solid #E0E0E0;background:#FFF;}
+.pages li span {color:#666666;background:#FFF;}
+.pages li.page_a {padding:0;border:0;}
+.pages li.page_a a {FLOAT: left;padding:0px 5px;color:#666666;border: 1px solid #E0E0E0;text-decoration:none;}
+.pages li.page_a a:hover {background-color:#EEEEEE;border: 1px solid #CCCCCC;}
+.pages li.pages_input {padding:0;border: 1px solid #CCCCCC;}
+.pages li.pages_input input {width:18px;font-size:14px;border:1px;padding:0px 3px;margin:0px 3px;text-align:center;}
+.pages .on {padding:0px 5px;color: red ;font-weight:bold;}

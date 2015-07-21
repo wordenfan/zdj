@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+.reg_btm{width:980px;overflow:hidden;}
+.reg_shuoming{padding-left:20px;width:742px;margin-bottom:30px;padding-top:12px;height:50px;margin-left:47px;overflow:hidden;background:#f9f5ee;border:1px solid #e8e8e8;color:#666;}
+.reg_shuoming p{line-height:22px;}
+.reg_shuoming p span{color:#4073bf;}
+.reg_cnt .reg_item{width:980px;overflow:hidden;margin-bottom:15px;}
+.reg_item span.reg_name{width:128px;overflow:hidden;height:30px;line-height:30px;display:block; text-align:right;margin-right:18px;}
+.reg_input{width:300px;overflow:hidden;}
+.reg_input input{width:290px;height:28px;border:1px solid #ccc;padding-left:8px;line-height:34px;}
+.indenty_code{width:210px;margin-right:12px;}
+.indenty_code input{width:200px;height:28px;border:1px solid #ccc;padding-left:8px;line-height:28px;}
+.verify_code{width:80px;height:30px;background:#FF4600;}
+.reg_input button{width:280px;height:40px;line-height:40px; text-align:center;color:#fff; cursor:pointer;background:#FF4600;}
+.reg_xieyi{display:block;height:22px;line-height:22px;background:url(../images/xieyi.gif) 5px center no-repeat;padding-left:20px;}
+.reg_tips{width:480px;overflow:hidden;margin-left:20px;height:30px; position:relative;line-height:30px;}
+.reg_tips span{width:18px;height:30px;display:block;float:left;margin-right:8px;}
+.reg_tips p.suggest{color:#333;}
+.reg_tips p.suggest span{background:url(../images/suggest_icon.gif) center center no-repeat;}
+.reg_tips p.success span{background:url(../images/success_icon.gif) center center no-repeat;}
+.reg_tips p.error span{background:url(../images/wrong_icon.gif) center center no-repeat;}
+#yanzhCode{margin-bottom:35px;}
