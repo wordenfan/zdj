@@ -195,7 +195,7 @@ $(".menusView_item ul li").click(function()
 		var _name = $.trim($(this).children(".food_name").children("span").text());
 		var _price = $(this).children(".food_price").children("span").children("label").text();
 		var click_obl = $(this);//供下方动画调用，否则无法调用到this
-		$.post(app_url+'/doShopping',{sid:_sid,fid:_id,ftype:_type,fname:_name,fprice:_price,fmod:1,send_price:send_prc},function(data)
+		$.post('/home/shop/doShopping',{sid:_sid,fid:_id,ftype:_type,fname:_name,fprice:_price,fmod:1,send_price:send_prc},function(data)
 		{
 			//动画
 			/*
@@ -225,7 +225,7 @@ $('body').on('click','.order_delete', function()
 {
 	var _id = $(this).attr('cid');
 	var _sid = <?php echo $id ;?>;
-	$.post(app_url+'/doShopping',{sid:_sid,fid:_id,fmod:3,send_price:send_prc},function(jdata)
+	$.post('/home/shop/doShopping',{sid:_sid,fid:_id,fmod:3,send_price:send_prc},function(jdata)
 	{
 		showHtml(jdata);			
 	},'json')
@@ -239,7 +239,7 @@ $('body').on('click','#increase_id', function()
 	var _sid = <?php echo $id ;?>;
 	var _type = $(this).attr("ctype");
 	
-	$.post(app_url+'/doShopping',{sid:_sid,fid:_id,ftype:_type,fname:_name,fprice:_price,fmod:1,send_price:send_prc},function(data)
+	$.post('/home/shop/doShopping',{sid:_sid,fid:_id,ftype:_type,fname:_name,fprice:_price,fmod:1,send_price:send_prc},function(data)
 	{
 		showHtml(data);	
 	},'json')
@@ -250,7 +250,7 @@ $('body').on('click','#decrease_id', function()
     var _sid = <?php echo $id ;?>;
 	var _id = $(this).attr("cid");
 	
-	$.post(app_url+'/doShopping',{sid:_sid,fid:_id,fmod:2,send_price:send_prc},function(data)
+	$.post('/home/shop/doShopping',{sid:_sid,fid:_id,fmod:2,send_price:send_prc},function(data)
 	{
 		showHtml(data);	
 	},'json')
