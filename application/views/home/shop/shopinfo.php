@@ -2,14 +2,11 @@
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('static/css/base.css');?>" />
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('static/css/shopinfo.css');?>" />
     <script type="text/javascript" src="<?php echo base_url('static/js/main.js');?>"></script>
+    <script> javascript:window.history.forward(1); </script>
 </head>
 <body>
     <?php $this->load->view('home/common/menu');?>
 <!--以上为动态载入区-->
-<script> 
-	var app_url='__CONTROLLER__'; 
-	javascript:window.history.forward(1);
-</script>
 <!--food_img-->
 <div id="bg"></div>
 <div id="show_img_div">
@@ -53,7 +50,7 @@
         </form>
     </div>
     <div style="" class="f_login_reg">
-        <a href="<{:U('User/register')}>">还没有账号？十秒注册</a>
+        <a href="<?php echo base_url('home/User/register');?>">还没有账号？十秒注册</a>
     </div>
 </div>
 <!--主题-->
@@ -65,7 +62,7 @@
     <div class="order_wrap">
 		<div class="menu_lstL l">
 			<div class="menu_shop">
-				<div class="menu_shopL"><img src="<?php echo base_url('/'.$logo);?>" width="165" height="124" alt="青岛开发区<{$shop_info_tmp['shop_name']}>" title="青岛开发区<{$shop_info_tmp['shop_name']}>" /></div>
+				<div class="menu_shopL"><img src="<?php echo base_url('/'.$logo);?>" width="165" height="124" alt="青岛开发区<?php echo $name; ?>" title="青岛开发区<?php echo $name;?>" /></div>
 				<div class="menu_shopM">
 					<h2>
 						<span><?php echo $name;?></span>
@@ -80,7 +77,7 @@
 					<div class="shop_item">
 						<span>				
 							<b class="pin"></b><span class="btip">(品质外卖提供商)</span>
-							<{:hook('ShopIcon',array('shopid'=>$shop_info_tmp['id'],'page'=>'shop'))}>	
+							<{:hook('ShopIcon',array('shopid'=>$id,'page'=>'shop'))}>	
 						</span>
 					</div>
 				</div>
@@ -98,30 +95,33 @@
 				 <div class="title" style="border-top:0px solid #ccc"><span style="color:#ff0000;float:right;display:block">(如需打包费的已计入餐品价格)</span><a>菜单列表</a></div>
 				
 				<div class="food_fenl" id="food_fen1">
-					餐品分类：<volist name="foodlist_tmp" id="to" key="t"><span><a href="#anchor<{$t}>"><{$to[0]['type_name']}></a></span></volist>
+                    餐品分类：<?php foreach($foodlist_tmp as $t=>$to):?><span><a href="#anchor<?php echo $t;?>"><?php echo $to['type_name'];?></a></span><?php endforeach;?>
 				</div>
-				<volist name="foodlist_tmp" id="vo" key="k">
-				<div class="menusView_item"  id="anchor<{$k}>">
-						<h2><{$vo[0]['type_name']}></h2>
-						<ul>
-						<volist name="vo" id="mo" key="m">
-						<li>
-							<input type="hidden" id="<{$mo['food_type']}>" value="<{$mo['food_id']}>" />
-							<div class="food_num l"><span>+</span></div>
-							<div class="food_name l">
-								<span id='fd_name' title="<{$mo['food_name']}>"><{$mo['food_name']}></span>
-								<span>
-									<notempty name="mo['pic']"><img class="food_pic" id="__ROOT__<{$mo['pic']}>" src="<?php echo base_url('static/images/foodimg.gif')?>" width="15" height="15" /></notempty>
-								</span>
-							</div>
-							<div class="food_price r">
-								<span>￥<label><{$mo['price']}></label></span><span></span>
-							</div>
-						</li>
-						</volist>
-						</ul>
-				</div>
-				</volist>
+                
+                <?php foreach($foodlist_tmp as $k=>$vo):?>
+                    <div class="menusView_item"  id="anchor<?php echo $k; ?>">
+                        <h2><?php echo $vo['type_name']; ?></h2>
+                        <ul>
+                            <?php foreach($vo['food_list'] as $m=>$mo):?>
+                                <li>
+                                    <input type="hidden" id="<?php echo $vo['type_name']; ?>" value="<?php echo $mo['food_id']; ?>" />
+                                    <div class="food_num l"><span>+</span></div>
+                                    <div class="food_name l">
+                                        <span id='fd_name' title="<?php echo $mo['food_name']; ?>"><?php echo $mo['food_name']; ?></span>
+                                        <span>
+                                            <?php if(!empty($mo['food_pic'])):?>
+                                            <img class="food_pic" id="<?php echo base_url($mo['food_pic']);?>" src="<?php echo base_url('static/images/foodimg.gif')?>" width="15" height="15" />
+                                            <?php endif;?>
+                                        </span>
+                                    </div>
+                                    <div class="food_price r">
+                                        <span>￥<label><?php echo $mo['food_price']; ?></label></span><span></span>
+                                    </div>
+                                </li>
+                            <?php endforeach;?>
+                        </ul>
+                    </div>
+                <?php endforeach;?>
 			</div>
 		</div>
        <div class="menu_lstR r">
@@ -144,7 +144,7 @@
 				</tr>
 				</table>
 			</div>
-			<input id="f_uid" type="hidden" name="o_uid" value="<{$userinfo_tmp['id']}>" />
+			<input id="f_uid" type="hidden" name="o_uid" value="<?php echo isset($myinfo)?$myinfo['uid']:'';?>" />
 			<div class="sum_price">合计：<span class="send_fee_num">￥<?php echo $send_price; ?></span> </div>
 			<div class="orders_send">
 				<div class="sendInfo_next">
@@ -160,8 +160,8 @@
 <script>
 //加载完毕
 $(function(){
-	$cart = <{$shop_cart}>;
-　　showHtml($cart);
+//    $cart = <{$shop_cart}>;
+//    showHtml($cart);
 }); 
 
 //显示图片
@@ -186,10 +186,10 @@ var food_sum = 0;//每次操作都会导致是否出现配送费的价格变动�
 //====增加
 $(".menusView_item ul li").click(function()
 {
-	var tm_flag = <{$open_close}>;
+	var tm_flag = <?php echo $open_close; ?>;
 	if(tm_flag == 1)
 	{
-		var _sid = <{$shop_info_tmp['id']}>;
+		var _sid = <?php echo $id ;?>;
 		var _type = $(this).children("input").attr("id");
 		var _id = $(this).children("input").val();
 		var _name = $.trim($(this).children(".food_name").children("span").text());
@@ -224,7 +224,7 @@ $(".menusView_item ul li").click(function()
 $('body').on('click','.order_delete', function() 
 {
 	var _id = $(this).attr('cid');
-	var _sid = <{$shop_info_tmp['id']}>;
+	var _sid = <?php echo $id ;?>;
 	$.post(app_url+'/doShopping',{sid:_sid,fid:_id,fmod:3,send_price:send_prc},function(jdata)
 	{
 		showHtml(jdata);			
@@ -236,7 +236,7 @@ $('body').on('click','#increase_id', function()
 	var _id = $(this).attr("cid");
 	var _name = $(this).attr("cname");
 	var _price = $(this).attr("cprice");
-	var _sid = <{$shop_info_tmp['id']}>;
+	var _sid = <?php echo $id ;?>;
 	var _type = $(this).attr("ctype");
 	
 	$.post(app_url+'/doShopping',{sid:_sid,fid:_id,ftype:_type,fname:_name,fprice:_price,fmod:1,send_price:send_prc},function(data)
@@ -247,7 +247,7 @@ $('body').on('click','#increase_id', function()
 //====减号
 $('body').on('click','#decrease_id', function() 
 {
-	var _sid = <{$shop_info_tmp['id']}>;
+    var _sid = <?php echo $id ;?>;
 	var _id = $(this).attr("cid");
 	
 	$.post(app_url+'/doShopping',{sid:_sid,fid:_id,fmod:2,send_price:send_prc},function(data)
@@ -260,7 +260,7 @@ function showHtml(json)
 	var html_str="";//购物列表htnl
 	var select_arr=[];//选中的数组
 	var nm = $(".menusView_item ul li");
-	var free_send_price = "<{:C('FREE_SEND')}>";
+	var free_send_price = "<?php echo config_item(AREA.'FREE_SEND');?>";
 	nm.removeClass();//还原1
 	nm.children(".food_num").children("span").text("+");//还原2
 	for(var w in json )
@@ -301,7 +301,7 @@ function showHtml(json)
 $("#info_next").click(function(event)
 {
 	var id = $("#f_uid").val();
-	var _start_price = "<{$shop_info_tmp['start_price']}>";
+	var _start_price = "<?php echo $start_price ;?>";
 	if(food_sum < parseFloat(_start_price))
 	{
 		alert('商家满'+_start_price+'元起送哦！');
@@ -311,7 +311,7 @@ $("#info_next").click(function(event)
 	{
 		showLogin();
 	}else{
-		window.location.href = "__APP__/Home/Order/index";
+       window.location.href = "<?php echo base_url('home/order/orderSubmit');?>";
 	}
 });
 //显示登录框
@@ -334,16 +334,15 @@ function do_float_login()
 {
 	var luname = $("#lg_uname_id").val();
 	var lpwd = $("#lg_pwd_id").val();
-	$.post(app_url+'/doFloatLogin',{luname:luname,lpwd:lpwd},function(data){
+	$.post('/home/shop/doFloatLogin',{luname:luname,lpwd:lpwd},function(data){
 		$(".lg_prompt").html(data['msg']);
-		if(data['flag']==1)
+		if(data['flag']=='1')
 		{
 			$(".lg_prompt").css("color","green");
-			window.location.href = "__APP__/Home/Order/index";
+			window.location.href = "<?php echo base_url('home/order/orderSubmit');?>";
 		}else{
 			$(".lg_prompt").css("color","#ff0000");
 		}
-		
 	},'json')
 }
 </script>

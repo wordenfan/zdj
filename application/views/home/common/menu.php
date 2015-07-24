@@ -21,7 +21,7 @@
 <!--顶部信息-->
 <!--头部-->
 <div class="w1000 head">
- <div class="logo l"><a href="<{:U('Index/index')}>"><img src="<?php echo base_url('static/images/mainLogo.gif')?>" width="154" height="75" alt="宅当家" title="宅当家" /></a></div>
+    <div class="logo l"><a href="<?php echo base_url('home/home/index');?>"><img src="<?php echo base_url('static/images/mainLogo.gif')?>" width="154" height="75" alt="宅当家" title="宅当家" /></a></div>
  <div class="city l">
    <div class="city_now"><b></b>黄岛</div>
    <span class="qh_chs">[切换城市]</span>

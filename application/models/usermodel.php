@@ -32,7 +32,7 @@ class UserModel extends MY_Model
         $map['uname'] = $username;
         //验证用户密码
         $user = $this->getUserInfo($map,'uid,uname,password,status');
-        if(is_array($user) && $user['status'])
+        if($user && $user['status'])
         {
             if(think_ucenter_md5($pwd,config_item('USER_AUTH_KEY')) === $user['password'])
             {
@@ -81,8 +81,8 @@ class UserModel extends MY_Model
         $this->session->set_userdata($session_user_sign);
         
         //TODO:缓存用户信息
-        $this->redisM->hmset('login_userList',array($user['uid']=>$user['uname']));
-	$this->updateLogin($uid);
+//        $this->redisM->hmset('login_userList',array($user['uid']=>$user['uname']));
+        $this->updateLogin($uid);
         //用户设置cookie
         $this->load->model('AuthModel','authList');
         $role = $this->authList->checkRole($uid);

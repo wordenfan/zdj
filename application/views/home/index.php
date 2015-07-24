@@ -101,7 +101,7 @@
 		  </div>
 		  <ul class="product_in">
 			<?php foreach($open_list as $k => $v):?>
-			<li onclick="location='<?php echo base_url('home/Shop/shopinfo/id/'.$v['id']);?>'">
+			<li onclick="location='<?php echo base_url('home/shop/shopinfo/id/'.$v['id']);?>'">
 				<div>
 					<div class="product_info">
 						<a class="pdt_pic l">

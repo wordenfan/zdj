@@ -20,52 +20,31 @@ class Shop extends MY_Controller {
             //类别
             $type = $this->fmd->getFoodType(array('shopid'=>$sid));
             $list = $this->fmd->getFoodList(array('shopid'=>$sid,'status'=>1));
-            
             //整理数组
             $result_arr = array();
             foreach($type as $ik=>$iv)
             {
+                $data = array();
+                $data['type_id'] = $iv['id'];
+                $data['type_name'] = $iv['type_name'];
                 $parr = array();
                 foreach($list as $jk=>$jv)
                 {
-                    $tarr = array();
-                    $tarr['type_id'] = $iv['id'];
-                    $tarr['type_name'] = $iv['type_name'];
-                    $tarr['food_name'] = $jv['name'];
-//                    var_dump($tarr);
-                    array_push($parr, $tarr);
+                    if($iv['id'] == $jv['food_type'])
+                    {
+                        $tarr = array();
+                        $tarr['food_id'] = $jv['id'];
+                        $tarr['food_name'] = $jv['name'];
+                        $tarr['food_price'] = $jv['price'];
+                        $tarr['food_pic'] = $jv['pic'];
+                        array_push($parr, $tarr);
+                    }
                 }
-                array_push($result_arr, $parr);
+                $data['food_list'] = $parr;
+                array_push($result_arr, $data);
             }
-            var_dump($result_arr);
-            exit;
-            foreach($list as $ik=>$iv)
-            {
-                
-            }
-            for($i=0;$i<count($type);$i++)
-            {
-                $temp_arr = array();
-                for($j=0;$j<count($list);$j++)
-                {
-                    array_push($temp_arr, $j);
-                }
-                $tid = $type[$i]['id'];
-                $arr_key = array_search($tid, $type_arr);
-                if($arr_key===false)//排除是0的情况
-                {
-                    array_push($type_arr, $tid);
-                    $temp_arr = array();
-                    array_push($temp_arr,$list[$i]);
-                    array_push($result_arr,$temp_arr);
-                }else{
-                    array_push($result_arr[$arr_key], $list[$i]);
-                }
-                echo '====='.$arr_key;
-                var_dump($type_arr);
-//                var_dump($result_arr);
-            }
-//            $this->load->view('home/shop/shopinfo',$info);
+            $info['foodlist_tmp'] = $result_arr;
+            $this->load->view('home/shop/shopinfo',$info);
         }else{
             redirect(base_url());
             exit;
@@ -182,6 +161,33 @@ class Shop extends MY_Controller {
             $uid = $this->login_status();
             $data = $this->umd->getUserInfo(array('uid'=>$uid),'uid,address,tel,address');
             $this->load->view('home/user/address',$data);
+        }
+    }
+    //
+    public function doFloatLogin()
+    {
+        if($_POST)//ajax
+        {
+            $unmae = $this->input->post('luname',true);
+            $pwd = $this->input->post('lpwd',true);
+            //
+            $uid = $this->umd->login($unmae,$pwd);
+            if(0 < $uid)
+            {
+                $_info['flag'] = '1';
+                $_info['msg'] = '登录成功';
+                $lg_info = json_encode($_info);
+            }else{
+                switch($uid) {
+                    case -1: $error = '用户名或密码错误'; break; //用户不存在或被禁用！，系统级别禁用
+                    case -2: $error = '用户名或密码错误'; break;//密码错误！
+                    default: $error = '未知错误！'; break; // 0-接口参数错误（调试阶段使用）
+                }
+                $_info['flag'] = '0';
+                $_info['msg'] = $error;
+                $lg_info = json_encode($_info);                    
+            }
+            echo $lg_info;
         }
     }
 }

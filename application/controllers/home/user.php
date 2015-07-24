@@ -141,4 +141,5 @@ class User extends MY_Controller {
             $this->load->view('home/user/address',$data);
         }
     }
+    
 }
