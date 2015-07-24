@@ -7,22 +7,23 @@ class Shop extends MY_Controller {
         $this->load->model('usermodel','umd');
         $this->load->model('shopmodel','smd');
         $this->load->model('foodmodel','fmd');
+        $this->load->library('shopping','','cart');
     }
     //ajax购物
     public function doShopping()
     {
         if($_POST)
         {
-            $_sid = (int)$this->input->post('sid');
-            $_id = (int)$this->input->post('fid');
-            $_mod = (int)$this->input->post('fmod');
-            $_sendprc = (int)$this->input->post('send_price');
+            $_sid = (int)$this->input->post('sid',true);
+            $_id = (int)$this->input->post('fid',true);
+            $_mod = (int)$this->input->post('fmod',true);
+            $_sendprc = $this->input->post('send_price',true);
             switch ($_mod)
             {
                 case 1://增加
-                    $_price = (int)$this->input->post('price');
-                    $_name = trim($this->input->post('fname'));
-                    $_type = (int)$this->input->post('ftype');
+                    $_price = $this->input->post('fprice',true);
+                    $_name = trim($this->input->post('fname',true));
+                    $_type = $this->input->post('ftype',true);
                     $this->cart->addItem($_sid,$_id,$_name,$_price,$_type);
                     break;
                 case 2://减去
@@ -45,6 +46,12 @@ class Shop extends MY_Controller {
         $info = $this->smd->getShop(array('id'=>$sid));
         if($info)
         {
+            //加载原有物品
+            $_list = $this->cart->getAll($sid);
+            $_list['total'] = $this->cart->getPrice($sid);
+            $food_list = json_encode($_list);
+            $info['shop_cart'] = $food_list;
+            //
             $open_flag = get_business_hour($info['business_hours'],$info['business_week']);
             $info['open_close'] = $open_flag;
             //类别

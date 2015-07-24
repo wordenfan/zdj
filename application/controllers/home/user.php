@@ -64,7 +64,7 @@ class User extends MY_Controller {
         {
             $this->umd->logout();
         }
-        redirect('home/User/login');
+        redirect('home/user/login');
     }
     //用户名校验
     public function check_uname()

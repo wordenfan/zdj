@@ -15,7 +15,7 @@ class ShopModel extends MY_Model
     }
     //查询adminList
     public function getShopList(){
-        $where = array('status !=' => 0);
+        $where = array('status !=' => 0,'belongs'=>AREA_ID);
         $data = $this->db->select('*')
                 ->from($this->_table_name)
                 ->where($where)

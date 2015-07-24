@@ -11,7 +11,7 @@ class Shopping
         if(!$cookie_val || !isset($cookie_val)) 
         {
             //缓存一小时
-            set_cookie('cart',$this->items,3600*1);
+            $this->checkCookieChange();
         }else{
             $this->items = unserialize(think_decrypt(get_cookie('cart')));
         }
@@ -19,7 +19,7 @@ class Shopping
     //所有item改动重新赋值cookie;
     private function checkCookieChange()
     {
-        set_cookie('cart',  think_encrypt(serialize($this->items)));
+        set_cookie('cart',  think_encrypt(serialize($this->items)),3600*1);
     }
     //添加商品
     public function addItem ($shop_id,$id,$name,$price,$type=1,$num=1) 
@@ -95,7 +95,7 @@ class Shopping
     }
     //返回购物车中的所有商品
     public function getAll ($shop_id) {
-        return is_numeric($shop_id) ? $this->items[$shop_id] : $this->items;
+        return is_numeric($shop_id) && isset($this->items[$shop_id]) ? $this->items[$shop_id] : $this->items;
     }
     //返回商家数量
     public function getShopNum () {

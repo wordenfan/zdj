@@ -265,7 +265,7 @@ $config['sess_time_to_update']	= 300;
 | 'cookie_secure' =  Cookies will only be set if a secure HTTPS connection exists.
 |
 */
-$config['cookie_prefix']	= "";
+$config['cookie_prefix']	= "zdj_ck_";
 $config['cookie_domain']	= "";
 $config['cookie_path']		= "/";
 $config['cookie_secure']	= FALSE;
@@ -363,3 +363,4 @@ $config['proxy_ips'] = '';
 
 //===================自定义config
 $config['USER_AUTH_KEY'] = '!sf326,Ld8`CIuQwD;-/()e0%W]gSPZ*H5^F~{=n'; 
+$config['DATA_AUTH_KEY'] = 'Vhy~F[9^<MA*-k6|SP("iXD7#YuB5dCG?xIK}w%2';
