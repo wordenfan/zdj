@@ -25,7 +25,10 @@ class MY_Controller extends CI_Controller
         //设置区域HD
         if(!defined('AREA'))
         {
-            define('AREA','HD_');
+//            define('AREA','HD_');
+//            define('AREA_ID','1');
+            define('AREA','SN_');
+            define('AREA_ID','2');
         }
         //读取config表
         if(!$this->config->item('WEB_ICP')){

@@ -160,8 +160,8 @@
 <script>
 //加载完毕
 $(function(){
-//    $cart = <{$shop_cart}>;
-//    showHtml($cart);
+    $cart = <?php echo $shop_cart; ?>;
+    showHtml($cart);
 }); 
 
 //显示图片
