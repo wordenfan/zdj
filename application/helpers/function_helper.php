@@ -6,6 +6,13 @@ function show_message($message='', $url='',$waitSecond = 3,$error = '')
     include APPPATH.'errors/show_message.php';
     exit;
 }
+//输出json
+function echo_json($_info)
+{
+    $json_info = json_encode($_info);
+    echo $json_info;
+    exit;
+}
 //系统非常规MD5加密方法
 function think_ucenter_md5($str, $key)
 {
