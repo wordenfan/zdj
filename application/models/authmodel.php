@@ -11,7 +11,6 @@ class AuthModel extends MY_Model
     public function __construct() {
         parent::__construct();
         $this->_table_name = 'auth_group'; 
-        $this->load->model('auth_group','redisM');
     }
     //查询身份
     public function checkRole($uid){

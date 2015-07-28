@@ -96,11 +96,11 @@
 				<input id="return_id" type="button" class="od_btn l" value="重新订购"/>
 				<input id="submit_id" type="button" class="od_btn r" value="确认提交"/>
 			</div>
-			<form name="alipayform" id="alipay_submit" action="__APP__/Home/AliPay/doalipay" method="post" target="_blank">
+            <form name="alipayform" id="alipay_submit" action="<?php echo base_url('home/alipay/doalipay');?>" method="post" target="_blank">
 				<input type="hidden" id="" name="WIDout_trade_no" value="<?php echo $alipay_trade_code; ?>" />
 				<input type="hidden" id="" name="WIDsubject" value="(<?php echo $shopname_tmp; ?>)订单" />
 				<input type="hidden" id="" name="WIDtotal_fee" value="<?php echo $sum; ?>" />
-				<input type="hidden" id="" name="WIDbody" value="用户(<?php echo $name; ?>)" />
+				<input type="hidden" id="" name="WIDbody" value="用户(<?php echo $name_tmp; ?>)" />
 				<input type="hidden" id="" name="WIDshow_url" value="http://www.163.com/myorder.html" />
 				<input type="hidden" id="WID_name" name="WID_name" value="" />
 				<input type="hidden" id="WID_tel" name="WID_tel" value="" />
@@ -135,10 +135,10 @@ $("#submit_id").click(function()
 	var _tel = $("#info_tel").val();
 	var _address = $("#info_address").val();
 	//未登录
-	if(!id)
+	if(!id)  
 	{
 		alert('请先登录!');
-		window.location.href = '__APP__/Home/User/login?req_url=<{$self_url}>';
+		window.location.href = '<?php echo base_url('home/user/login?req_url='.$_SERVER["REQUEST_URI"]); ?>';
 		return false;
 	}//配送信息不全
 	else if(_name==""||_tel==""||_address=="")
@@ -153,17 +153,17 @@ $("#submit_id").click(function()
 	var _mark = $("#info_mark").val();
 	if(pay_type==1)//货到付款
 	{
-		$.post(app_url+'/postOrder',{name:_name,tel:_tel,address:_address,remark:_mark,shopid:"<{$shopid_tmp}>"},function(data)
+		$.post('<?php echo base_url('home/order/dosubmit');?>',{name:_name,tel:_tel,address:_address,remark:_mark,shopid:"<?php echo $shopid_tmp; ?>"},function(data)
 		{
 			if(data.flag=='true')
 			{
 				$("#submit_id").val("确认提交");
 				$("#submit_id").removeClass("clicked").attr("disabled", false);
 				alert(data.msg);
-				window.location.href='__APP__/Home/User/myorder';
+				window.location.href='<?php echo base_url('home/user/myorder');?>';
 			}else{
 				alert(data.msg);
-				window.location.href='__APP__';
+				window.location.href='<?php echo base_url('home/order/ordersubmit');?>';
 			}
 		},'json')
 	}else if(pay_type==2){//在线支付
@@ -183,7 +183,7 @@ function showPayDiv() {
 //完成付款跳转
 function do_float_alipay()
 {
-	window.location.href='__APP__/Home/User/myorder';
+	window.location.href='<?php echo base_url('home/user/myorder');?>';
 }
 </script>
 <?php $this->load->view('home/common/footer');?>

@@ -180,7 +180,7 @@ $config['directory_trigger']	= 'd'; // experimental not currently in use
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 1;
 
 /*
 |--------------------------------------------------------------------------
@@ -364,3 +364,5 @@ $config['proxy_ips'] = '';
 //===================自定义config
 $config['USER_AUTH_KEY'] = '!sf326,Ld8`CIuQwD;-/()e0%W]gSPZ*H5^F~{=n'; 
 $config['DATA_AUTH_KEY'] = 'Vhy~F[9^<MA*-k6|SP("iXD7#YuB5dCG?xIK}w%2';
+
+include 'alipay_conf.php';

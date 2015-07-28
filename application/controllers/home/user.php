@@ -5,7 +5,6 @@ class User extends MY_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('userModel','umd');
-        $this->load->model('authModel','auth');
     }
     //
     public function register()
@@ -144,5 +143,15 @@ class User extends MY_Controller {
             $data = $this->umd->getUserInfo(array('uid'=>$uid),'uid,address,tel,address');
             $this->load->view('home/user/address',$data);
         }
+    }
+    //MyOrder
+    public function myorder()
+    {
+        $uid = $this->login_status();
+        $sql = 'select snid,oid,oshop_id,opublish,oshop_name,osum,opay,status,pay_status from onethink_order where uid = '.UID.' order by onethink_order.oid desc limit 10';
+        $res = $this->db->query($sql)->result_array();
+        $data['list'] = $res;
+        
+        $this->load->view('home/user/myorder',$data);
     }
 }

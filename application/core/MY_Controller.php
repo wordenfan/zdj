@@ -2,10 +2,11 @@
 
 class MY_Controller extends CI_Controller
 {
-    public $data = array();
+    public $my_data = array();
     function __construct()
     {
         parent::__construct();
+        $this->load->model('authmodel','auth');
         $this->my_init();
     }
     
@@ -17,16 +18,17 @@ class MY_Controller extends CI_Controller
             define('UID',is_login());
         }
         //用户信息
-        $data['login_status'] = UID;
         if (UID) {
-            $data['myinfo'] = $this->session->userdata('user_auth');
+            $this->my_data['role'] = $this->auth->checkRole(UID);
+            $this->my_data['myinfo'] = $this->session->userdata('user_auth');
         }
-        $this->load->vars($data);
+        $this->my_data['login_status'] = UID;
+        $this->load->vars($this->my_data);
         //设置区域HD
         if(!defined('AREA'))
         {
-//            define('AREA','HD_');
-//            define('AREA_ID','1');
+            //define('AREA','HD_');
+            //define('AREA_ID','1');
             define('AREA','SN_');
             define('AREA_ID','2');
         }
@@ -47,6 +49,7 @@ class MY_Controller extends CI_Controller
             exit();
         }
     }
+    //未登陆跳转
     public function login_status()
     {
         if(UID)

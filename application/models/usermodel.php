@@ -84,7 +84,9 @@ class UserModel extends MY_Model
 //        $this->redisM->hmset('login_userList',array($user['uid']=>$user['uname']));
         $this->updateLogin($uid);
         //用户设置cookie
-        $this->load->model('AuthModel','authList');
+        var_dump($this->my_data);
+        exit;
+        $this->load->model('authmodel','auth');
         $role = $this->authList->checkRole($uid);
         if($role=='guest')
         {

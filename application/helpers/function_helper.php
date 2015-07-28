@@ -207,3 +207,8 @@ function think_decrypt($data, $key = ''){
     }
     return base64_decode($str);
 }
+//订单号生城
+function order_id_generate()
+{
+    return rand(1,9).uniqid().str_pad(mt_rand(1, 99), 4, '0', STR_PAD_LEFT); 
+}
