@@ -6,11 +6,12 @@ class AliPay extends MY_Controller
     public function __construct() 
     {   
         parent::__construct();
-        require_once(APPPATH."third_party/alipay/alipay_submit.class.php");
     }
     //
     public function doalipay()
     {
+        require_once(APPPATH."third_party/alipay/alipay_submit.class.php");
+        
         $uid = $this->login_status();
         if($_POST && $uid)
         {
@@ -65,6 +66,9 @@ class AliPay extends MY_Controller
 //            $this->cart = new Shopping();
 //            $this->cart->clearCart();
             log_message('Error', '<====>'.$this->alipay_config['partner']);
+            
+            $order = new Order();
+            $order->dosubmit();
             //建立请求
             $alipaySubmit = new AlipaySubmit($this->alipay_config);
             $html_text = $alipaySubmit->buildRequestForm($parameter,"post", "提交中...");
@@ -73,7 +77,8 @@ class AliPay extends MY_Controller
     }
     function notifyurl()
     {
-        //计算得出通知验证结果
+        include_once APPPATH.'third_party/alipay/alipay_notify.class.php';
+        
         $alipayNotify = new AlipayNotify($this->alipay_config);
         $verify_result = $alipayNotify->verifyNotify();
         
@@ -98,6 +103,7 @@ class AliPay extends MY_Controller
     }
     function returnurl()
     {
+        include_once APPPATH.'third_party/alipay/alipay_notify.class.php';
         $alipayNotify = new AlipayNotify($this->alipay_config);
         $verify_result = $alipayNotify->verifyReturn();
         //验证成功

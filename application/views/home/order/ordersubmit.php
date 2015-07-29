@@ -96,7 +96,7 @@
 				<input id="return_id" type="button" class="od_btn l" value="重新订购"/>
 				<input id="submit_id" type="button" class="od_btn r" value="确认提交"/>
 			</div>
-            <form name="alipayform" id="alipay_submit" action="<?php echo base_url('home/alipay/doalipay');?>" method="post" target="_blank">
+            <form name="alipayform" id="alipay_submit" action="<?php echo base_url('home/order/dosubmit');?>" method="post" target="_blank">
 				<input type="hidden" id="" name="WIDout_trade_no" value="<?php echo $alipay_trade_code; ?>" />
 				<input type="hidden" id="" name="WIDsubject" value="(<?php echo $shopname_tmp; ?>)订单" />
 				<input type="hidden" id="" name="WIDtotal_fee" value="<?php echo $sum; ?>" />
@@ -108,6 +108,7 @@
 				<input type="hidden" id="WID_mark" name="WID_mark" value="" />
 				<input type="hidden" id="WID_shopid" name="WID_shopid" value="<?php echo $shopid_tmp; ?>" />
 				<input type="hidden" id="WID_uid" name="WID_uid" value="<?php echo $uid_tmp; ?>" />
+				<input type="hidden" id="" name="from_type" value="alipay" />
 			</form>
 		</div>
 	</div>
@@ -153,7 +154,7 @@ $("#submit_id").click(function()
 	var _mark = $("#info_mark").val();
 	if(pay_type==1)//货到付款
 	{
-		$.post('<?php echo base_url('home/order/dosubmit');?>',{name:_name,tel:_tel,address:_address,remark:_mark,shopid:"<?php echo $shopid_tmp; ?>"},function(data)
+		$.post('<?php echo base_url('home/order/dosubmit');?>',{name:_name,tel:_tel,address:_address,from_type:'pc_order',remark:_mark,shopid:"<?php echo $shopid_tmp; ?>"},function(data)
 		{
 			if(data.flag=='true')
 			{
