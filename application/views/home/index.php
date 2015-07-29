@@ -46,11 +46,11 @@
 						<div class="login_info">
 						<div class="login_pic l"></div>
 						<div class="login_infoR l">
-						<div class="lg_info_top">hi  <?php echo $myinfo['uname'];?><a href="<?php echo base_url('home/User/logout');?>">退出>></a></div>
+						<div class="lg_info_top">hi  <?php echo $myinfo['uname'];?><a href="<?php echo base_url('home/user/logout');?>">退出>></a></div>
 						<div class="lg_info_btm">宅当家，用心创造便利</div>
 						</div>
 						</div>
-						<div class="enter_btn"><a href="<?php echo base_url('home/User/pcenter');?>">进入个人中心</a></div>
+						<div class="enter_btn"><a href="<?php echo base_url('home/user/pcenter');?>">进入个人中心</a></div>
 					</div>
 					<!--logined-->
 				<?php else :?>
@@ -61,7 +61,7 @@
 						<input type="password" autocomplete="off" id="pwd" name="pwd" placeholder="密码" />
 						<div class="log_reg">
 						<button type="button" class="login_to l" id="lgbt" onclick="dologin(this);"><b></b>账号登陆</button>
-						<a class="user_reg r" href="<?php echo base_url('home/User/register');?>">用户注册</a>
+						<a class="user_reg r" href="<?php echo base_url('home/user/register');?>">用户注册</a>
 						</div>
 					</form>
 					</div>
@@ -124,7 +124,7 @@
 			</li>
 			<?php endforeach;?>
 			<?php foreach($close_list as $k => $v):?>
-			<li onclick="location='<?php echo base_url('home/Shop/shopinfo/id/'.$v['id']);?>'">
+			<li onclick="location='<?php echo base_url('home/shop/shopinfo/id/'.$v['id']);?>'">
 				<div class="reset_mask">			
 					<div class="product_info">
 						<a class="pdt_pic l">

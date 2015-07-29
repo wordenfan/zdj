@@ -334,7 +334,7 @@ function do_float_login()
 {
 	var luname = $("#lg_uname_id").val();
 	var lpwd = $("#lg_pwd_id").val();
-	$.post('/home/user/login',{uname:luname,pwd:lpwd},function(data){
+	$.post('/home/user/login',{uname:luname,pwd:lpwd,frompage:'shopinfo'},function(data){
 		$(".lg_prompt").html(data['msg']);
 		if(data['flag']=='1')
 		{

@@ -46,7 +46,7 @@
 				<?php endif; ?>
 			</td>		   
 			<td>
-            <?php switch($vo['status']){
+            <?php switch($vo['order_status']){
                 case 1:
                     echo '<font color="green">已接单</font>';
                     break;

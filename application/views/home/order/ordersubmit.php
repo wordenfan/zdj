@@ -82,8 +82,8 @@
 
 
 					<li><b>&nbsp;</b>支付方式：
-							<input type="radio" value="1" name="pay_type"  checked="ckecked"/>&nbsp;餐到付款
-							<input type="radio" value="2" name="pay_type"/>&nbsp;在线支付
+							<input type="radio" value="1" name="pay_type"/>&nbsp;餐到付款
+							<input type="radio" value="2" name="pay_type" checked="ckecked"/>&nbsp;在线支付
 					</li>
 				</ul>
 				</ul>

@@ -36,6 +36,7 @@
 					<button type="submit">登 录</button>
 				</div>
 			</div>
+            <input type="hidden" name="frompage" value="login"/>
 			<div class="reg_item">
 				<span class="reg_name l">&nbsp;&nbsp;</span>
 				<div class="reg_input l">
