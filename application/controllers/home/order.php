@@ -51,12 +51,27 @@ class Order extends MY_Controller {
         }
     }
     //执行写库命令
-    public function dosubmit($alipay_mobile_pc=NULL)
+    public function dosubmit()
     {
-        //判断pc还是mobiel还是alipay
-        if(is_string($alipay_mobile_pc))
+        $from_type = $this->input->post('from_tyep') ? $this->input->post('from_tyep'):0;
+        if(!$from_type || !$_POST){ return; }
+        //
+        if($from_type == 'alipay')
         {
-            //            
+            $shop_id = $this->input->post('WID_shopid');
+            $ord_name = $this->input->post('WID_name');
+            $ord_tel = $this->input->post('WID_tel');
+            $ord_address = $this->input->post('WID_address');
+            $ord_remark = $this->input->post('WID_mark');
+            $pay_status = 2;//
+        }
+        else if($from_type = 'pc_order'){
+            $shop_id = $this->input->post('shopid');
+            $ord_name = $this->input->post('name');
+            $ord_tel = $this->input->post('tel');
+            $ord_address = $this->input->post('address');
+            $ord_remark = $this->input->post('remark');
+            $pay_status = 0;
         }
         else if(is_array($alipay_mobile_pc))
         {
@@ -65,19 +80,12 @@ class Order extends MY_Controller {
             $ord_tel = $alipay_mobile_pc[2];
             $ord_address = $alipay_mobile_pc[4];
             $ord_remark = $alipay_mobile_pc[3];
-            $ord_pay_status = 0;
-        }else{
-            $shop_id = $this->input->post('shopid');
-            $ord_name = $this->input->post('name');
-            $ord_tel = $this->input->post('tel');
-            $ord_address = $this->input->post('address');
-            $ord_remark = $this->input->post('remark');
-            $ord_pay_status = 0;
+            $pay_status = 0;
         }
         //检查是否登录
         //未登录跳转
         $uid = $this->login_status();
-        if($uid)
+        if($_POST && $uid)
         {
             $shop_info = $this->smd->getShop(array('id'=>$shop_id));
             $open_close = get_business_hour($shop_info['business_hours'],$shop_info['business_week']);
@@ -121,7 +129,7 @@ class Order extends MY_Controller {
                     $data['otel'] = $ord_tel;
                     $data['oaddress'] = $ord_address;
                     $data['remark'] = $ord_remark;
-                    $data['pay_status'] = $ord_pay_status;
+                    $data['pay_status'] = $pay_status;
                     $data['oip'] = getIPaddress();
                     $data['oshop_id'] = $shop_id;
                     $data['oshop_name'] = $shop_info['name'];
