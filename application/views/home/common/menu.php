@@ -7,7 +7,7 @@
   </div>
   <div class="top_r r">
 	<?php if($login_status>0):?>
-		<span>您好，<a href=""><?php echo $myinfo['uname'];?></a></span><span><a href="<?php echo base_url('home/user/logout')?>">退出</a></span>
+		<span>您好，<a href="<?php echo base_url('home/user/myorder')?>"><?php echo $myinfo['uname'];?></a></span><span><a href="<?php echo base_url('home/user/logout')?>">退出</a></span>
 		<span class="short_line">|</span>
 		<span>客服时间：00:00</span>
 	<?php else :?>

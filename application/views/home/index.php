@@ -92,7 +92,7 @@
 			  <span>客服电话：<?php echo config_item(AREA.'SERVICE_PHONE')?></span>
 			  <a href="http://weibo.com/zhaidangjia" target="_blank"><img src="<?php echo base_url('/static/images/weibo.gif');?>" width="18" height="16" /></a>
 				<a href="#" id="weixinbtn" style="position: relative;"><img src="<?php echo base_url('/static/images/weixin.gif');?>" width="18" height="17" />
-				<div id="weixinfu" style="z-index:99;position: absolute;margin:-34px 1px 0 23px;border:1px solid #666 width:100px; height:100px; background:#ccc; display:none;padding:5px;">
+				<div id="weixinfu" style="z-index:99;position: absolute;margin:-34px 1px 0 23px;border:1px solid #666;width:100px; height:100px; background:#ccc; display:none;padding:5px;">
 					<img src="<?php echo base_url('/static/images/erweima.jpg');?>" width="100" height="100" />
 				</div>
 				</a>
@@ -168,7 +168,7 @@
 			obj.disabled =true;
 			var js_ud = $('#uname').val();
 			var js_pwd = $('#pwd').val();
-			$.post(baseurl+'home/Home/index',{uname:js_ud,pwd:js_pwd},function(data)
+			$.post(baseurl+'home/home/index',{uname:js_ud,pwd:js_pwd},function(data)
 			{
 				obj.disabled =false;
 				var json = eval(data);

@@ -10,6 +10,8 @@
 <div id="bg"></div>
 <div id="show_login_div">
 	<div class="login_header">
+        <a href="../../../../../wwwroot/Application/Home/View/Order/index.html"></a>
+        <a href="../../../../../wwwroot/Application/Home/View/Shop/shopinfo.html"></a>
         <button class="login_close" type="button" onclick="hideLogin()">×</button>
         <h3>提示</h3>
     </div>
@@ -176,15 +178,21 @@ $("#submit_id").click(function()
 		$("#alipay_submit").submit();
 	}
 })
-//支付界面
-function showPayDiv() {
-	$("#bg").css("display","block");
-	$("#show_login_div").css("display","block");
-}
 //完成付款跳转
 function do_float_alipay()
 {
 	window.location.href='<?php echo base_url('home/user/myorder');?>';
+}
+//打开支付提示界面
+function showPayDiv() {
+	$("#bg").css("display","block");
+	$("#show_login_div").css("display","block");
+}
+//关闭支付提示界面
+function hideLogin() {
+	document.getElementById("bg").style.display ='none';
+	document.getElementById("show_login_div").style.display ='none';
+    window.location.href='<?php echo base_url('home/user/myorder');?>';
 }
 </script>
 <?php $this->load->view('home/common/footer');?>

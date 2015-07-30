@@ -149,7 +149,7 @@ class User extends MY_Controller {
     public function myorder()
     {
         $uid = $this->login_status();
-        $sql = 'select snid,oid,oshop_id,opublish,oshop_name,osum,opay,status,pay_status from onethink_order where uid = '.UID.' order by onethink_order.oid desc limit 10';
+        $sql = 'select snid,oid,oshop_id,opublish,oshop_name,osum,opay,order_status,pay_status from onethink_order where uid = '.UID.' order by onethink_order.snid desc limit 10';
         $res = $this->db->query($sql)->result_array();
         $data['list'] = $res;
         

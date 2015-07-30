@@ -39,4 +39,24 @@ class orderModel extends MY_Model
             exit();
         }
     }
+    //判断支付宝状态是否更改
+    public function checkPayStatus($trade_code){
+        $map['alipay_trade_code'] = $trade_code;
+        $data = $this->getOrderInfo($map,'pay_status');
+        if($data['pay_status'] == '1'){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    //支付宝更改状态
+    public function changePayStatus($trade_code) {
+        $sql = 'update onethink_order set pay_status = 1 where alipay_trade_code = '.$trade_code;
+        $res_boo = $this->db->query($sql);
+        if(!$res_boo)
+        {
+            log_message('Error', '支付宝订单状态修改失败：'.$this->db->last_query());
+            show_message('',base_url(),3,'支付宝订单状态错误，请联系客服');
+        }
+    }
 }

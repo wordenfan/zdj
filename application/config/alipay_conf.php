@@ -8,6 +8,6 @@ $config['alipay_config'] = array(
     'input_charset'=> strtolower('utf-8'),
     'cacert'       => getcwd().'\\cacert.pem',
     'transport'    => 'http',
-    'notify_url'   => 'http://'.$_SERVER['HTTP_HOST'].'/order/callback/notify',
-    'return_url'   => 'http://'.$_SERVER['HTTP_HOST'].'/order/callback/return',
+    'notify_url'   => 'http://'.$_SERVER['HTTP_HOST'].'/home/alipay/notifyurl',
+    'return_url'   => 'http://'.$_SERVER['HTTP_HOST'].'/home/alipay/returnurl',
 );

@@ -39,10 +39,12 @@
 			<td><a href="<?php echo base_url('home/shop/shopinfo/shopid/'.$vo['oshop_id']);?>"><?php echo $vo['oshop_name'];?></a><input type="hidden" value="<?php echo $vo['oshop_id'];?>"/></td>
 			<td>￥<?php echo $vo['osum'];?></td>		   
 			<td>
-                <?php if($vo['pay_status'] != 0) :?>
+                <?php if($vo['pay_status'] == 1) :?>
 					<font color="green">支付完成</font>
-				<?php else :?>
+				<?php elseif($vo['pay_status'] == 0) :?>
 					<font color="grey">餐到付款</font>
+				<?php elseif($vo['pay_status'] == 2) :?>
+					<font color="grey">等待支付</font>
 				<?php endif; ?>
 			</td>		   
 			<td>

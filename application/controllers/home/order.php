@@ -53,7 +53,7 @@ class Order extends MY_Controller {
     //执行写库命令
     public function dosubmit()
     {
-        $from_type = $this->input->post('from_tyep') ? $this->input->post('from_tyep'):0;
+        $from_type = $this->input->post('from_type') ? $this->input->post('from_type'):0;
         if(!$from_type || !$_POST){ return; }
         //
         if($from_type == 'alipay')
@@ -63,6 +63,13 @@ class Order extends MY_Controller {
             $ord_tel = $this->input->post('WID_tel');
             $ord_address = $this->input->post('WID_address');
             $ord_remark = $this->input->post('WID_mark');
+            //
+            $alipay_post = array();
+            $alipay_post['WIDout_trade_no'] = $this->input->post('WIDout_trade_no');
+            $alipay_post['WIDsubject'] = $this->input->post('WIDsubject');
+            $alipay_post['WIDtotal_fee'] = $this->input->post('WIDtotal_fee');
+            $alipay_post['WIDbody'] = $this->input->post('WIDbody');
+            $alipay_post['WIDshow_url'] = $this->input->post('WIDshow_url');
             $pay_status = 2;//
         }
         else if($from_type = 'pc_order'){
@@ -75,12 +82,12 @@ class Order extends MY_Controller {
         }
         else if(is_array($alipay_mobile_pc))
         {
-            $shop_id = $alipay_mobile_pc[0];
-            $ord_name = $alipay_mobile_pc[1];
-            $ord_tel = $alipay_mobile_pc[2];
-            $ord_address = $alipay_mobile_pc[4];
-            $ord_remark = $alipay_mobile_pc[3];
-            $pay_status = 0;
+//            $shop_id = $alipay_mobile_pc[0];
+//            $ord_name = $alipay_mobile_pc[1];
+//            $ord_tel = $alipay_mobile_pc[2];
+//            $ord_address = $alipay_mobile_pc[4];
+//            $ord_remark = $alipay_mobile_pc[3];
+//            $pay_status = 0;
         }
         //检查是否登录
         //未登录跳转
@@ -139,6 +146,7 @@ class Order extends MY_Controller {
                     $data['uname'] = $this->my_data['myinfo']['uname'];
                     $data['opublish'] = $_SERVER['REQUEST_TIME'];
                     $data['oid'] = order_id_generate();
+                    $data['alipay_trade_code'] = $this->input->post('WIDout_trade_no')?$this->input->post('WIDout_trade_no'):0;
                     $this->load->model('ordermodel','omd');
                     $this->load->model('useroldmodel','uomd');
                     $data['user_status'] = $this->uomd->addInfo($data['uid'],$data['uname'],$data['osum']);//是否是新用户                
@@ -168,16 +176,14 @@ class Order extends MY_Controller {
                 }
             }
         }
-        //
-        if(is_string($alipay_mobile_pc))//alipay
+        //订单提交成功
+        if($from_type == 'alipay')//alipay
         {
-            //
-        }
-        else if(is_array($alipay_mobile_pc))//mobile
+            require_once  APPPATH.'controllers/home/alipay.php';
+            $alipay = new AliPay();
+            $alipay->doalipay($alipay_post);
+        }else
         {
-            $json_tm = json_encode($res_arr);
-            return $json_tm;
-        }else{//pc
             $json_tm = json_encode($res_arr);
             echo $json_tm;
         }
@@ -247,9 +253,16 @@ class Order extends MY_Controller {
     }
     
     public function test() {
-        $mic_data = explode(' ', microtime());
-        var_dump($mic_data[1]);
+//        $mic_data = explode(' ', microtime());
+//        var_dump($mic_data[1]);
 //        $data = 11;
-        var_dump(rand(1,9));
+//        var_dump(rand(1,9));
+        
+//        $this->load->model('ordermodel','omd');
+//        $map['alipay_trade_code'] = 143824137511;
+//        $data = $this->omd->getOrderInfo($map,'pay_status');
+//        
+//        var_dump($data['pay_status']);
+        log_message('Error', 'nnnotifyurl改变==交易状态');
     }
 }

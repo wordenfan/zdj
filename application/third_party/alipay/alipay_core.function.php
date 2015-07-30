@@ -51,6 +51,7 @@ function createLinkstringUrlencode($para) {
  * return 去掉空值与签名参数后的新签名参数组
  */
 function paraFilter($para) {
+    reset($para);//worden后加的，解决issign为false的问题
 	$para_filter = array();
 	while (list ($key, $val) = each ($para)) {
 		if($key == "sign" || $key == "sign_type" || $val == "")continue;
