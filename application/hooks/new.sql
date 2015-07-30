@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50544
 File Encoding         : 65001
 
-Date: 2015-07-24 18:58:09
+Date: 2015-07-30 19:25:26
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1886,6 +1886,90 @@ INSERT INTO `onethink_news` VALUES ('13', '青岛开发区外卖网宅当家—�
 INSERT INTO `onethink_news` VALUES ('14', '青岛开发区外卖美食—舅姥爷砂锅', '<div align=\"center\">\r\n	<span style=\"font-size:14px;\">青岛开发区美食—舅姥爷砂锅</span><br />\r\n</div>\r\n<br />\r\n&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;<span style=\"font-size:14px;\"> </span><span style=\"font-size:14px;\">开发区的朋友，更确切点说是长江中路附近的朋友们应该都知道咱开发区有一家砂锅店生意特别的红火，没错，就是</span><a target=\"_blank\" href=\"http://www.26632.com/Home/Shop/shopinfo/shopid/23\"><span style=\"font-size:14px;color:#4C33E5;\"><u>舅姥爷砂锅</u></span></a><span style=\"font-size:14px;\">。今天就给大家全面的介绍下该店，毕竟还是有新朋友或者不了解的朋友需要补习下功课嘛。资深吃货嘛，可以去玩别的啦。</span><br />\r\n<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style=\"font-size:14px;\"> 舅姥爷砂锅是13年在咱青岛开发区井冈山路开设的。就饮食而言，大家普遍有个共识，那就是想要吃好吃的大餐，基本就要到传统的中餐馆去等候品尝，等待时间往往比较长一些。而普通的快餐虽然速度较快，但是在味道口感上却要大打折扣。而舅姥爷砂锅的创新就弥补了这种缺憾不足，将传统中餐的美味和快餐的速度很好的融合到了一起，让即便赶时间的上班族都能在短暂的午休时间品尝一顿美味大餐。每每饭点，餐厅爆满也就在情理之中啦。</span><br />\r\n<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style=\"font-size:14px;\"> 砂锅顾名思义，就是用砂锅炖出美味来。下面给大家介绍几道美食，也是广大顾客和厨师师傅们一致推荐的。他们分别是：鲶鱼砂锅、黄焖鸡砂锅、排骨砂锅和酸菜鱼砂锅。</span><br />\r\n<span style=\"font-size:14px;\"><span><br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></span><span><span><span style=\"font-size:14px;\">鲶鱼砂锅</span></span></span><span style=\"font-size:14px;\">：</span><span style=\"font-size:14px;\">分量不轻，料也很足，有点辣，尤其适合重口味的。对一个懒得吃鱼因为刺多的人来说，鲶鱼还是很不错的，刺没那么多，肉也很鲜嫩。</span><span><span><br />\r\n<span style=\"font-size:14px;\"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 酸菜鱼砂锅</span></span><span style=\"font-size:14px;\">：鱼片还是蛮嫩的咧。记得有一次一个孕妇特意大老远跑来吃酸菜鱼砂锅，喜欢清淡的可以吃这个。</span></span><span><br />\r\n<span style=\"font-size:14px;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 排骨砂锅</span><span style=\"font-size:14px;\">：2块超大的排骨吆，还有豆腐和白菜。排骨肉很好嚼，带着老人的话可以选择吃这个，还有豆腐和白菜粉条。</span></span><span><br />\r\n<span style=\"font-size:14px;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 黄焖鸡砂锅</span><span style=\"font-size:14px;\">：鸡肉鲜嫩自然不必说，要说的是里面的小蘑菇，味道真的很棒</span><span style=\"font-size:14px;\">。很进味不说，还很多汁，吃起来感觉像灌汤包。有点微辣，现在黄焖鸡每天中午都是搞活动的，只要13.8元哦~~</span></span><br />\r\n<br />\r\n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span style=\"font-size:14px;\">舅姥爷砂锅也是</span><a target=\"_blank\" href=\"http://www.26632.com\"><span style=\"font-size:14px;color:#4C33E5;\"><u>宅当家</u></span></a><span style=\"font-size:14px;\">的合作商家，当然也是支持网上订餐，享受外卖配送服务的。喜欢享受</span><a target=\"_blank\" href=\"http://www.26632.com/\"><span style=\"font-size:14px;color:#4C33E5;\"><u>青岛开发区外卖</u></span></a><span style=\"font-size:14px;\">的亲们，除了可以到店品尝美味外，也可以坐在家里点点鼠标就能享受我们舅姥爷砂锅的</span><span style=\"font-size:14px;\">外卖喽~~</span><br />\r\n<span style=\"font-size:14px;\"> &nbsp;&nbsp;&nbsp; </span><br />', '青岛开发区外卖 舅姥爷砂锅外卖 舅姥爷砂锅外卖电话', '舅姥爷砂锅是青岛开发区有口皆碑的美食店，同时支持外卖，让青岛开发区的吃货都能享受舅姥爷家的外卖美食。', '1410344824', '3', '1');
 
 -- ----------------------------
+-- Table structure for `onethink_order`
+-- ----------------------------
+DROP TABLE IF EXISTS `onethink_order`;
+CREATE TABLE `onethink_order` (
+  `snid` int(30) unsigned NOT NULL AUTO_INCREMENT COMMENT '流水号',
+  `oid` varchar(30) NOT NULL COMMENT '订单号',
+  `oname` char(16) NOT NULL COMMENT '订餐人名',
+  `otel` varchar(16) NOT NULL COMMENT '订餐电话',
+  `oaddress` varchar(200) NOT NULL COMMENT '订餐地址',
+  `oip` varchar(20) NOT NULL COMMENT 'ip地址',
+  `osum` decimal(5,1) NOT NULL COMMENT '订餐金额',
+  `osum_real` decimal(5,1) NOT NULL COMMENT '真实价',
+  `remark` varchar(100) NOT NULL COMMENT '用户备注',
+  `oshop_id` int(20) unsigned NOT NULL,
+  `opay` decimal(5,1) NOT NULL COMMENT '支付商家金额',
+  `oshop_name` varchar(20) NOT NULL COMMENT '商家',
+  `oshop_tel` char(40) NOT NULL,
+  `oshop_address` varchar(30) NOT NULL,
+  `send_price` tinyint(5) NOT NULL DEFAULT '0' COMMENT '配送费',
+  `opublish` int(10) unsigned NOT NULL,
+  `uid` int(10) unsigned NOT NULL COMMENT '用户id',
+  `uname` varchar(16) NOT NULL COMMENT '用户名',
+  `user_status` tinyint(5) NOT NULL COMMENT '新老用户',
+  `pay_status` varchar(30) NOT NULL DEFAULT '0' COMMENT '支付状态,0到付，1已网付，2未网付',
+  `alipay_trade_code` varchar(30) NOT NULL DEFAULT '0' COMMENT '商户订单号',
+  `order_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '订单状态，0处理中，1已接单，2已取消',
+  PRIMARY KEY (`snid`),
+  KEY `uid` (`uid`),
+  KEY `oshopid` (`oshop_id`),
+  KEY `oid` (`oid`) USING BTREE,
+  KEY `alipay_trade_code` (`alipay_trade_code`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=5872 DEFAULT CHARSET=utf8 COMMENT='订单';
+
+-- ----------------------------
+-- Records of onethink_order
+-- ----------------------------
+INSERT INTO `onethink_order` VALUES ('5851', '55b6fa3f9d0bc9491', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '29.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '0', '1438054975', '11', 'test1205', '2', '0', '0', '0');
+INSERT INTO `onethink_order` VALUES ('5863', '955b9c6feafe520016', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '21.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438238462', '11', 'test1205', '2', '2', '0', '0');
+INSERT INTO `onethink_order` VALUES ('5864', '255b9c7592cb0f0013', 'test1205', '12312', '开发区庐山小区', '127.0.0.1', '100.0', '21.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438238553', '11', 'test1205', '2', '2', '0', '0');
+INSERT INTO `onethink_order` VALUES ('5865', '155b9d2644229b0036', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '21.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438241380', '11', 'test1205', '2', '3', '143824137511', '0');
+INSERT INTO `onethink_order` VALUES ('5866', '155b9d30da33300068', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '21.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438241549', '11', 'test1205', '2', '2', '143824152411', '0');
+INSERT INTO `onethink_order` VALUES ('5867', '255b9d92d68e1b0008', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '37.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438243117', '11', 'test1205', '2', '2', '143824309711', '0');
+INSERT INTO `onethink_order` VALUES ('5868', '755b9db10c1dfd0043', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '37.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438243600', '11', 'test1205', '2', '2', '143824359411', '0');
+INSERT INTO `onethink_order` VALUES ('5869', '955b9e1f72b6b00037', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '37.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438245367', '11', 'test1205', '2', '2', '143824536411', '0');
+INSERT INTO `onethink_order` VALUES ('5870', '455b9e4cccdce50016', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '37.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438246092', '11', 'test1205', '2', '2', '143824608611', '0');
+INSERT INTO `onethink_order` VALUES ('5871', '255b9e552e03920096', 'test1205', '12312331231', '开发区庐山小区', '127.0.0.1', '100.0', '37.0', '', '34', '0.0', '爱的咖喱亭', '13341239352', '长江中路238号', '100', '1438246226', '11', 'test1205', '2', '1', '143824622111', '0');
+
+-- ----------------------------
+-- Table structure for `onethink_order_list`
+-- ----------------------------
+DROP TABLE IF EXISTS `onethink_order_list`;
+CREATE TABLE `onethink_order_list` (
+  `id` int(30) NOT NULL AUTO_INCREMENT,
+  `snid` int(30) unsigned NOT NULL COMMENT '流水号',
+  `fid` int(20) unsigned NOT NULL,
+  `fname` varchar(30) NOT NULL COMMENT '菜名',
+  `fprice` decimal(5,1) NOT NULL COMMENT '单价',
+  `fnum` tinyint(10) unsigned NOT NULL COMMENT '数量',
+  PRIMARY KEY (`id`),
+  KEY `fid` (`fid`),
+  KEY `snid` (`snid`) USING BTREE
+) ENGINE=MyISAM AUTO_INCREMENT=17528 DEFAULT CHARSET=utf8 COMMENT='订单菜品列表';
+
+-- ----------------------------
+-- Records of onethink_order_list
+-- ----------------------------
+INSERT INTO `onethink_order_list` VALUES ('17493', '5851', '1450', '蔬菜咖喱饭', '13.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17494', '5851', '1452', '香酥鱿鱼咖喱饭', '16.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17514', '5863', '1454', '猪排咖喱饭', '21.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17515', '5864', '1454', '猪排咖喱饭', '21.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17516', '5865', '1454', '猪排咖喱饭', '21.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17517', '5866', '1454', '猪排咖喱饭', '21.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17518', '5867', '1452', '香酥鱿鱼咖喱饭', '16.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17519', '5867', '1454', '猪排咖喱饭', '21.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17520', '5868', '1452', '香酥鱿鱼咖喱饭', '16.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17521', '5868', '1454', '猪排咖喱饭', '21.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17522', '5869', '1452', '香酥鱿鱼咖喱饭', '16.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17523', '5869', '1454', '猪排咖喱饭', '21.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17524', '5870', '1452', '香酥鱿鱼咖喱饭', '16.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17525', '5870', '1454', '猪排咖喱饭', '21.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17526', '5871', '1452', '香酥鱿鱼咖喱饭', '16.0', '1');
+INSERT INTO `onethink_order_list` VALUES ('17527', '5871', '1454', '猪排咖喱饭', '21.0', '1');
+
+-- ----------------------------
 -- Table structure for `onethink_shop`
 -- ----------------------------
 DROP TABLE IF EXISTS `onethink_shop`;
@@ -1904,7 +1988,8 @@ CREATE TABLE `onethink_shop` (
   `summary` varchar(70) NOT NULL DEFAULT '暂无简介',
   `sort` smallint(3) unsigned NOT NULL DEFAULT '0' COMMENT '排序',
   `status` tinyint(10) unsigned NOT NULL DEFAULT '1' COMMENT '状态,0关闭,1正常,2暂停',
-  `belongs` tinyint(10) unsigned DEFAULT '1' COMMENT '1黄岛,2市南,默认1',
+  `belongs` tinyint(10) unsigned NOT NULL DEFAULT '1' COMMENT '1黄岛,2市南,默认1',
+  `discount` decimal(5,2) NOT NULL DEFAULT '0.90',
   PRIMARY KEY (`id`),
   KEY `type` (`type`)
 ) ENGINE=MyISAM AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
@@ -1912,42 +1997,42 @@ CREATE TABLE `onethink_shop` (
 -- ----------------------------
 -- Records of onethink_shop
 -- ----------------------------
-INSERT INTO `onethink_shop` VALUES ('33', '七道街麻辣烫', '1', '井冈山路334号', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop26.jpg', '0', '20', '6', '18954234333;13361242555', '无任何添加剂，新鲜棒骨熬制底汤。注：打包盒餐到付款后另行收费。', '6', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('32', '老四川酒家', '1', '马濠公园东黄浦江路小学对面', '10:30-20:30', '0,1,2,3,4,5,6', '/Upload/shop25.jpg', '0', '15', '6', '86896800;13708976941', '正宗川菜，全部由四川当地厨师烹制。', '4', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('30', '创意烤坊', '1', '黄浦江路163号', '10:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop23.jpg', '0', '15', '6', '15306394858;15954204783', '岛城独一家特色熏烤店。', '100', '0', '1');
-INSERT INTO `onethink_shop` VALUES ('29', '东北人家家常菜', '1', '黄浦江路217号', '09:00-22:00', '0,1,2,3,4,5,6', '/Upload/shop24.jpg', '0', '15', '6', '86885221;13656480288', '东北风味家常菜，实惠量大。', '5', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('28', '骨头饭', '1', '海都后南200米', '10:00-20:30', '0,1,2,3,4,5,6', '/Upload/shop22.jpg', '0', '15', '6', '15054810966;13675300327', '套餐自带米饭一份。', '13', '0', '1');
-INSERT INTO `onethink_shop` VALUES ('26', 'N多寿司', '3', '世纪商城南门', '10:00-20:00', '0,1,2,3,4,5,6', '/Upload/shop20.jpg', '0', '15', '6', '15054207771', '坚持做最好吃的寿司品牌', '15', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('27', '如意馄饨', '1', '井冈山路269号', '09:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop21.jpg', '0', '10', '6', '15192557717', '大众消费，鲜肉馄饨。', '9', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('25', '华莱士', '2', '长江中路358号吉祥商厦', '09:30-21:30', '0,1,2,3,4,5,6', '/Upload/shop19.jpg', '0', '15', '6', '18661990392;15253292180;[16:00-22:00]', '中国本土最大的西餐连锁企业，以现烤汉堡著称', '15', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('24', '孟小二私房牛肉面', '1', '井冈山路269号', '09:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop18.jpg', '0', '15', '6', '13869878910', '大众消费，品种齐全。', '100', '0', '1');
-INSERT INTO `onethink_shop` VALUES ('23', '舅姥爷砂锅', '1', '井冈山路273号', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop17.jpg', '0', '15', '6', '86855699', '注：11点起开始做餐，最早11：30送达。为保证新鲜，店内餐品定量，请尽早下单。', '10', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('22', '小时咖喱', '1', '庐山路77号', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop16.jpg', '0', '15', '6', '15020046212;13668887467', '爱咖喱选小时咖喱，纯正的口味，搭配特色小食。咖喱饭爱好者的绝佳选择。11点后全部菜品才会备齐。', '8', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('21', '李记黄焖鸡米饭', '1', '紫金山路11号', '10:00-20:30', '0,1,2,3,4,5,6', '/Upload/shop15.jpg', '0', '15', '6', '13963909691;18663973932', '开发区人最爱吃的一道菜，黄焖鸡选李记。注：黄焖鸡本身自带一份米饭。', '7', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('20', '康乐源牛扒饭', '1', '香江路地一城A区4号', '10:00-20:00', '0,1,2,3,4,5,6', '/Upload/shop14.jpg', '0', '15', '6', '13646395103', '广受大家欢迎的牛扒饭系列。', '13', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('19', '禧福村米线', '1', '紫金山路65号', '10:00-22:00', '0,1,2,3,4,5,6', '/Upload/shop13.jpg', '0', '15', '6', '18658843901', '地道的云南米线味。潍坊禧福村米线连锁品牌入住开发区。', '100', '0', '1');
-INSERT INTO `onethink_shop` VALUES ('18', '沙县小吃', '1', '富春江路', '10:00-22:00', '0,1,2,3,4,5,6', '/Upload/shop08.jpg', '0', '15', '6', '18866298548;15908982409', '地球人都知道的福建沙县小吃，物美价廉，口味正宗。', '10', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('17', '驴肉火烧', '1', '庐山路149号', '10:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop09.jpg', '0', '15', '6', '13583298539', '正宗河北河间驴肉火烧，多年老店。', '9', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('16', '粥粥到到', '1', '紫金山路326号', '11:00-14:00;16:30-20:30', '0,1,2,3,4,5,6', '/Upload/shop12.jpg', '0', '15', '6', '86973978', '地道好粥，喝出营养。', '1', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('15', '劈柴院锅贴', '1', '长江中路麦凯乐南侧', '10:00-10:01', '0,1,2,3,4,5,6', '/Upload/shop11.jpg', '0', '15', '6', '18560453997;86993429;15318761033', '口味没得说。美味锅贴搭配凉菜，尤其适合喜欢清淡口味的亲。', '21', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('14', '海源亭韩国料理', '3', '富春江路195号', '7:30-21:00', '0,1,2,3,4,5,6', '/Upload/shop06.jpg', '0', '15', '6', '86885054', '本地知名韩国料理，够韩，够料。', '14', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('13', '陇上味道', '1', '紫金山路304号', '9:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop07.jpg', '0', '15', '6', '13553085229', '拉条子为纯手工面条。正宗西北菜，非一般炒菜。拉条子拌面为本店一大特色。推荐一个&quot;拌面菜&quot;对应两份拉条子。', '100', '0', '1');
-INSERT INTO `onethink_shop` VALUES ('12', '永平饭店', '1', '紫金山路107号', '9:00-14:30;16:30-21:00', '0,1,2,3,4,5,6', '/Upload/shop10.jpg', '0', '15', '6', '15315323414', '紫金山路上最火爆的炒菜饭店，外卖，友聚的好去处。', '3', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('11', '老边饺子', '1', '井冈山路263号', '10:00-14:00;17:00-22:00', '0,1,2,3,4,5,6', '/Upload/shop05.jpg', '0', '15', '6', '86802660', '全国知名饺子餐饮品牌，炒菜正宗，价格公道。注:下午一点后水饺经常缺货。', '3', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('10', '德鑫全排骨米饭', '1', '紫金山路39号', '10:30-20:30', '0,1,2,3,4,5,6', '/Upload/shop04.jpg', '0', '15', '6', '86975263(2);84462646(1)', '家家都爱吃的排骨米饭，人人都知道的排骨米饭品牌。注：菜品本身自带米饭一份', '11', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('9', '必胜客', '2', '开发区长江路419号佳世客1楼', '10:30-20:20', '0,1,2,3,4,5,6', '/Upload/shop03.jpg', '0', '15', '6', '86996578', '必胜客无简介', '16', '0', '1');
-INSERT INTO `onethink_shop` VALUES ('7', '肯德基', '2', '井冈山路658号紫锦广场1层', '10:20-20:40', '0,1,2,3,4,5,6', '/Upload/shop01.jpg', '0', '15', '6', '4008823823', 'KFC，或许你习惯叫他开封菜...', '18', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('8', '麦当劳', '2', '香江路78号', '10:30-20:30', '0,1,2,3,4,5,6', '/Upload/shop02.jpg', '0', '15', '6', '86897653', '还是那个怪蜀黍...', '17', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('34', '爱的咖喱亭', '1', '长江中路238号', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop27.jpg', '0', '15', '6', '13341239352', '款式众多，味道纯正，咖喱天国', '100', '1', '2');
-INSERT INTO `onethink_shop` VALUES ('35', '馋面酱骨', '1', '庐山小区东门', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop28.jpg', '0', '10', '6', '18563981635;15606396606', '馋在功夫，特色酱骨。', '12', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('36', '高小胖私厨', '1', '太行山小区', '10:30-10:31', '0,1,2,3,4,5,6', '/Upload/shop29.jpg', '0', '15', '6', '18561600062;18561600063', '中央厨房现做，小胖私厨，为品质定制。', '19', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('37', '月光煲禾', '1', '麦凯乐东门对面', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop30.jpg', '0', '15', '6', '18561522535', '精选好肉，真正的现场焖炖鲜肉砂锅。注：主食需单点', '9', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('39', '光之良品', '1', '汇商国际一层', '10:01-10:02', '0,1,2,3,4,5,6', '/Upload/shop32.jpg', '0', '15', '6', '13730911769;13678847184', '健康速食，时尚之选', '20', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('38', '红亭辣味馆', '1', '佳世客二楼', '11:00-20:00', '0,1,2,3,4,5,6', '/Upload/shop31.jpg', '0', '15', '6', '86996562', '佳世客二楼品质川菜。', '2', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('40', '潼关肉夹馍', '1', '武夷山路266号', '10:00-19:30', '0,1,2,3,4,5,6', '/Upload/shop34.jpg', '0', '15', '6', '86879123;15092272432', '正宗风味的西安潼关肉夹馍。', '9', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('41', '蟹黄汤包', '1', '麦凯乐东门对面', '10:00-19:30', '0,1,2,3,4,5,6', '/Upload/shop35.jpg', '0', '15', '6', '68958281;68958291', '原味鸡汤调馅,营养丰富。', '9', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('42', '领鲜', '1', '唐F小区', '11:00-13:30;16:30-19:30;', '0,1,2,3,4,5,6', '/Upload/shop36.jpg', '0', '50', '6', '17685521107;18561988132', '现做的新鲜麻辣海鲜', '0', '1', '1');
-INSERT INTO `onethink_shop` VALUES ('43', '海福康海参', '1', '庐山小区', '10:00-20:00', '0,1,2,3,4,5,6', '/Upload/shop37.jpg', '0', '15', '6', '86996009;15020051851', '暂无简介', '0', '1', '1');
+INSERT INTO `onethink_shop` VALUES ('33', '七道街麻辣烫', '1', '井冈山路334号', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop26.jpg', '0', '20', '6', '18954234333;13361242555', '无任何添加剂，新鲜棒骨熬制底汤。注：打包盒餐到付款后另行收费。', '6', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('32', '老四川酒家', '1', '马濠公园东黄浦江路小学对面', '10:30-20:30', '0,1,2,3,4,5,6', '/Upload/shop25.jpg', '0', '15', '6', '86896800;13708976941', '正宗川菜，全部由四川当地厨师烹制。', '4', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('30', '创意烤坊', '1', '黄浦江路163号', '10:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop23.jpg', '0', '15', '6', '15306394858;15954204783', '岛城独一家特色熏烤店。', '100', '0', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('29', '东北人家家常菜', '1', '黄浦江路217号', '09:00-22:00', '0,1,2,3,4,5,6', '/Upload/shop24.jpg', '0', '15', '6', '86885221;13656480288', '东北风味家常菜，实惠量大。', '5', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('28', '骨头饭', '1', '海都后南200米', '10:00-20:30', '0,1,2,3,4,5,6', '/Upload/shop22.jpg', '0', '15', '6', '15054810966;13675300327', '套餐自带米饭一份。', '13', '0', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('26', 'N多寿司', '3', '世纪商城南门', '10:00-20:00', '0,1,2,3,4,5,6', '/Upload/shop20.jpg', '0', '15', '6', '15054207771', '坚持做最好吃的寿司品牌', '15', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('27', '如意馄饨', '1', '井冈山路269号', '09:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop21.jpg', '0', '10', '6', '15192557717', '大众消费，鲜肉馄饨。', '9', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('25', '华莱士', '2', '长江中路358号吉祥商厦', '09:30-21:30', '0,1,2,3,4,5,6', '/Upload/shop19.jpg', '0', '15', '6', '18661990392;15253292180;[16:00-22:00]', '中国本土最大的西餐连锁企业，以现烤汉堡著称', '15', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('24', '孟小二私房牛肉面', '1', '井冈山路269号', '09:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop18.jpg', '0', '15', '6', '13869878910', '大众消费，品种齐全。', '100', '0', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('23', '舅姥爷砂锅', '1', '井冈山路273号', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop17.jpg', '0', '15', '6', '86855699', '注：11点起开始做餐，最早11：30送达。为保证新鲜，店内餐品定量，请尽早下单。', '10', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('22', '小时咖喱', '1', '庐山路77号', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop16.jpg', '0', '15', '6', '15020046212;13668887467', '爱咖喱选小时咖喱，纯正的口味，搭配特色小食。咖喱饭爱好者的绝佳选择。11点后全部菜品才会备齐。', '8', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('21', '李记黄焖鸡米饭', '1', '紫金山路11号', '10:00-20:30', '0,1,2,3,4,5,6', '/Upload/shop15.jpg', '0', '15', '6', '13963909691;18663973932', '开发区人最爱吃的一道菜，黄焖鸡选李记。注：黄焖鸡本身自带一份米饭。', '7', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('20', '康乐源牛扒饭', '1', '香江路地一城A区4号', '10:00-20:00', '0,1,2,3,4,5,6', '/Upload/shop14.jpg', '0', '15', '6', '13646395103', '广受大家欢迎的牛扒饭系列。', '13', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('19', '禧福村米线', '1', '紫金山路65号', '10:00-22:00', '0,1,2,3,4,5,6', '/Upload/shop13.jpg', '0', '15', '6', '18658843901', '地道的云南米线味。潍坊禧福村米线连锁品牌入住开发区。', '100', '0', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('18', '沙县小吃', '1', '富春江路', '10:00-22:00', '0,1,2,3,4,5,6', '/Upload/shop08.jpg', '0', '15', '6', '18866298548;15908982409', '地球人都知道的福建沙县小吃，物美价廉，口味正宗。', '10', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('17', '驴肉火烧', '1', '庐山路149号', '10:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop09.jpg', '0', '15', '6', '13583298539', '正宗河北河间驴肉火烧，多年老店。', '9', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('16', '粥粥到到', '1', '紫金山路326号', '11:00-14:00;16:30-20:30', '0,1,2,3,4,5,6', '/Upload/shop12.jpg', '0', '15', '6', '86973978', '地道好粥，喝出营养。', '1', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('15', '劈柴院锅贴', '1', '长江中路麦凯乐南侧', '10:00-10:01', '0,1,2,3,4,5,6', '/Upload/shop11.jpg', '0', '15', '6', '18560453997;86993429;15318761033', '口味没得说。美味锅贴搭配凉菜，尤其适合喜欢清淡口味的亲。', '21', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('14', '海源亭韩国料理', '3', '富春江路195号', '7:30-21:00', '0,1,2,3,4,5,6', '/Upload/shop06.jpg', '0', '15', '6', '86885054', '本地知名韩国料理，够韩，够料。', '14', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('13', '陇上味道', '1', '紫金山路304号', '9:00-21:00', '0,1,2,3,4,5,6', '/Upload/shop07.jpg', '0', '15', '6', '13553085229', '拉条子为纯手工面条。正宗西北菜，非一般炒菜。拉条子拌面为本店一大特色。推荐一个&quot;拌面菜&quot;对应两份拉条子。', '100', '0', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('12', '永平饭店', '1', '紫金山路107号', '9:00-14:30;16:30-21:00', '0,1,2,3,4,5,6', '/Upload/shop10.jpg', '0', '15', '6', '15315323414', '紫金山路上最火爆的炒菜饭店，外卖，友聚的好去处。', '3', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('11', '老边饺子', '1', '井冈山路263号', '10:00-14:00;17:00-22:00', '0,1,2,3,4,5,6', '/Upload/shop05.jpg', '0', '15', '6', '86802660', '全国知名饺子餐饮品牌，炒菜正宗，价格公道。注:下午一点后水饺经常缺货。', '3', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('10', '德鑫全排骨米饭', '1', '紫金山路39号', '10:30-20:30', '0,1,2,3,4,5,6', '/Upload/shop04.jpg', '0', '15', '6', '86975263(2);84462646(1)', '家家都爱吃的排骨米饭，人人都知道的排骨米饭品牌。注：菜品本身自带米饭一份', '11', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('9', '必胜客', '2', '开发区长江路419号佳世客1楼', '10:30-20:20', '0,1,2,3,4,5,6', '/Upload/shop03.jpg', '0', '15', '6', '86996578', '必胜客无简介', '16', '0', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('7', '肯德基', '2', '井冈山路658号紫锦广场1层', '10:20-20:40', '0,1,2,3,4,5,6', '/Upload/shop01.jpg', '0', '15', '6', '4008823823', 'KFC，或许你习惯叫他开封菜...', '18', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('8', '麦当劳', '2', '香江路78号', '10:30-20:30', '0,1,2,3,4,5,6', '/Upload/shop02.jpg', '0', '15', '6', '86897653', '还是那个怪蜀黍...', '17', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('34', '爱的咖喱亭', '1', '长江中路238号', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop27.jpg', '0', '15', '6', '13341239352', '款式众多，味道纯正，咖喱天国', '100', '1', '2', '0.00');
+INSERT INTO `onethink_shop` VALUES ('35', '馋面酱骨', '1', '庐山小区东门', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop28.jpg', '0', '10', '6', '18563981635;15606396606', '馋在功夫，特色酱骨。', '12', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('36', '高小胖私厨', '1', '太行山小区', '10:30-10:31', '0,1,2,3,4,5,6', '/Upload/shop29.jpg', '0', '15', '6', '18561600062;18561600063', '中央厨房现做，小胖私厨，为品质定制。', '19', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('37', '月光煲禾', '1', '麦凯乐东门对面', '10:30-20:00', '0,1,2,3,4,5,6', '/Upload/shop30.jpg', '0', '15', '6', '18561522535', '精选好肉，真正的现场焖炖鲜肉砂锅。注：主食需单点', '9', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('39', '光之良品', '1', '汇商国际一层', '10:01-10:02', '0,1,2,3,4,5,6', '/Upload/shop32.jpg', '0', '15', '6', '13730911769;13678847184', '健康速食，时尚之选', '20', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('38', '红亭辣味馆', '1', '佳世客二楼', '11:00-20:00', '0,1,2,3,4,5,6', '/Upload/shop31.jpg', '0', '15', '6', '86996562', '佳世客二楼品质川菜。', '2', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('40', '潼关肉夹馍', '1', '武夷山路266号', '10:00-19:30', '0,1,2,3,4,5,6', '/Upload/shop34.jpg', '0', '15', '6', '86879123;15092272432', '正宗风味的西安潼关肉夹馍。', '9', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('41', '蟹黄汤包', '1', '麦凯乐东门对面', '10:00-19:30', '0,1,2,3,4,5,6', '/Upload/shop35.jpg', '0', '15', '6', '68958281;68958291', '原味鸡汤调馅,营养丰富。', '9', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('42', '领鲜', '1', '唐F小区', '11:00-13:30;16:30-19:30;', '0,1,2,3,4,5,6', '/Upload/shop36.jpg', '0', '50', '6', '17685521107;18561988132', '现做的新鲜麻辣海鲜', '0', '1', '1', '0.00');
+INSERT INTO `onethink_shop` VALUES ('43', '海福康海参', '1', '庐山小区', '10:00-20:00', '0,1,2,3,4,5,6', '/Upload/shop37.jpg', '0', '15', '6', '86996009;15020051851', '暂无简介', '0', '1', '1', '0.00');
 
 -- ----------------------------
 -- Table structure for `onethink_shop_type`
@@ -1974,6 +2059,7 @@ INSERT INTO `onethink_shop_type` VALUES ('4', '面包甜点', '/Public/static/mo
 DROP TABLE IF EXISTS `onethink_user`;
 CREATE TABLE `onethink_user` (
   `uid` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',
+  `wei_id` int(10) NOT NULL DEFAULT '0' COMMENT '微信id',
   `uname` char(16) NOT NULL COMMENT '用户名',
   `password` char(32) NOT NULL COMMENT '密码',
   `reg_time` int(10) unsigned NOT NULL DEFAULT '0',
@@ -1990,23 +2076,42 @@ CREATE TABLE `onethink_user` (
   PRIMARY KEY (`uid`),
   UNIQUE KEY `uname` (`uname`),
   KEY `tel` (`tel`),
-  KEY `reg_areaid` (`reg_areaid`)
+  KEY `reg_areaid` (`reg_areaid`),
+  KEY `wei_id` (`wei_id`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of onethink_user
 -- ----------------------------
-INSERT INTO `onethink_user` VALUES ('1', 'worden', '095cf8eaf4089d9bd10d3aeef122b079', '0', '1435673243', '0', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('2', 'kefu_hd', '560e44cf5261956ea95fb1f6ea577fe6', '1401542332', '1435366038', '0', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('3', 'kefu_sn', '560e44cf5261956ea95fb1f6ea577fe6', '1401542332', '1435366038', '0', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('4', 'kefu_by1', '560e44cf5261956ea95fb1f6ea577fe6', '1401542332', '1435366038', '0', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('5', 'kefu_by2', '560e44cf5261956ea95fb1f6ea577fe6', '1401542332', '1436366039', '0', '0', '1', '0', '0', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('6', 'test123', '41741189faddeeb73d8e0ddb5c586679', '1436367152', '1436367152', '0', '0', '1', '0', '', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('7', 'test1202', '329bfd14287cc3dd6d5784fab4014a17', '1436367262', '0', '0', '0', '1', '0', '', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('8', 'test1203', '146b2041dc10f81e8efa68e4f1baf7ac', '1436367391', '0', '0', '0', '1', '0', '', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('9', 'test1201', 'a5691997768cf6322e22038986f71750', '1436584735', '0', '0', '0', '1', '0', '', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('10', 'test1204', 'fa6bebbceca4bbae5c1d2025a908df2a', '1436585075', '1436585075', '0', '0', '1', '0', '', '', '', '', '1');
-INSERT INTO `onethink_user` VALUES ('11', 'test1205', '560e44cf5261956ea95fb1f6ea577fe6', '1436602711', '1437719888', '0', '0', '1', '23', '12312331231', '开发区庐山小区', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('1', '0', 'worden', '095cf8eaf4089d9bd10d3aeef122b079', '0', '1435673243', '0', '0', '1', '0', '0', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('2', '0', 'kefu_hd', '560e44cf5261956ea95fb1f6ea577fe6', '1401542332', '1435366038', '0', '0', '1', '0', '0', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('3', '0', 'kefu_sn', '560e44cf5261956ea95fb1f6ea577fe6', '1401542332', '1435366038', '0', '0', '1', '0', '0', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('4', '0', 'kefu_by1', '560e44cf5261956ea95fb1f6ea577fe6', '1401542332', '1435366038', '0', '0', '1', '0', '0', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('5', '0', 'kefu_by2', '560e44cf5261956ea95fb1f6ea577fe6', '1401542332', '1436366039', '0', '0', '1', '0', '0', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('6', '0', 'test123', '41741189faddeeb73d8e0ddb5c586679', '1436367152', '1436367152', '0', '0', '1', '0', '', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('7', '0', 'test1202', '329bfd14287cc3dd6d5784fab4014a17', '1436367262', '0', '0', '0', '1', '0', '', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('8', '0', 'test1203', '146b2041dc10f81e8efa68e4f1baf7ac', '1436367391', '0', '0', '0', '1', '0', '', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('9', '0', 'test1201', 'a5691997768cf6322e22038986f71750', '1436584735', '0', '0', '0', '1', '0', '', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('10', '0', 'test1204', 'fa6bebbceca4bbae5c1d2025a908df2a', '1436585075', '1436585075', '0', '0', '1', '0', '', '', '', '', '1');
+INSERT INTO `onethink_user` VALUES ('11', '0', 'test1205', '560e44cf5261956ea95fb1f6ea577fe6', '1436602711', '1438246008', '0', '0', '1', '23', '12312331231', '开发区庐山小区', '', '', '1');
+
+-- ----------------------------
+-- Table structure for `onethink_user_old`
+-- ----------------------------
+DROP TABLE IF EXISTS `onethink_user_old`;
+CREATE TABLE `onethink_user_old` (
+  `uid` int(10) unsigned NOT NULL,
+  `uname` char(16) NOT NULL,
+  `first_order` int(10) unsigned NOT NULL COMMENT '第一单',
+  `order_num` int(10) unsigned NOT NULL COMMENT '总订购次数',
+  `order_sum` int(20) unsigned NOT NULL COMMENT '总订购花费',
+  PRIMARY KEY (`uid`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of onethink_user_old
+-- ----------------------------
+INSERT INTO `onethink_user_old` VALUES ('11', 'test1205', '0', '0', '0');
 
 -- ----------------------------
 -- Table structure for `send_message`
