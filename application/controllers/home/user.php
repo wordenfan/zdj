@@ -1,6 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class User extends MY_Controller {
+if( ! in_array(APPPATH . 'controllers/home/HomeBase.php', get_included_files()) ){
+   require "HomeBase.php";
+}
+
+class User extends HomeBase {
 
     public function __construct() {
         parent::__construct();

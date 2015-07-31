@@ -1,6 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Order extends MY_Controller {
+if( ! in_array(APPPATH . 'controllers/home/HomeBase.php', get_included_files()) ){
+    require_once "HomeBase.php";
+}
+
+class Order extends HomeBase {
 
     public function __construct() {
         parent::__construct();
@@ -253,16 +257,6 @@ class Order extends MY_Controller {
     }
     
     public function test() {
-//        $mic_data = explode(' ', microtime());
-//        var_dump($mic_data[1]);
-//        $data = 11;
-//        var_dump(rand(1,9));
-        
-//        $this->load->model('ordermodel','omd');
-//        $map['alipay_trade_code'] = 143824137511;
-//        $data = $this->omd->getOrderInfo($map,'pay_status');
-//        
-//        var_dump($data['pay_status']);
         log_message('Error', 'nnnotifyurl改变==交易状态');
     }
 }
