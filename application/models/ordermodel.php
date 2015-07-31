@@ -33,11 +33,19 @@ class orderModel extends MY_Model
         
         if($insert_d = $this->db->insert_id())
         {
-            return $insert_d ? $insert_d : 0;
+            $this->load->model('redismodel','redis_m');
+            $this->redis_m->rpush('order',$insert_d);
+            return $insert_d;
         } else {
-            show_message('',base_url(),3,'ordermodel写入数据失败');
+            log_message('Error', 'ordermodel写入数据失败=/='.$this->db->last_query());
+            show_message('',base_url(),3,'订单添加失败');
             exit();
         }
+    }
+    
+    //将订单信息写入redis
+    public function writeOrderRedis() {
+        $this->load->model('redismodel','redis_m');
     }
     //判断支付宝状态是否更改
     public function checkPayStatus($trade_code){

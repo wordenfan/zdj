@@ -365,4 +365,8 @@ $config['proxy_ips'] = '';
 $config['USER_AUTH_KEY'] = '!sf326,Ld8`CIuQwD;-/()e0%W]gSPZ*H5^F~{=n'; 
 $config['DATA_AUTH_KEY'] = 'Vhy~F[9^<MA*-k6|SP("iXD7#YuB5dCG?xIK}w%2';
 
+//redis
+$config['REDIS_HOST'] = '127.0.0.1';
+$config['REDIS_PORT'] = '6379';
+
 include 'alipay_conf.php';

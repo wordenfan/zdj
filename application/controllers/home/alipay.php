@@ -1,6 +1,10 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class AliPay extends MY_Controller
+if( ! in_array(APPPATH . 'controllers/home/HomeBase.php', get_included_files()) ){
+   require_once "HomeBase.php";
+}
+
+class AliPay extends HomeBase
 {
     private $alipay_config;
     public function __construct() 

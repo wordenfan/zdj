@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class MY_Controller extends CI_Controller
+class HomeBase extends MY_Controller
 {
     public $my_data = array();
     function __construct()
