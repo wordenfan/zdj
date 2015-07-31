@@ -82,11 +82,11 @@
 					</div>
 				</div>
 				<div class="menu_shopR">
-					<if condition="$open_close eq 0">
+					<?php if($open_close == 0): ?>
 					<img src="<?php echo base_url('static/images/station_rest.gif');?>" width="50" height="132" />
-					<else />
+					<?php else:?>
 					<img src="<?php echo base_url('static/images/station_open.gif');?>" width="50" height="132" />
-					</if>
+					<?php endif;?>
 				</div>
 			</div>
 			<div class="menus_view">
