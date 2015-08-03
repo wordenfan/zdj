@@ -1,0 +1,36 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
+ERROR - 2015-08-03 13:41:57 --> Severity: Warning  --> mysqli_connect() [<a href='function.mysqli-connect'>function.mysqli-connect</a>]: (28000/1045): Access denied for user 'root'@'localhost' (using password: YES) D:\wamp\www\zdj\system\database\drivers\mysqli\mysqli_driver.php 76
+ERROR - 2015-08-03 13:41:57 --> Unable to connect to the database
+ERROR - 2015-08-03 14:04:57 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:57 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:57 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:57 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:57 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:58 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:58 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:58 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:58 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:58 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:04:58 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:05:17 --> 404 Page Not Found --> static
+ERROR - 2015-08-03 14:13:18 --> 404 Page Not Found --> orderadmin/list.htm
+ERROR - 2015-08-03 14:17:22 --> 404 Page Not Found --> order/meiri.htm
+ERROR - 2015-08-03 14:22:25 --> 404 Page Not Found --> finance/css
+ERROR - 2015-08-03 14:22:25 --> 404 Page Not Found --> finance/css
+ERROR - 2015-08-03 14:22:25 --> 404 Page Not Found --> finance/css
+ERROR - 2015-08-03 14:22:25 --> 404 Page Not Found --> finance/js
+ERROR - 2015-08-03 14:22:28 --> 404 Page Not Found --> finance/css
+ERROR - 2015-08-03 14:22:28 --> 404 Page Not Found --> finance/css
+ERROR - 2015-08-03 14:22:28 --> 404 Page Not Found --> finance/js
+ERROR - 2015-08-03 14:22:28 --> 404 Page Not Found --> finance/css

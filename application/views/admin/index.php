@@ -10,10 +10,10 @@ if (window.top != window)
 }
 </script>
 <frameset rows="50,*" framespacing="0" border="0">
-    <frame src="<?php echo base_url('admin/orderadmin/ad_top');?>" id="header-frame" name="header-frame" frameborder="no" scrolling="no">
+    <frame src="<?php echo base_url('admin/order/ad_top');?>" id="header-frame" name="header-frame" frameborder="no" scrolling="no">
   <frameset cols="175, *" framespacing="0" border="0" id="frame-body">
-    <frame src="<?php echo base_url('admin/orderadmin/ad_menu');?>" id="menu-frame" name="menu-frame" frameborder="no" scrolling="yes">
-    <frame src="<?php echo base_url('admin/orderadmin/orderList');?>" id="main-frame" name="main-frame" frameborder="no" scrolling="yes">
+    <frame src="<?php echo base_url('admin/order/ad_menu');?>" id="menu-frame" name="menu-frame" frameborder="no" scrolling="yes">
+    <frame src="<?php echo base_url('admin/order/olist');?>" id="main-frame" name="main-frame" frameborder="no" scrolling="yes">
   </frameset>
 </frameset>
 </head>

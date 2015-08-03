@@ -4,7 +4,7 @@ if( ! in_array(APPPATH . 'controllers/admin/AdminBase.php', get_included_files()
    require "AdminBase.php";
 }
 
-class OrderAdmin extends AdminBase 
+class Order extends AdminBase 
 {
     var $ormd;//
     
@@ -13,7 +13,7 @@ class OrderAdmin extends AdminBase
         parent::__construct();
         $this->load->model('ordermodel','omd');
     }
-    public function orderList()
+    public function olist()
     {
         //每次刷新都会清空redis的list
         $this->load->model('redismodel','redis_m');
@@ -29,7 +29,7 @@ class OrderAdmin extends AdminBase
 //        $this->assign('page',$show);
 //        $this->display();
         
-        $data = [];
+        $data = array();
         $this->load->view('admin/order/list',$data);
     }
     //ajax刷新
@@ -63,19 +63,19 @@ class OrderAdmin extends AdminBase
     //
     public function ad_index()
     {
-        $tdata = [];
+        $tdata = array();
         $this->load->view('admin/index',$tdata);
     }
     //
     public function ad_top()
     {
-        $tdata = [];
+        $tdata = array();
         $this->load->view('admin/public/top',$tdata);
     }
     //
     public function ad_menu()
     {
-        $tdata = [];
+        $tdata = array();
         $this->load->view('admin/public/menu',$tdata);
     }
 }

@@ -42,7 +42,7 @@ $(function(){
                 <a class="ng-binding ng-scope">订单管理</a>
                 <ul>
 					<li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="list.htm">订单列表</a>
+                        <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/order/olist');?>">订单列表</a>
                     </li>
 					<li  class="sub-menu ng-scope">
                         <a target="main-frame" class="ng-binding ng-scope" href="add.htm">添加订单</a>
@@ -99,13 +99,13 @@ $(function(){
                 <a class="ng-binding ng-scope">财务管理</a>
                 <ul>
 					<li  class="sub-menu ng-scope">
-						<a target="main-frame" class="ng-binding ng-scope" href="meiri.htm">每日财报</a>
+						<a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/finance/meiri');?>">每日财报</a>
 					</li>
 					<li  class="sub-menu ng-scope">
-						<a target="main-frame" class="ng-binding ng-scope" href="tongji.htm">统计列表</a>
+						<a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/finance/tongji');?>">统计列表</a>
 					</li>
 					<li  class="sub-menu ng-scope">
-						<a target="main-frame" class="ng-binding ng-scope" href="yuangong.htm">员工结算</a>
+						<a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/finance/yuangong');?>">员工结算</a>
 					</li>
 				</ul>           
             </li>
