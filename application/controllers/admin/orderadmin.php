@@ -13,7 +13,7 @@ class OrderAdmin extends AdminBase
         parent::__construct();
         $this->load->model('ordermodel','omd');
     }
-    public function index()
+    public function orderList()
     {
         //每次刷新都会清空redis的list
         $this->load->model('redismodel','redis_m');
@@ -28,6 +28,9 @@ class OrderAdmin extends AdminBase
 //        $show = $page->myde_write();
 //        $this->assign('page',$show);
 //        $this->display();
+        
+        $data = [];
+        $this->load->view('admin/order/list',$data);
     }
     //ajax刷新
     public function refreshOrder()
@@ -56,5 +59,23 @@ class OrderAdmin extends AdminBase
                 $this->error($this->ormd->getError());
             }
         }
+    }
+    //
+    public function ad_index()
+    {
+        $tdata = [];
+        $this->load->view('admin/index',$tdata);
+    }
+    //
+    public function ad_top()
+    {
+        $tdata = [];
+        $this->load->view('admin/public/top',$tdata);
+    }
+    //
+    public function ad_menu()
+    {
+        $tdata = [];
+        $this->load->view('admin/public/menu',$tdata);
     }
 }

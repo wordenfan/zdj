@@ -1,0 +1,62 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>91批购系统管理</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<style type="text/css">
+@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
+<link rel="stylesheet" type="text/css" href="http://oms.91pigou.com/static/20141212/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="http://oms.91pigou.com/static/20141212/css/base.css" />
+<link rel="stylesheet" type="text/css" href="http://oms.91pigou.com/static/20141212/css/module.css" />
+</head>
+<body>
+  <div id="main">
+      <div id="crumbs" ng-component="common/crumb/crumb" class="ng-scope">
+        <ol class="breadcrumb ng-scope" ng-controller="crumbCtrl">
+            <li class="bcfirst"><i class="glyphicon glyphicon-map-marker"></i> 当前位置：</li>
+            <li ng-repeat="crumb in crumbs" class="ng-scope"><span ng-if="$first" class="active ng-binding ng-scope">91批购系统管理</span>
+            </li><li ng-repeat="crumb in crumbs" class="ng-scope active"><span ng-if="$last" class="ng-binding ng-scope">首页</span>
+            </li>
+        </ol>
+      </div>
+      <div class="ng-scope">
+          <div class="panel panel-default">
+              <div class="panel-body pt30">
+                 <table class="table table-condensed table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>@twitter</td>
+                      </tr>
+                    </tbody>
+                  </table>
+              </div>
+          </div>
+      </div>
+</div>
+<!--main end-->
+</body>
+</html>
