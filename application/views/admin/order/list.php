@@ -25,30 +25,30 @@
             <div class="list">
                 <div class="check well">
                     <div class="clearfix"> 
-								<div class="container">
-								<div class="row">
-									<div class="col-md-1" style="text-align:right;height:32px;line-height:32px">
-									订单搜索
-									</div>
-									<div class="col-md-2" style="padding-left:0px">
-										<select class="form-control w150" name="cat_id" >
-                                            <option value="0">电话号码</option>
-                                            <option value="1" >用户名</option>
-										</select>
-									</div>
-									<div class="col-md-3" style="padding-left:0px">
-										<input type="text" name="keyword" class="form-control w250" placeholder="电话号码/用户名">
-									</div>
-									<div class="col-md-4" style="">
-										<button type="button" class="btn btn-info ladda-button" id="searchBtn" >
-										<i class="glyphicon glyphicon-search mr5"></i>搜索
-										</button>
-									</div>
-									<div class="col-md-1" style="padding-left:0px">
-										<button type="button" class="btn btn-success ladda-button text-right" id="searchBtn" >添加订单</button>
-									</div>
-								</div>
-								</div>            
+						<div class="container">
+						<div class="row">
+							<div class="col-md-1" style="text-align:right;height:32px;line-height:32px">
+							订单搜索
+							</div>
+							<div class="col-md-2" style="padding-left:0px">
+								<select class="form-control w150" id="search_type" name="search_type" >
+									<option value="0">电话号码</option>
+									<option value="1" >用户名</option>
+								</select>
+							</div>
+							<div class="col-md-3" style="padding-left:0px">
+								<input type="text" name="keyword" class="form-control w250" placeholder="电话号码/用户名" id="searchInput">
+							</div>
+							<div class="col-md-4" style="">
+								<button type="button" class="btn btn-info ladda-button" id="searchBtn" >
+								<i class="glyphicon glyphicon-search mr5"></i>搜索
+								</button>
+							</div>
+							<div class="col-md-1" style="padding-left:0px">
+								<button type="button" class="btn btn-success ladda-button text-right" id="addOrderBtn" >添加订单</button>
+							</div>
+						</div>
+						</div>            
                     </div> 
                 </div> 
                 <div class="table_wrap">
@@ -73,16 +73,17 @@
 						</tr>
                         </thead>
                         <tbody id="goodsList">
+						<?php foreach($order_list as $k=>$v):?>
 						<tr bgcolor="#FFFFFF" align="center" class="hover">
-							<td align="center" class="order_id"><a href="/Home/Order/orderInfo/oid/5960" style="color:#ff0000;text-decoration:underline;" target="_blank">5960</a></td>
-							<td align="center">08-01 19:38</td>
-							<td align="left">华莱士</td>
-							<td align="left">18661990392;15253292180;[16:00-22:00]</td>
-							<td align="left">寒冰烛光</td>
-							<td align="left">沅江路178号汇泉雅居13号楼2单元602</td>
-							<td align="left">12344343236</td>
-							<td align="center">29.0--26.1</td>
-							<td align="center" id="money">32.0</td>
+							<td align="center" class="order_id"><a href="<?php echo base_url('home/order/orderInfo/oid/'.$v['oid']);?>" style="color:#ff0000;text-decoration:underline;" target="_blank"><?php echo $v['snid'];?></a></td>
+							<td align="center"><?php echo date('m-d H:i',$v['opublish']);?></td>
+							<td align="left"><?php echo $v['oshop_name'];?></td>
+							<td align="left"><?php echo $v['oshop_tel'];?></td>
+							<td align="left"><?php echo $v['oname'];?></td>
+							<td align="left"><?php echo $v['oaddress'];?></td>
+							<td align="left"><?php echo $v['otel'];?></td>
+							<td align="center"><?php echo $v['osum_real'].' - '.$v['opay'];?></td>
+							<td align="center" id="money"><?php echo $v['osum'];?></td>
 							<td align="center">
 								<font color="red">新用户</font>
 										</td>
@@ -93,28 +94,10 @@
 							<td align="right">
 												<a href="/zadmin/Order/operate/oid/5960/stu/2.html"><u>撤销</u></a>		</td>
 						</tr>
-						<tr bgcolor="#FFFFFF" align="center" class="hover">
-							<td align="center" class="order_id"><a href="/Home/Order/orderInfo/oid/5960" style="color:#ff0000;text-decoration:underline;" target="_blank">5960</a></td>
-							<td align="center">08-01 19:38</td>
-							<td align="left">华莱士</td>
-							<td align="left">18661990392;15253292180;[16:00-22:00]</td>
-							<td align="left">寒冰烛光</td>
-							<td align="left">沅江路178号汇泉雅居13号楼2单元602</td>
-							<td align="left">12344343236</td>
-							<td align="center">29.0--26.1</td>
-							<td align="center" id="money">32.0</td>
-							<td align="center">
-								<font color="red">新用户</font>
-										</td>
-							<td align="center">
-												<font color="grey">未付</font>		</td>
-							<td align="center" id="status_a">
-								<font color="green">成功</font>		</td>
-							<td align="right">
-												<a href="/zadmin/Order/operate/oid/5960/stu/2.html"><u>撤销</u></a>		</td>
-						</tr>
+						<?php endforeach;?>
 						</tbody>
                       </table>
+					  <?php echo $page_list;?>
                     </div>  
                   </div> 
                 </div>
@@ -126,73 +109,20 @@
 </div>
 <script type="text/javascript">
 $(function(){
-    showGoodsList(1);
-
+    $("#addOrderBtn").click(function(){
+		
+	})
     $("#searchBtn").click(function(){
-       showGoodsList(1);
+		$type = $.trim($('#search_type').val());
+		$type_str = String($type) == '0'?'otel':'oname';
+		$keyword = String($.trim($('#searchInput').val()));
+		if($keyword==''){
+			alert('搜索内容不能为空！')
+		}
+        $url = "<?php echo base_url('admin/order/olist/type');?>";
+        window.location.href = $url +'/'+$type_str+'/condition/'+$keyword+'';
     })
-    function showGoodsList(pg){
-        var cat_id = parseInt($("select[name='cat_id']").val());
-        var keyword = $.trim($("input[name='keyword']").val());
-        var json = {pg:pg};
-        
-        if(!isNaN(cat_id) && cat_id != 0 ) {
-           json['cat_id'] = cat_id;
-        }
-
-        if( keyword != '' ) {
-           json['keyword'] = keyword;
-        }
-
-        $.ajax({
-            type:'POST',
-            url:'/system/goods/getGoodsList',
-            dataType:'json',
-            data:json,
-            success:function(ret){
-                if( ret.apiStatus ) {
-                   var data = ret.data;
-                   var html = '';
-                   $('#goodsList').html(html);
-                   if( data['goodsList'].length > 0 ) {
-                       var goods = data.goodsList;
-
-                       for(var i in goods) {
-                         html += '<tr>' +
-                                  '<td>'+goods[i]['goods_id']+'</td>'+
-                                  '<td>'+goods[i]['goods_name']+'</td>'+
-                                  '<td><span class="text-danger">￥'+goods[i]['goods_price']+'</span>元/'+goods[i]['goods_unit']+'</td>'+
-                                  '<td><span class="text-danger">￥'+goods[i]['shop_price']+'</span>元/'+goods[i]['shop_unit']+'(重'+goods[i]['goods_number']+goods[i]['goods_unit']+')</td>'+                                  '<td>'+goods[i]['add_time']+'</td>'+
-                                  '<td class="last">'+
-                                        '<a href="/system/goods/edit?goods_id='+goods[i]['goods_id']+'" class="btn btn-info btn-sm ng-scope">编辑</a>'+
-                                        '<a href="javascript:void(0)" class="btn btn-danger btn-sm ng-scope">删除</a>'+
-                                  '</td>'+
-                                  '</tr>';
-                       }
-                       $('.pagination').html(data.pageInfo);
-                       $('.pagination>li:gt(0)').find('a').each(function() {
-                            $(this).click(function(){
-                                if(!$(this).parent('li').hasClass('disabled')) { 
-                                  var pg = $.trim($(this).attr('pg'));
-                                  showGoodsList(pg);
-                                }
-                            });
-                        });
-                   } else {
-                       html += '<tr ng-repeat="list in vm.lists" class="ng-scope">' +
-                                  '<td colspan="5" align="center" class="ng-binding">当前没有您要查询的记录！</td>'+
-                                '</tr>';
-                   }
-                   $('#goodsList').html(html);
-                }
-            }
-        })
-    }
 })
-</script>
-<script>
-	
-
 </script>
 </body>
 </html>

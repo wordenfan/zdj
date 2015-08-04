@@ -203,12 +203,13 @@ class Order extends HomeBase {
             redirect(base_url('/home/shop/shopinfo/id/'.$shopid));
         }
     }
+    
     //查看订单信息
     public function orderInfo() 
     {
         //未登录跳转
         $uid = $this->login_status();
-        $oid = $this->uri->segment(5);
+        $oid = $this->uri->segment(5);//oid
         if(isset($oid)&&!empty($oid))
         {
             $this->load->model('ordermodel','omd');

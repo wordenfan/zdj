@@ -13,23 +13,48 @@ class Order extends AdminBase
         parent::__construct();
         $this->load->model('ordermodel','omd');
     }
+    //刷新和搜索
     public function olist()
     {
-        //每次刷新都会清空redis的list
-        $this->load->model('redismodel','redis_m');
-        $this->redis_m->del('order');
-            
-//        $num = $this->ormd->count();
-//        $page=$_GET['page']?$_GET['page']:1;
-//        $page = new Page($num,20,$page,'?page={page}');            
-//        $data = $this->ormd->getAllInfo('limit',array($page->page_limit,$page->list_show_num));
-//
-//        $this->assign('list',$data);
-//        $show = $page->myde_write();
-//        $this->assign('page',$show);
-//        $this->display();
-        
         $data = array();
+        //当前页码
+        $cur_page = $this->uri->segment(5)?$this->uri->segment(5):0;
+        $per_page = config_item('admin_per_page');
+        
+        //otel或者oname
+        if($this->uri->segment(7)){
+            $js_type = $this->uri->segment(5);
+            $js_condition = $this->uri->segment(7);
+            $where[$js_type] = $js_condition;
+            $total_rows = $this->omd->selectOrderInfo(2,$where);
+            $order_list = $this->omd->selectOrderInfo(1,$where,'*',$cur_page,$per_page);
+            $_url = '/admin/order/olist/'.$js_type.'/'.$js_condition.'/page/'.$cur_page;
+        }else{
+            //每次刷新都会清空redis的list
+            $this->load->model('redismodel','redis_m');
+            $this->redis_m->del('order');
+            //总记录数
+            $total_rows = $this->omd->selectOrderInfo(2,array());
+            $order_list = $this->omd->selectOrderInfo(1,array(),'*',$cur_page,$per_page);
+            $_url = '/admin/order/olist/page';
+        }
+        $data['order_list'] = $order_list;
+        //分页
+        $this->load->library('pagination');
+        $config                      = pagination_setting();//加在分页样式
+        $config['base_url']          = $_url;
+        $config['uri_segment']       = '500'; 
+        $config['total_rows']        = $total_rows;
+        $config['per_page']          = $per_page;
+        $config['page_query_string'] = false;//true为get传参模式，false为url段
+        $config['use_page_numbers']  = true;//true当前页数，false当前记录数
+        $config['display_pages']     = TRUE;//false隐藏数字连接
+        $config['num_links']         = 2;//当前页的前后页显示个数
+        $this->pagination->initialize($config);
+        $default_output = $this->pagination->create_links();
+        $add_putput = "<ul class='pagination' style='float: right;font-size:20px;font-weight: bold;'><li>共 $total_rows 条记录</li></ul>";
+        //
+        $data['page_list'] = $default_output.$add_putput;
         $this->load->view('admin/order/list',$data);
     }
     //ajax刷新

@@ -26,6 +26,26 @@ class orderModel extends MY_Model
                  ->row_array();
         return $rdata;
     }
+    //获取数据
+    public function selectOrderInfo($operation,$where,$field='*',$offset=0, $per_page=20)
+    {
+        $query = $this->db->select($field)
+                 ->from($this->_table_name)
+                 ->where($where);
+        switch ($operation)
+        {
+           case 1:
+               $rdata = $query->limit($per_page,$offset)
+                              ->get()
+                              ->result_array();
+               break;
+           case 2:
+               $rdata = $query->count_all_results();
+               break;
+        }
+                
+        return $rdata;
+    }
     //
     public function addOrder($idata)
     {
@@ -43,10 +63,6 @@ class orderModel extends MY_Model
         }
     }
     
-    //将订单信息写入redis
-    public function writeOrderRedis() {
-        $this->load->model('redismodel','redis_m');
-    }
     //判断支付宝状态是否更改
     public function checkPayStatus($trade_code){
         $map['alipay_trade_code'] = $trade_code;
