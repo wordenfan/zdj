@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>添加文章</title>
+	<load href="__STATIC__/css/admin_base.css" />
+	<load href='__STATIC__/js/jquery-1.7.1.min.js'/>
+    <load href='__STATIC__/js/ajaxfileupload.js'/>
+	<script  type="text/javascript">
+		function doaction()
+		{
+			if($("#title").val().length<1)
+			{
+				alert('请填写标题');
+				return false;
+			}else if($("#summary_id").val().length<1)
+			{
+				alert('请填写摘要');
+				return false;
+			}else if($("#previmg").attr("src").length<1)
+			{
+				alert('请上传图片');
+				return false;
+			}else{
+				return true;
+			}
+			//var html = editor.html();
+			//alert("==="+html);
+		}
+		//图片上传
+		function uploadfun()
+		{			
+			$.ajaxFileUpload({
+				url:'__CONTROLLER__/img_upload',            	//需要链接到服务器地址
+				secureuri:false,
+				fileElementId:'pic_id',                     //文件选择框的id属性
+				dataType: 'json', 
+				success: function (data)
+				{
+					if(data['status'] == 1){
+						$("#pic_path").attr("value","/Upload/"+data['upname']);
+						$("#previmg").attr("src","__ROOT__/Upload/"+data['upname']);
+						return true;
+					}else{
+						alert("图片上传失败，请重新上传");
+						return false;
+					}	
+				},
+				error: function (data, status, e)
+				{
+					alert(e);
+				}
+			});
+		}
+		//栏目分类下拉框的选择
+		function selectInput(choose)
+		{
+			//alert(choose.value);
+		}
+	</script>
+</head>
+<body background='__STATIC__/images/admin/allbg.gif' leftmargin='8' topmargin='8'>
+	<table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6">
+  <tr>
+    <td height="19" background="__STATIC__/images/admin/tbg.gif" bgcolor="#E7E7E7"> 
+      <table width="96%" border="0" cellspacing="1" cellpadding="1">
+        <tr> 
+          <td style="padding-left:10px;"><b><strong>当前位置：<a href="__CONTROLLER__/index">商家管理</a> >> 基本信息（<{$shop_name}>）</strong></b> </td>
+        </tr>
+      </table></td>
+   </tr>
+  <tr>
+  <td height="215" align="center" valign="top" bgcolor="#FFFFFF">
+	<form  onsubmit="return doaction();" action="" name="form1" method="post"  >
+        <table width="98%" border="0" cellspacing="1" cellpadding="1">
+		<tr> 
+			<td width="8%" height="30"><span class='red'>*</span>店铺名称：</td>
+			<td width="92%" style="text-align:left;">
+				<input value="<{$info_tmp['name']}>" name="name" type="text" id="title" size="16" style="width:300px" />
+			</td>
+		</tr>   
+		<tr>
+			<td width="8%" height="30"><span class='red'>*</span>说明简介：</td>
+			<td width="92%" style="text-align:left;">
+				<textarea name='summary' style="width:300px;height:60px" id="summary_id"><{$info_tmp['summary']}></textarea>
+			</td>
+		</tr>
+		<tr> 
+			<td width="8%" height="30"><span class='red'>*</span>订餐电话：</td>
+			<td width="92%" style="text-align:left;">
+				<input value="<{$info_tmp['telephone']}>" name="tel" type="text" id="tel" size="16" style="width:300px" />
+			</td>
+		</tr>       
+		<tr> 
+			<td height="30"><span class='red'>*</span>所属分类：</td>
+			<td style="text-align:left;">
+			<select name="type" style="width:310px" onchange="selectInput(this)">
+				<foreach name='list_type' item='vo'>
+					<if condition="$vo['id'] eq  $info_tmp['type']">
+						<option value="<{$vo['id']}>" selected="selected"><{$vo['type_name']}></option>
+					<else />
+						<option value="<{$vo['id']}>"><{$vo['type_name']}></option>
+					</if>
+				</foreach>
+			</select>
+			&nbsp;
+			</td>
+		</tr>  
+		<tr> 
+			<td height="30"><span class='red'>*</span>所属片区：</td>
+			<td style="text-align:left;">
+			<select name="area" style="width:310px">
+				<foreach name='list_area' item='mo'>
+					<if condition="$mo['name'] eq  $info_tmp['area']">
+						<option value="<{$mo['name']}>" selected="selected"><{$mo['name']}></option>
+					<else />
+						<option value="<{$mo['name']}>" ><{$mo['name']}></option>
+					</if>
+				</foreach>
+			</select>
+			&nbsp;
+			</td>
+		</tr> 
+		<tr> 
+			<td width="8%" height="30"><span class='red'>*</span>店铺地址：</td>
+			<td width="92%" style="text-align:left;">
+				<input value="<{$info_tmp['address']}>" name="address" type="text" id="title" size="16" style="width:300px" />
+			</td>
+		</tr> 
+		<tr> 
+			<td width="8%" height="30"><span class='red'>*</span>营业时间：</td>
+			<td width="92%" style="text-align:left;">
+				<input value="<{$info_tmp['business_hours']}>" name="hours" type="text" id="title" size="16" style="width:300px" />
+			</td>
+		</tr>
+		<tr> 
+			<td width="8%" height="30"><span class='red'>*</span>起送价格：</td>
+			<td width="92%" style="text-align:left;">
+				<input value="<{$info_tmp['start_price']}>" name="start_price" type="text" id="title" size="16" style="width:300px" />
+			</td>
+		</tr>
+		<tr> 
+			<td width="8%" height="30"><span class='red'>*</span>配送费用：</td>
+			<td width="92%" style="text-align:left;">
+				<input value="<{$info_tmp['send_price']}>" name="send_price" type="text" id="title" size="16" style="width:300px" />
+			</td>
+		</tr>
+		<tr> 
+            <td height="30"><span class='red'>*</span>图片上传：</td>
+            <td style="text-align:left;">
+				<input type="file" name="pic" id="pic_id" style="width:250px" value=""/>
+				<input type="button" style="width:50px" value="上传" onclick="uploadfun()"/>
+            </td>
+        </tr>
+		<tr>
+            <td colspan='2'>
+              <div class='imgborder' id='infoList'>
+                <img src="__ROOT__<{$info_tmp['logo']}>" id="previmg" width="165" height="124" />
+				<input type="hidden" name='pic_url' id="pic_path" value="<{$info_tmp['logo']}>">
+              </div>
+            </td>
+          </tr>
+		<tr> 
+			<td colspan='2' align='left'>
+				<input type="submit" value="保存信息" class="coolbg np" />
+			</td>
+		</tr>
+		<input type='hidden' value="<{$info_tmp['id']}>" name='id'/>
+		</table>
+	</form>
+	</td>
+</tr>
+</table>
+</body>
+</html>

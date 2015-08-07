@@ -21,13 +21,13 @@ class Order extends AdminBase
         $cur_page = $this->uri->segment(5)?$this->uri->segment(5):0;
         $per_page = config_item('admin_per_page');
         
-        //otel或者oname
+        //查询
         if($this->uri->segment(7)){
             $js_type = $this->uri->segment(5);
             $js_condition = $this->uri->segment(7);
             $where[$js_type] = $js_condition;
             $total_rows = $this->omd->selectOrderInfo(2,$where);
-            $order_list = $this->omd->selectOrderInfo(1,$where,'*',$cur_page,$per_page);
+            $order_list = $this->omd->selectOrderInfo(1,$where,'*',$per_page,$cur_page);
             $_url = '/admin/order/olist/'.$js_type.'/'.$js_condition.'/page/'.$cur_page;
         }else{
             //每次刷新都会清空redis的list
@@ -35,7 +35,7 @@ class Order extends AdminBase
             $this->redis_m->del('order');
             //总记录数
             $total_rows = $this->omd->selectOrderInfo(2,array());
-            $order_list = $this->omd->selectOrderInfo(1,array(),'*',$cur_page,$per_page);
+            $order_list = $this->omd->selectOrderInfo(1,array(),'*',$per_page,$cur_page);
             $_url = '/admin/order/olist/page';
         }
         $data['order_list'] = $order_list;
@@ -43,7 +43,7 @@ class Order extends AdminBase
         $this->load->library('pagination');
         $config                      = pagination_setting();//加在分页样式
         $config['base_url']          = $_url;
-        $config['uri_segment']       = '500'; 
+        $config['uri_segment']       = '5'; 
         $config['total_rows']        = $total_rows;
         $config['per_page']          = $per_page;
         $config['page_query_string'] = false;//true为get传参模式，false为url段

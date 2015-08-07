@@ -24,14 +24,6 @@ class HomeBase extends MY_Controller
         }
         $this->my_data['login_status'] = UID;
         $this->load->vars($this->my_data);
-        //设置区域HD
-        if(!defined('AREA'))
-        {
-            //define('AREA','HD_');
-            //define('AREA_ID','1');
-            define('AREA','SN_');
-            define('AREA_ID','2');
-        }
         //读取config表
         if(!$this->config->item('WEB_ICP')){
             $config_data = $this->db->select('name,value,status')->from('config')->get()->result_array();

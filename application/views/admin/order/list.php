@@ -5,13 +5,13 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 <style type="text/css">
-@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}</style>
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/bootstrap.min.css')?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/ad_base.css')?>" />
-<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/ad_module.css')?>" />
-<script type="text/javascript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js')?>"/></script>
-<style class="ng-scope">
+@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
 </style>
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/bootstrap.min.css');?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/ad_base.css');?>" />
+<link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/ad_module.css');?>" />
+
+<style class="ng-scope"></style>
 <div id="main">
       <div id="crumbs" ng-component="common/crumb/crumb" class="ng-scope">
         <ol class="breadcrumb ng-scope" ng-controller="crumbCtrl">

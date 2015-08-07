@@ -63,10 +63,10 @@ $(function(){
                 <a class="ng-binding ng-scope">商户管理</a>
                 <ul>
 					<li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="/system/article">用户列表</a>
+                        <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/shop/slist');?>">商户列表</a>
                     </li>
 					<li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="/system/articlecat">添加商户</a>
+                        <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/shop/sadd');?>">添加商户</a>
                     </li>
                                     </ul>           
             </li>
