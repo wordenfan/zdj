@@ -53,45 +53,38 @@
               <div class="panel panel-default">
                 <div class="panel-body pt30">
                   <table class="table table-condensed table-hover table-bordered" style="font-size:12px;" >
-                    <thead>
-                    <tr bgcolor="#FBFCE2">
-                        <td width="4%" height="24" align="center">ID</td>
-                        <td width="8%" height="24" align="center">名称</td>
-                        <td width="8%" align="center">订餐电话</td>
-                        <td width="6%" height="24" align="center">类别</td>
-                        <td width="6%" align="center">区域</td>
-                        <td width="4%" align="center">起送价</td>
-                        <td width="4%" align="center">配送费</td>
-                        <td width="6%" align="center">加盟时间</td>
-                        <td width="6%" align="center">总订单量</td>
-                        <td width="6%" align="center">总销量额</td>
-                        <td width="4%" align="center">状态</td>
-                        <td width="15%" align="center">管理项</td> 
-                    </tr>
+					<thead>
+					<tr bgcolor="#FBFCE2">
+						<td width="4%" height="24" align="center">id</td>
+						<td width="6%" align="center">昵称</td>
+						<td width="6%" align="center">注册时间</td>
+						<td width="6%" align="center">上次登录</td>
+						<td width="6%" align="center">电话</td>
+						<td width="20%" align="center">配送地址</td>
+						<td width="15%" align="center">标记地址</td>
+						<td width="15%" align="center">其他标记</td>
+						<td width="4%" align="center">状态</td>
+						<td width="18%" align="center">管理项</td>
+					</tr>
                     </thead>
                     <tbody id="goodsList">
                     <?php foreach($info_tmp as $k=>$v):?>
                         <tr bgcolor="#FFFFFF" align="center" class="hover">
-                            <td width="4%" height="24" align="center"><?php echo $v['id'];?></td>
-                            <td width="8%" height="24" align="center"><?php echo $v['name'];?></td>
-                            <td width="8%" align="center"><?php echo $v['telephone'];?></td>
-                            <td width="6%" height="24" align="center"><?php echo $v['type'];?></td>
-                            <td width="6%" align="center"><?php echo $v['belongs'];?></td>
-                            <td width="4%" align="center"><?php echo $v['start_price'];?></td>
-                            <td width="4%" align="center"><?php echo $v['send_price'];?></td>
-                            <td width="6%" align="center"><?php echo $v['publish'];?></td>
-                            <td width="6%" align="center"><?php echo $v['order_num'];?></td>
-                            <td width="6%" align="center"><?php echo $v['order_profit'];?></td>
-                            <td width="4%" align="center" id="status_a">
-                            <?php if($v['status'] == 1):?>正常
-                            <?php else:?>禁用
-                            <?php endif;?>
-                            <td width="15%" align="center">
-                                <button id="searchBtn" class="btn btn-default btn-sm" type="button">编辑</button>
-                                <button id="searchBtn" class="btn btn-danger btn-sm" type="button">休息</button>
-                                <button id="searchBtn" class="btn btn-success btn-sm" type="button">营业</button>
-                            </td>
-                        </tr>
+							<td width="4%">1624</td>
+							<td width="6%">13176510991</td>
+							<td width="6%" >2015-08-08 14:17</td>
+							<td width="6%" >2015-08-08</td>
+							<td width="6%" align="left">13176510991</td>
+							<td width="20%"align="left">青岛市黄岛区北江支路小区387号2单元</td>
+							<td width="15%"></td>
+							<td width="15%"></td>
+							<td width="4%" >正常</td>
+							<td>
+								<a href="/zadmin/User/userEdit/id/1624.html" class="btn btn-default btn-sm">修改</a>
+								<a href="/zadmin/User/userOrder/id/1624.html"class="btn btn-default btn-sm">订单</a>
+								<a href="/zadmin/User/edit/id/1624.html" class="btn btn-default btn-sm">禁用</a>
+							</td>
+						</tr>
                     <?php endforeach;?>
                     </tbody>
                   </table>

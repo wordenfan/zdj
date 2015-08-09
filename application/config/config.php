@@ -366,7 +366,7 @@ $config['USER_AUTH_KEY'] = '!sf326,Ld8`CIuQwD;-/()e0%W]gSPZ*H5^F~{=n';
 $config['DATA_AUTH_KEY'] = 'Vhy~F[9^<MA*-k6|SP("iXD7#YuB5dCG?xIK}w%2';
 
 //后台订单列表单页显示个数
-$config['admin_per_page'] = 5;
+$config['admin_per_page'] = 20;
 
 //redis
 $config['REDIS_HOST'] = '127.0.0.1';

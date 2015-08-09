@@ -39,13 +39,13 @@
 							<div class="col-md-3" style="padding-left:0px">
 								<input type="text" name="keyword" class="form-control w250" placeholder="电话号码/用户名" id="searchInput">
 							</div>
-							<div class="col-md-4" style="">
+							<div class="col-md-5" style="">
 								<button type="button" class="btn btn-info ladda-button" id="searchBtn" >
 								<i class="glyphicon glyphicon-search mr5"></i>搜索
 								</button>
 							</div>
 							<div class="col-md-1" style="padding-left:0px">
-								<button type="button" class="btn btn-success ladda-button text-right" id="addOrderBtn" >添加订单</button>
+								<button type="button" class="btn btn-success ladda-button pull-right" id="addOrderBtn" >添加订单</button>
 							</div>
 						</div>
 						</div>            

@@ -178,10 +178,6 @@ html, body{
 	color: #666;
 	font-weight: bold;
 }
-.btn-primary, .btn-success{
-	padding-left:50px;
-	padding-right:50px;
-}
 .tag-box a{
 	transition: background 0.4s;
 	-moz-transition: background 0.4s;

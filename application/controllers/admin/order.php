@@ -18,7 +18,7 @@ class Order extends AdminBase
     {
         $data = array();
         //当前页码
-        $cur_page = $this->uri->segment(5)?$this->uri->segment(5):0;
+        $cur_page = $this->uri->segment(5)?$this->uri->segment(5):1;
         $per_page = config_item('admin_per_page');
         
         //查询

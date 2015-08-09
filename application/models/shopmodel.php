@@ -14,7 +14,7 @@ class ShopModel extends MY_Model
         $this->type_table_name = 'food_type'; 
     }
     //查询adminList
-    public function selectShopInfo($operation,$where,$field='*',$per_page=20,$start_get=0)
+    public function selectShopInfo($operation,$where,$field='*',$per_page=20,$start_get=1)
     {
         $query = $this->db->select($field)
                  ->from($this->_table_name)
@@ -22,7 +22,7 @@ class ShopModel extends MY_Model
         switch ($operation)
         {
            case 1:
-               $rdata = $query->limit($per_page,$start_get*$per_page)
+               $rdata = $query->limit($per_page,($start_get-1)*$per_page)
                               ->order_by('id','DESC')
                               ->get()
                               ->result_array();

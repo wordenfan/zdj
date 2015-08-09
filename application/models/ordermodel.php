@@ -27,7 +27,7 @@ class orderModel extends MY_Model
         return $rdata;
     }
     //获取数据
-    public function selectOrderInfo($operation,$where,$field='*',$per_page=20,$start_get=0)
+    public function selectOrderInfo($operation,$where,$field='*',$per_page=20,$start_get=1)
     {
         $query = $this->db->select($field)
                  ->from($this->_table_name)
@@ -35,7 +35,7 @@ class orderModel extends MY_Model
         switch ($operation)
         {
            case 1:
-               $rdata = $query->limit($per_page,$start_get*$per_page)
+               $rdata = $query->limit($per_page,($start_get-1)*$per_page)
                                ->order_by('snid','DESC')
                               ->get()
                               ->result_array();

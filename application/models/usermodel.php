@@ -14,6 +14,29 @@ class UserModel extends MY_Model
         $this->_table_name = 'user'; 
         $this->load->model('redismodel','redisM');
     }
+    
+    //查询adminList
+    public function selectUserInfo($operation,$where,$field='*',$per_page=20,$start_get=1)
+    {
+        $query = $this->db->select($field)
+                 ->from($this->_table_name)
+                 ->where($where);
+        switch ($operation)
+        {
+           case 1:
+               $rdata = $query->limit($per_page,($start_get-1)*$per_page)
+                              ->order_by('uid','DESC')
+                              ->get()
+                              ->result_array();
+               break;
+           case 2:
+               $rdata = $query->count_all_results();
+               break;
+        }
+                
+        return $rdata;
+    }
+    
     //查询用户
     public function getUserInfo($where,$field='*'){
         

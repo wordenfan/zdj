@@ -16,7 +16,7 @@ class Shop extends AdminBase
     {
         $data = array();
         //当前页码
-        $cur_page = $this->uri->segment(5)?$this->uri->segment(5):0;
+        $cur_page = $this->uri->segment(5)?$this->uri->segment(5):1;
         $per_page = config_item('admin_per_page');
         
         //查询
@@ -53,9 +53,13 @@ class Shop extends AdminBase
         $data['page_list'] = $default_output.$add_putput;
         $this->load->view('admin/shop/list',$data);
     }
-    //ajax刷新
-    public function sadd()
+    //
+    public function addshop()
     {
-        
+        $this->load->model('shoptypemodel','stmd');
+        $data = array();
+        $type_where['id'] = 10000;//查不到数据，以便添加
+        $data['type_info_tmp'] = $this->stmd->selectShoptypeInfo($type_where,'*');
+        $this->load->view('admin/shop/addshop',$data);
     }
 }

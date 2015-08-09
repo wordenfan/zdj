@@ -51,31 +51,31 @@ $(function(){
             </li>
 			<li class="ng-scope">
                 <span class="glyphicon"></span>
-                <a class="ng-binding ng-scope">用户管理</a>
-                <ul>
-					<li  class="sub-menu ng-scope">
-						<a target="main-frame" class="ng-binding ng-scope" href="/system/order">用户列表</a>
-					</li>
-				</ul>           
-            </li>
-			<li class="ng-scope">
-                <span class="glyphicon"></span>
                 <a class="ng-binding ng-scope">商户管理</a>
                 <ul>
 					<li  class="sub-menu ng-scope">
                         <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/shop/slist');?>">商户列表</a>
                     </li>
 					<li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/shop/sadd');?>">添加商户</a>
+                        <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/shop/addshop');?>">添加商户</a>
                     </li>
-                                    </ul>           
+				</ul>           
+            </li>
+			<li class="ng-scope">
+                <span class="glyphicon"></span>
+                <a class="ng-binding ng-scope">用户管理</a>
+                <ul>
+					<li  class="sub-menu ng-scope">
+						<a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/user/ulist');?>">用户列表</a>
+					</li>
+				</ul>           
             </li>
 			<li class="ng-scope">
                 <span class="glyphicon"></span>
                 <a class="ng-binding ng-scope">新闻管理</a>
                 <ul>
 					<li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="/system/user">新闻列表</a>
+                        <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/news/nlist');?>">新闻列表</a>
                     </li>
 					<li  class="sub-menu ng-scope">
                         <a target="main-frame" class="ng-binding ng-scope" href="/system/user/addUser">添加新闻</a>
@@ -87,10 +87,10 @@ $(function(){
                 <a class="ng-binding ng-scope">系统设置</a>
                 <ul>
                                         <li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="/system/ads">运营设置</a>
+                        <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/system/conf');?>">运营设置</a>
                     </li>
                                         <li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="/system/adPosition">系统设置</a>
+                        <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/system/conf_other');?>">系统设置</a>
                     </li>
                                     </ul>           
             </li>

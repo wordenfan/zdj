@@ -28,7 +28,7 @@ class Home extends HomeBase {
             $userinfo = json_encode($info);
             echo $userinfo;
         }else{
-            $all_arr = $this->smd->getShopList();
+            $all_arr = $this->smd->selectShopInfo(1,array());
             $open_arr = array();
             $close_arr = array();
             for($i=0; $i<count($all_arr); $i++)
