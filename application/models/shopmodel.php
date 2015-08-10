@@ -43,4 +43,8 @@ class ShopModel extends MY_Model
                 ->row_array();
         return $data;
     }
+    //
+    public function update($data,$where){
+        $this->db->where($where)->update($this->_table_name,$data);
+    }
 }

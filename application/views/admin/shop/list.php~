@@ -43,7 +43,7 @@
                             </button>
                         </div>
                         <div class="col-md-1" style="padding-left:0px">
-                            <a type="button" href="/admin/shop/addshop" class="btn btn-primary ladda-button pull-right" id="addShopBtn" >添加商家</a>
+                            <button type="button" class="btn btn-primary ladda-button pull-right" id="addShopBtn" >添加商家</button>
                         </div>
                     </div>
                     </div>            
@@ -76,21 +76,20 @@
                             <td width="8%" height="24" align="center"><?php echo $v['name'];?></td>
                             <td width="8%" align="center"><?php echo $v['telephone'];?></td>
                             <td width="6%" height="24" align="center"><?php echo $v['type'];?></td>
-                            <td width="6%" align="center"><?php echo $v['area_id'];?></td>
+                            <td width="6%" align="center"><?php echo $v['belongs'];?></td>
                             <td width="4%" align="center"><?php echo $v['start_price'];?></td>
                             <td width="4%" align="center"><?php echo $v['send_price'];?></td>
                             <td width="6%" align="center"><?php echo $v['publish'];?></td>
                             <td width="6%" align="center"><?php echo $v['order_num'];?></td>
                             <td width="6%" align="center"><?php echo $v['order_profit'];?></td>
                             <td width="4%" align="center" id="status_a">
-                            <?php if($v['status'] == 1):?><font color="green">正常</font>
-                            <?php elseif($v['status'] == 2):?><font color="red">休息</font>
-							<?php else :?><font color="gray">关闭</font>
+                            <?php if($v['status'] == 1):?>正常
+                            <?php else:?>禁用
                             <?php endif;?>
                             <td width="15%" align="center">
-                                <a id="editBtn" class="btn btn-default btn-sm" type="button" href="<?php echo base_url('admin/shop/editshop/id').'/'.$v['id'];?>"/>编辑</a>
-                                <a id="restBtn" onclick="do_rest_ajax('<?php echo $v['id'];?>')" class="btn btn-danger btn-sm" type="button"/>休息</a>
-                                <a id="openBtn" onclick="do_open_ajax('<?php echo $v['id'];?>')" class="btn btn-success btn-sm" type="button"/>营业</a>
+                                <button id="searchBtn" class="btn btn-default btn-sm" type="button">编辑</button>
+                                <button id="searchBtn" class="btn btn-danger btn-sm" type="button">休息</button>
+                                <button id="searchBtn" class="btn btn-success btn-sm" type="button">营业</button>
                             </td>
                         </tr>
                     <?php endforeach;?>
@@ -108,16 +107,22 @@
 </div>
 <script Language="JavaScript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
 <script type="text/javascript">
-function do_open_ajax(par){
-	$.post('/admin/shop/doajax',{shop_id:par,to_status:1},function($data){
-		location.replace(location.href);
+$(function(){
+    $("#addShopBtn").click(function(){
+	$url = "<?php echo base_url('admin/shop/addshop');?>";
+        window.location.href = $url;
 	})
-}
-function do_rest_ajax(par){
-	$.post('/admin/shop/doajax',{shop_id:par,to_status:2},function($data){
-		location.replace(location.href);
-	})
-}
+    $("#searchBtn").click(function(){
+		$type = $.trim($('#search_type').val());
+		$type_str = String($type) == '0'?'otel':'oname';
+		$keyword = String($.trim($('#searchInput').val()));
+		if($keyword==''){
+			alert('搜索内容不能为空！')
+		}
+        $url = "<?php echo base_url('admin/order/olist/type');?>";
+        window.location.href = $url +'/'+$type_str+'/condition/'+$keyword+'';
+    })
+})
 </script>
 </body>
 </html>

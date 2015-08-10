@@ -56,10 +56,43 @@ class Shop extends AdminBase
     //
     public function addshop()
     {
-        $this->load->model('shoptypemodel','stmd');
         $data = array();
-        $type_where['id'] = 10000;//查不到数据，以便添加
-        $data['type_info_tmp'] = $this->stmd->selectShoptypeInfo($type_where,'*');
+        $this->load->model('shoptypemodel','stmd');
+        $area_data = $this->db->select('*')->from('area')->get()->result_array();
+        $data['food_type'] = array();
+        $data['food_list'] = array();
+        $data['shop_area'] = $area_data;
+        $data['shop_type'] = config_item('shop_type');
+        
         $this->load->view('admin/shop/addshop',$data);
+    }
+    //
+    public function editshop(){
+        $sid = $this->uri->segment(5)?$this->uri->segment(5):1;
+        $info = $this->smd->getShop(array('id'=>$sid),'*');
+        $data['info'] = $info;
+        $data['shop_name'] = $info['name'];
+        //
+        $map['shopid'] = $sid;
+        $data['food_type'] = $this->db->select('*')->from('food_type')->where($map)->get()->result_array();
+        $data['food_list'] = $this->db->select('*')->from('food')->where($map)->get()->result_array();
+        $data['shop_area'] = $this->db->select('*')->from('area')->get()->result_array();
+        $data['shop_type'] = config_item('shop_type');
+        //获取type_name
+        $type_arr = array();
+        foreach($data['food_type'] as $k => $v)
+        {
+            $type_arr[$v['id']] = $v['type_name'];
+        }
+        $data['type_name'] = $type_arr;
+        $this->load->view('admin/shop/addshop',$data);
+    }
+    //
+    public function doajax(){
+        $sid = $this->input->post('shop_id');
+        $status = $this->input->post('to_status');
+        $where['id'] = $sid;
+        $data['status'] = $status;
+        $this->smd->update($data,$where);
     }
 }

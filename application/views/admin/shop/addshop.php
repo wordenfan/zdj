@@ -59,25 +59,25 @@
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">商家名称：</label>
                                     <div class="col-md-3">
-                                        <input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
+                                        <input type="text" value="<?php echo isset($info['name']) ? $info['name'] : '' ; ?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
                                     </div>
                                 </div>
 								<div class="form-group">
                                     <label for="" class="col-md-2 control-label">特色简介：</label>
                                     <div class="col-md-3">
-                                        <textarea type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="标签" value="" name="goods_tags"></textarea>
+                                        <input type="text" value="<?php echo isset($info['summary']) ? $info['summary'] : '' ; ?>"  class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength"  name="goods_tags"/>
                                     </div>
                                 </div>
 								<div class="form-group">
                                     <label for="" class="col-md-2 control-label">订餐电话：</label>
                                     <div class="col-md-3">
-                                        <input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
+                                        <input type="text" value="<?php echo isset($info['telephone']) ? $info['telephone'] : '' ; ?>"" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" name="goods_name"/>
                                     </div>
                                 </div>
 								<div class="form-group">
                                     <label for="" class="col-md-2 control-label">商家地址：</label>
                                     <div class="col-md-3">
-                                        <input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
+                                        <input type="text" value="<?php echo isset($info['address']) ? $info['address'] : '' ; ?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" name="goods_name"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -85,7 +85,9 @@
                                     <div class="col-sm-2">
                                         <select name="cat_id" class="form-control">
                                             <option value="0">请选择分类</option>
-                                            <option value="1" >蔬菜水果</option>
+                                            <?php foreach ($shop_type as $type_k => $type_v):?>
+                                                <option value="<?php echo $type_k;?>"  <?php echo (isset($info['type'])&&$type_k==$info['type'])?'selected':'';?> ><?php echo $type_v;?></option>
+                                            <?php endforeach;?>
 										</select>
 									</div>
                                 </div>
@@ -93,27 +95,29 @@
                                     <label class="col-sm-2 control-label">所属片区：</label>
                                     <div class="col-sm-2">
                                         <select name="cat_id" class="form-control">
-                                            <option value="0">请选择分类</option>
-                                            <option value="1" >蔬菜水果</option>
+                                            <option value="0">请选择区域</option>
+                                            <?php foreach ($shop_area as $area_k=>$area_v):?>
+                                                <option value="<?php echo $area_v['id'];?>" <?php echo (isset($info['area_id'])&&$area_v['id']==$info['area_id'])?'selected':'';?>><?php echo $area_v['name'];?></option>
+                                            <?php endforeach;?>
 										</select>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">营业时间：</label>
                                     <div class="col-md-3">
-                                        <input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="购买该商品时最多可以使用积分" name="integral"/>
+                                        <input type="text" value="<?php echo isset($info['business_hours']) ? $info['business_hours'] : '' ; ?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="购买该商品时最多可以使用积分" name="integral"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">起送价格：</label>
                                     <div class="col-md-3">
-                                        <input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="购买该商品时赠送积分" name="give_integral"/>
+                                        <input type="text" value="<?php echo isset($info['start_price']) ? $info['start_price'] : '' ; ?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="购买该商品时赠送积分" name="give_integral"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="" class="col-md-2 control-label">配送费用：</label>
                                     <div class="col-md-3">
-                                        <input type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="标签" value="" name="goods_tags"/>
+                                        <input type="text" value="<?php echo isset($info['send_price']) ? $info['send_price'] : '' ; ?>"  class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" name="goods_tags"/>
                                     </div>
                                 </div>
 								<div class="col-md-offset-2 col-md-6">
@@ -140,7 +144,7 @@
 										<div class="modal-content">
 										  <div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="myModalLabel">商家名称</h4>
+											<h4 class="modal-title" id="myModalLabel"><?php echo isset($shop_name)?$shop_name:'添加商家';?></h4>
 										  </div>
 										  <div class="modal-body">
 											<div class="form-group">
@@ -166,11 +170,11 @@
 									</tr>
 									</thead>
 									<tbody id="goodsList">
-									<?php foreach($type_info_tmp as $k=>$v):?>
+									<?php foreach($food_type as $k=>$v):?>
 										<tr bgcolor="#FFFFFF" align="center" class="hover">
-											<td width="10%" height="24" align="center">156</td>
-											<td width="20%" height="24" align="center">主食</td>
-											<td width="30%" align="center">海福康海参</td>
+											<td width="10%" height="24" align="center"><?php echo $v['id'];?></td>
+											<td width="20%" height="24" align="center"><?php echo $v['type_name'];?></td>
+											<td width="30%" align="center"><?php echo $shop_name;?></td>
 											<td width="15%" align="center">
 												<button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button>
 											</td>
@@ -193,10 +197,10 @@
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="myModalLabel">商家名称</h4>
+											<h4 class="modal-title" id="myModalLabel"><?php echo isset($shop_name)?$shop_name:'添加商家';?></h4>
 										</div>
 										<div class="modal-body">
-											<form class="form-inline">
+											<form class="">
 												<div class="form-group">
 													<label class="sr-only" >菜品名称</label>
 													<input type="email" class="form-control" id="" placeholder="名称">
@@ -236,17 +240,21 @@
 										<td width="15%" height="24" align="center">原价</td>
 										<td width="15%" height="24" align="center">拿货价</td>
 										<td width="10%" height="24" align="center">分类</td>
+										<td width="10%" align="center">商家</td>
 										<td width="5%" align="center">排序</td>
-										<td width="20%" align="center">管理项</td> 
+										<td width="10%" align="center">管理项</td> 
 									</tr>
 								</thead>
 								<tbody id="goodsList">
-									<?php foreach($type_info_tmp as $k=>$v):?>
+									<?php foreach($food_list as $k=>$v):?>
 										<tr bgcolor="#FFFFFF" align="center" class="hover">
-											<td width="10%" height="24" align="center">156</td>
-											<td width="20%" height="24" align="center">主食</td>
-											<td width="30%" align="center">海福康海参</td>
-											<td width="15%" align="center">
+											<td width="15%" height="24" align="center"><?php echo $v['name'];?></td>
+											<td width="15%" height="24" align="center"><?php echo $v['get_price'];?></td>
+											<td width="15%" height="24" align="center"><?php echo $v['price'];?></td>
+											<td width="10%" height="24" align="center"><?php echo $type_name[$v['food_type']];?></td>
+											<td width="10%" align="center"><?php echo $shop_name;?></td>
+											<td width="5%" align="center"><?php echo $v['sort'];?></td>
+											<td width="10%" align="center">
 												<button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button>
 											</td>
 										</tr>

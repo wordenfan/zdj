@@ -16,7 +16,9 @@ class RedisModel extends MY_Model
     }
     //删除某键值
     public function del($key){
-        $this->redis->del($key);
+        if($this->redis->exists($key)){
+            $this->redis->delete($key);
+        }
     }
     //===================哈希===========
     //哈希_批量设置

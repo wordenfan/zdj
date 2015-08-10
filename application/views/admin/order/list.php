@@ -107,6 +107,7 @@
             </div>
         </div>
 </div>
+<script Language="JavaScript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
 <script type="text/javascript">
 $(function(){
     $("#addOrderBtn").click(function(){
