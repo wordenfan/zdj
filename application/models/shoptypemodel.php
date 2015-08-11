@@ -24,4 +24,9 @@ class ShopTypeModel extends MY_Model
                 ->result_array();
         return $rdata;
     }
+    //
+    public function add_type($data){
+        $insert_id = $this->db->insert($this->_table_name,$data);
+        return $insert_id;
+    }
 }

@@ -44,6 +44,11 @@ class ShopModel extends MY_Model
         return $data;
     }
     //
+    public function insert($data){
+        $insert_id = $this->db->insert($this->_table_name,$data);
+        return $insert_id;
+    }
+    //
     public function update($data,$where){
         $this->db->where($where)->update($this->_table_name,$data);
     }
