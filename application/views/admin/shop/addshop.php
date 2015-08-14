@@ -43,17 +43,9 @@
         </ol>
       </div>
       <div ui-view="" class="ng-scope">
-        <div ui-view="" class="ng-scope">
             <div ng-component="modules/coupon/addCoupon" class="ng-scope">
                 <div ng-controller="addCouponCtrl" class="ng-scope">
                     <div class="panel panel-default">
-                         <ul class="nav nav-tabs" role="tablist" style="">
-                          <li role="presentation" class="active"><a href="#">基本信息</a></li>
-                          <li role="presentation"><a href="#">菜品种类</a></li>
-                          <li role="presentation"><a href="#">菜单管理</a></li>
-                          <li role="presentation"><a href="#">其他管理</a></li>
-                        </ul>
-                        
                         <div class="panel-body pt30">
 							<form action="" method="post" id="category" class="form-horizontal ng-invalid ng-invalid-required ng-dirty ng-valid-pattern" role="form">
                                 <div class="form-group">
@@ -137,204 +129,16 @@
                                 </div>
 							</form>
                         </div>
-						<div class="panel-body" style="display:none;">
-                            <div class="form-group">
-                                <div class="col-md-6" style="width:100%">
-									<!-- Modal_button -->
-									<div class="col-md-12" style="padding-left:0px;padding-bottom:10px">
-										<button type="button" class="btn btn-default ladda-button pull-right" data-toggle="modal" data-target="#myModal" >添加品类</button>
-									</div>
-									<!-- Modal -->
-									<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-									  <div class="modal-dialog" role="document">
-										<div class="modal-content">
-										  <div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="myModalLabel"><?php echo isset($shop_name)?$shop_name:'添加商家';?></h4>
-										  </div>
-										  <div class="modal-body">
-											<div class="form-group">
-												<label for="exampleInputPassword1">商店名称</label>
-												<input type="text" class="form-control" id="shop_name_id" value="<?php echo isset($shop_name)?$shop_name:'当前无商家';?>" disabled/>
-											</div>
-											<div class="form-group">
-												<label for="exampleInputPassword1">类别名称</label>
-												<input type="text" class="form-control" id="type_name_id" placeholder="请输入类别名称"/>
-											</div>
-										  </div>
-										  <div class="modal-footer">
-											<button type="button" id="add_type" class="btn btn-primary">保存</button>
-											<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-										  </div>
-										</div>
-									  </div>
-									</div>
-									<!-- endModal -->
-									<table class="table table-condensed table-hover table-bordered" style="font-size:12px;" >
-									<thead>
-									<tr bgcolor="#FBFCE2">
-										<td width="10%" height="24" align="center">类别id</td>
-										<td width="20%" height="24" align="center">类别名称</td>
-										<td width="30%" align="center">所属0店家</td>
-										<td width="40%" align="center">管理项</td> 
-									</tr>
-									</thead>
-									<tbody id="goodsList">
-									<?php foreach($food_type as $k=>$v):?>
-										<tr bgcolor="#FFFFFF" align="center" class="hover">
-											<td width="10%" height="24" align="center"><?php echo $v['id'];?></td>
-											<td width="20%" height="24" align="center"><?php echo $v['type_name'];?></td>
-											<td width="30%" align="center"><?php echo $shop_name;?></td>
-											<td width="15%" align="center">
-												<button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button>
-											</td>
-										</tr>
-									<?php endforeach;?>
-									<tr id="foot_page" ></tr>
-									</tbody>
-									</table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="panel-body" style="display:none;">
-							<!-- Modal_button -->
-							<div class="col-md-12" style="padding-left:0px;padding-bottom:10px">
-								<button type="button" class="btn btn-default ladda-button pull-right" data-toggle="modal" data-target="#myModa2" >添加菜品</button>
-							</div>
-							<!-- Modal -->
-							<div class="modal fade" id="myModa2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-								<div class="modal-dialog" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="myModalLabel"><?php echo isset($shop_name)?$shop_name:'添加商家';?></h4>
-										</div>
-										<div class="modal-body">
-											<form class="">
-												<div class="form-group">
-													<label class="sr-only" >菜品名称</label>
-													<input type="email" class="form-control" id="" placeholder="名称">
-												</div>
-												<div class="form-group">
-													<label class="sr-only" >排序</label>
-													<input type="email" class="form-control" id="" placeholder="菜单中的显示排序">
-												</div>
-												<div class="form-group">
-													<select name="cat_id" class="form-control">
-														<option value="0">请选择分类</option>
-														<option value="1" >蔬菜水果</option>
-													</select>
-												</div>
-												<div class="form-group">
-													<label class="sr-only" >原价</label>
-													<input type="email" class="form-control" id="" placeholder="原价">
-												</div>
-												<div class="form-group">
-													<label class="sr-only" >拿货价</label>
-													<input type="email" class="form-control" id="" placeholder="拿货价">
-												</div>
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-primary">保存</button>
-											<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- endModal -->
-                            <table class="table table-condensed table-hover table-bordered" style="font-size:12px;" >
-								<thead>
-									<tr bgcolor="#FBFCE2">
-										<td width="15%" height="24" align="center">名称</td>
-										<td width="15%" height="24" align="center">原价</td>
-										<td width="15%" height="24" align="center">拿货价</td>
-										<td width="10%" height="24" align="center">分类</td>
-										<td width="10%" align="center">商家</td>
-										<td width="5%" align="center">排序</td>
-										<td width="10%" align="center">管理项</td> 
-									</tr>
-								</thead>
-								<tbody id="goodsList">
-									<?php foreach($food_list as $k=>$v):?>
-										<tr bgcolor="#FFFFFF" align="center" class="hover">
-											<td width="15%" height="24" align="center"><?php echo $v['name'];?></td>
-											<td width="15%" height="24" align="center"><?php echo $v['get_price'];?></td>
-											<td width="15%" height="24" align="center"><?php echo $v['price'];?></td>
-											<td width="10%" height="24" align="center"><?php echo $type_name[$v['food_type']];?></td>
-											<td width="10%" align="center"><?php echo $shop_name;?></td>
-											<td width="5%" align="center"><?php echo $v['sort'];?></td>
-											<td width="10%" align="center">
-												<button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button>
-											</td>
-										</tr>
-									<?php endforeach;?>
-									<tr id="foot_page" ></tr>
-								</tbody>
-							</table>
-                        </div>
-                        <div class="panel-body pt30" style="display:none;">
-                        </div>
                     </div>
                 </div>
             </div>
-        </div>
       </div>
 </div>
 <script type="text/javascript">
 $(function(){
-    $('#add_type').click(function(){
-		$type_name = $('#type_name_id').val();
-		$shop_name = $('#shop_name_id').val();
-		$shop_id = <?php echo $shop_id;?>
-		// $shop_id = $('#shop_id_id').val();
-		if($shop_name == '当前无商家'){
-			alert('当前没有选中的商家!');
-			return;
-		}
-		//var html_str = '<tr bgcolor="#FFFFFF" align="center" class="hover"><td width="10%" height="24" align="center">156</td><td width="20%" height="24" align="center">主食</td><td width="30%" align="center">海福康海参</td><td width="15%" align="center"><button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button></td></tr>';
-		//var html_str = '<tr bgcolor="#FFFFFF" align="center" class="hover"><td width="15%" height="24" align="center"><input type="text" id="title" name="fname[]" size="16" /></td><td width="15%" height="24" align="center"><input type="text" id="title" name="yuanjia[]" size="16"  /></td><td width="15%" height="24" align="center"><input type="text" id="title" name="nahuojia[]" size="16" /></td><td width="10%" align="center"><select name="type[]" style="width:310px" onchange="selectInput(this)"><option value="156">主食</option><option value="157">招牌主菜</option><option value="158">凉菜</option><option value="159">特色菜</option></select></td><td width="5%" align="center"><input name="sort[]" type="text" id="title" size="16" /></td><td width="20%" align="center"><a href="#"><u>编辑</u></a></td></tr>';
-		//$("#foot_page").before(html_str);
-		
-		// window.location = '/system/goods/goodsList';
-		$.post('/admin/shop/add_shop_type',{shop_id:$shop_id,type_name:$type_name},function(data){
-			alert('0000');
-		});
-	});
-	
-    $('.nav-tabs').find('li').click(function(){
-        var index = $(this).index();
-        $(this).addClass('active').siblings().removeClass('active');
-        $('.panel-body').siblings('.panel-body').hide().eq(index).show();
-    });
+	//添加菜品,ajax局部刷新
+    // $('#add_food').click(function(){
+		// $('#myModal_food').modal('hide');
+	// })	
 })
-</script>
-<div id="confirmModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">91批购系统温馨提示</h4>
-      </div>
-      <div class="modal-body"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-danger btn-sm" id="confirmBtn">确认</button>
-      </div>
-    </div>
-  </div>
-</div>
-<div id="alertModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">91批购系统温馨提示</h4>
-      </div>
-      <div class="modal-body"></div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">确认</button>
-      </div>
-    </div>
-  </div>
-</div>
-<script type="text/javascript">
 </script>

@@ -60,7 +60,7 @@ class Shop extends HomeBase {
             $info['open_close'] = $open_flag;
             //类别
             $type = $this->fmd->getFoodType(array('shopid'=>$sid));
-            $list = $this->fmd->getFoodList(array('shopid'=>$sid,'status'=>1));
+            $list = $this->fmd->selectFoodList(array('shopid'=>$sid,'status'=>1));
             //整理数组
             $result_arr = array();
             foreach($type as $ik=>$iv)

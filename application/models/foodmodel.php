@@ -15,7 +15,7 @@ class FoodModel extends MY_Model
         $this->load->model('redismodel','redis_m');
     }
     //查询List
-    public function getFoodList($where){
+    public function selectFoodList($where){
         $res = array();
         $shopid = key_exists('shopid', $where)?$where['shopid']:0;
         $shop_food_num = $this->redis_m->smembers('shop_'.$shopid);
@@ -46,5 +46,10 @@ class FoodModel extends MY_Model
                 ->get()
                 ->result_array();
         return $data;
+    }
+    //添加
+    public function add_food($data){
+        $insert_id = $this->db->insert($this->_table_name,$data);
+        return $insert_id;
     }
 }
