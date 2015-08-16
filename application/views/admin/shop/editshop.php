@@ -223,7 +223,7 @@
 												<input type="email" class="form-control" id="food_sort" placeholder="菜单中的显示排序">
 											</div>
 											<div class="form-group" id="food_list_food_type">
-												<select name="food_cat_id" class="form-control" id="food_type">
+												<select name="food_cat_id" class="form-control" id="food_cat_id">
 													<option value="0">请选择类别</option>
 													<?php foreach($food_type as $k=>$v):?>
 													<option value="<?php echo $v['id'];?>" ><?php echo $v['type_name'];?></option>

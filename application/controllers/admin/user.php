@@ -16,7 +16,7 @@ class User extends AdminBase
     {
         $data = array();
 		
-	//当前页码
+        //当前页码
         $cur_page = $this->uri->segment(5)?$this->uri->segment(5):1;
         $per_page = config_item('admin_per_page');
         
@@ -54,5 +54,14 @@ class User extends AdminBase
         $data['page_list'] = $default_output.$add_putput;
 		
         $this->load->view('admin/user/list',$data);
+    }
+    
+    //更新标记地址等
+    public function updateInfo() {
+        $where['uid'] = $this->input->post('uid');
+        $data['mark_address'] = trim($this->input->post('mark_address'));
+        $data['mark_info'] = trim($this->input->post('mark_info'));
+        $this->umd->updateInfo($where,$data);
+        echo 1;
     }
 }

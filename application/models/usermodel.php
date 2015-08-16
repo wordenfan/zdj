@@ -133,4 +133,8 @@ class UserModel extends MY_Model
         $this->session->sess_destroy();
         delete_cookie("login_auto");
     }
+    //更新标记地址等
+    public function updateInfo($where,$data) {
+        $this->db->where($where)->update($this->_table_name,$data);
+    }
 }

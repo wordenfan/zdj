@@ -21,42 +21,52 @@
     </div>
     <div class="panel panel-default pt30 pb50">
         <form id="category" class="form-horizontal ng-invalid ng-invalid-required ng-dirty ng-valid-pattern" role="form">
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">网站标题：</label>
-				<div class="col-md-3">
-					<input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">网站描述：</label>
-				<div class="col-md-3">
-					<textarea type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="标签" value="" name="goods_tags"></textarea>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">网站关键字：</label>
-				<div class="col-md-3">
-					<input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">营业时间：</label>
-				<div class="col-md-3">
-					<input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">客服电话：</label>
-				<div class="col-md-3">
-					<input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">配送区域：</label>
-				<div class="col-md-3">
-					<input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
-				</div>
-			</div>
+			<?php foreach ($info_tmp as $key => $value) :?>
+                <?php if($value['name'] == AREA.'SITE_TITLE'):?>
+                    <div class="form-group">
+                        <label for="" class="col-md-2 control-label">网站标题：</label>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
+                        </div>
+                    </div>
+                <?php elseif ($value['name'] == AREA.'SITE_DESCRIPTION'):?>
+                    <div class="form-group">
+                        <label for="" class="col-md-2 control-label">网站描述：</label>
+                        <div class="col-md-3">
+                            <textarea type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="标签" name="goods_tags"></textarea>
+                        </div>
+                    </div>
+                <?php elseif ($value['name'] == AREA.'SITE_KEYWORD'):?>
+                    <div class="form-group">
+                        <label for="" class="col-md-2 control-label">网站关键字：</label>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="" name="goods_name"/>
+                        </div>
+                    </div>
+                <?php elseif ($value['name'] == AREA.'SERVICE_TIME'):?>
+                    <div class="form-group">
+                        <label for="" class="col-md-2 control-label">营业时间：</label>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="按此格式(10:00-20:00)输入" name="goods_name"/>
+                        </div>
+                    </div>
+                <?php elseif ($value['name'] == AREA.'SERVICE_PHONE'):?>
+                    <div class="form-group">
+                        <label for="" class="col-md-2 control-label">客服电话：</label>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
+                        </div>
+                    </div>
+                <?php elseif ($value['name'] == AREA.'SERVICE_AREA'):?>
+                    <div class="form-group">
+                        <label for="" class="col-md-2 control-label">配送区域：</label>
+                        <div class="col-md-3">
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="" name="goods_name"/>
+                        </div>
+                    </div>
+                <?php endif;?>
+            <?php endforeach;?>
+			
 			<div class="col-md-offset-2 col-md-6">
 				<input type="hidden" name="goods_id" value="0"/>
 				<button type="button" class="btn btn-primary ladda-button" id="addGoodsBtn">

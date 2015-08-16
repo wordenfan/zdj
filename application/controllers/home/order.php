@@ -113,8 +113,8 @@ class Order extends HomeBase {
                     $arr=array();
                     $sum_real = 0;
                     $this->load->model('foodmodel','fmd');
-                    $where['shopid'] = $shop_id;
-                    $all_food = $this->fmd->selectFoodList($where);
+                    $where['status'] = 1;
+                    $all_food = $this->fmd->selectFoodList($shop_id,$where);
                     foreach($list as $key=>$val)
                     {
                         for($i=0;$i<count($all_food);$i++)

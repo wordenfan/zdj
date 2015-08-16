@@ -9,14 +9,12 @@ class News extends AdminBase
     function __construct()
     {
         parent::__construct();
-        //$this->load->model('newsmodel','nmd');
     }
     //刷新和搜索
     public function nlist()
     {
         $data = array();
-        $data['info_tmp'] = array();
-		
+        $data['info_tmp'] = $this->db->select('*')->from(config_item('dbprefix').'news')->get()->result_array();
         $this->load->view('admin/news/list',$data);
     }
 }

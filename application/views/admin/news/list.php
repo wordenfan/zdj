@@ -35,11 +35,11 @@
                     <tbody id="goodsList">
                     <?php foreach($info_tmp as $k=>$v):?>
                         <tr bgcolor="#FFFFFF" align="center" class="hover">
-							<td width="10%" height="24" align="center">1</td>
-							<td width="60%" height="24" align="left">青岛开发区可以网上叫外卖啦！</td>
-							<td width="10%" height="24" align="center">1</td>
+							<td width="10%" height="24" align="center"><?php echo $v['id'];?></td>
+							<td width="60%" height="24" align="left"><?php echo $v['title'];?></td>
+							<td width="10%" height="24" align="center"><?php echo $v['sort'];?></td>
 							<td width="20%" align="center">
-								<a href="/zadmin/News/newsEdit/id/1"><u>修改</u></a> |
+								<a href=""><u>修改</u></a> |
 								<a class="confirmdel" href=""><u>删除</u></a>
 							</td>
 						</tr>

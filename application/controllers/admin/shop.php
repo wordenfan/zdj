@@ -139,18 +139,19 @@ class Shop extends AdminBase {
         $data['publish'] = $_SERVER['REQUEST_TIME'];
         $this->load->model('foodmodel', 'fmd');
         $this->fmd->add_food($data);
-        
-        $new_data = $this->ftmd->selectFoodList(array('shopid'=>$data['shopid']));
+        //
+        $new_data = $this->fmd->selectFoodList($data['shopid'],array(),array('publish'=>'DESC'));
         $new_data = json_encode($new_data);
         echo $new_data;
     }
 
     //
     public function test() {
-//        $this->load->model('foodtypemodel', 'ftmd');
-//        $d = $this->ftmd->selectFoodtypeInfo(array('shopid'=>7));
-//        var_dump(json_encode($d[0]));
-//        var_dump($d);
+        $this->load->model('foodmodel', 'fmd');
+        $where['id'] = 34;
+        $where['status'] = 0;
+        $sort['id'] = 'ASC';
+        $new_data = $this->fmd->selectFoodList(8,$where,$sort);
+        print_r($new_data);
     }
-
 }

@@ -9,6 +9,10 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/bootstrap.min.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/ad_base.css');?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/ad_module.css');?>" />
+
+<script Language="JavaScript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
+<script Language="JavaScript" src="<?php echo base_url('static/js/bootstrap.min.js');?>"></script>
+<script Language="JavaScript" src="<?php echo base_url('static/js/jquery.uploadify.min.js');?>"></script>
 <style class="ng-scope"></style>
 </head>
 <body>
@@ -30,8 +34,8 @@
                         </div>
                         <div class="col-md-2" style="padding-left:0px">
                             <select class="form-control w150" id="search_type" name="search_type" >
-                                <option value="0">商户名称</option>
-                                <option value="1" >商户id</option>
+                                <option value="0">用户名称</option>
+                                <option value="1" >用户id</option>
                             </select>
                         </div>
                         <div class="col-md-3" style="padding-left:0px">
@@ -43,7 +47,7 @@
                             </button>
                         </div>
                         <div class="col-md-1" style="padding-left:0px">
-                            <button type="button" class="btn btn-primary ladda-button pull-right" id="addOrderBtn" >添加商家</button>
+                            <button type="button" class="btn btn-primary ladda-button pull-right" >添加用户</button>
                         </div>
                     </div>
                     </div>            
@@ -70,17 +74,18 @@
                     <tbody id="goodsList">
                     <?php foreach($info_tmp as $k=>$v):?>
                         <tr bgcolor="#FFFFFF" align="center" class="hover">
-							<td width="4%">1624</td>
-							<td width="6%">13176510991</td>
-							<td width="6%" >2015-08-08 14:17</td>
-							<td width="6%" >2015-08-08</td>
-							<td width="6%" align="left">13176510991</td>
-							<td width="20%"align="left">青岛市黄岛区北江支路小区387号2单元</td>
-							<td width="15%"></td>
-							<td width="15%"></td>
-							<td width="4%" >正常</td>
+							<td width="4%"><?php echo $v['uid'];?></td>
+							<td width="6%"><?php echo $v['uname'];?></td>
+							<td width="6%" ><?php echo date('Y-m-d',$v['reg_time']);?></td>
+							<td width="6%" ><?php echo date('Y-m-d',$v['last_login_time']);?></td>
+							<td width="6%" align="left"><?php echo $v['tel'];?></td>
+							<td width="20%"align="left"><?php echo $v['address'];?></td>
+							<td width="15%"><?php echo $v['mark_address'];?></td>
+							<td width="15%"><?php echo $v['mark_info'];?></td>
+							<td width="4%" ><?php echo $d = $v['status']==1?'正常':'禁止';?></td>
 							<td>
-								<a href="/zadmin/User/userEdit/id/1624.html" class="btn btn-default btn-sm">修改</a>
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" onclick="showModal('<?php echo $v['uid'];?>','<?php echo $v['uname'];?>','<?php echo $v['mark_address'];?>','<?php echo $v['mark_info'];?>')" data-target="#myModal_user">修改</button>
+								<a href="#" class="btn btn-default btn-sm">重置密码</a>
 								<a href="/zadmin/User/userOrder/id/1624.html"class="btn btn-default btn-sm">订单</a>
 								<a href="/zadmin/User/edit/id/1624.html" class="btn btn-default btn-sm">禁用</a>
 							</td>
@@ -98,23 +103,63 @@
         </div>
     </div>
 </div>
-<script Language="JavaScript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
+<!-- Modal -->
+<div class="modal fade" id="myModal_user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+	<div class="modal-content">
+	  <div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		<h4 class="modal-title" id="myModalLabel"><?php echo isset($shop_name)?$shop_name:'编辑用户';?></h4>
+	  </div>
+	  <div class="modal-body">
+		<input type="hidden" name="shop_id" id="user_modal_id" value=""/>
+		<div class="form-group">
+			<label for="exampleInputPassword1">用户昵称</label>
+			<input type="text" class="form-control" id="user_modal_uname" value="" disabled/>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">标记地址</label>
+			<input type="text" class="form-control" id="user_modal_address" placeholder="请输入标记地址"/>
+		</div>
+		<div class="form-group">
+			<label for="exampleInputPassword1">其他标记</label>
+			<input type="text" class="form-control" id="user_modal_info" placeholder="是否为黑户等"/>
+		</div>
+	  </div>
+	  <div class="modal-footer">
+		<button type="button" id="user_modal_save" class="btn btn-primary">保存</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+	  </div>
+	</div>
+  </div>
+</div>
+<!-- endModal -->
 <script type="text/javascript">
 $(function(){
-    $("#addOrderBtn").click(function(){
-		
-	})
-    $("#searchBtn").click(function(){
+    $("#user_modal_save").click(function(){
+		var uid = $('#user_modal_id').val();
+		var mark_address = $('#user_modal_address').val();
+		var mark_info = $('#user_modal_info').val();
+        var url = "<?php echo base_url('admin/user/updateInfo');?>";
+		$.post(url,{uid:uid,mark_address:mark_address,mark_info,mark_info},function(data){
+			window.location.href="<?php echo base_url('admin/user/ulist');?>";
+		})
+    })
+	//搜索
+	$("#searchBtn").click(function(){
 		$type = $.trim($('#search_type').val());
-		$type_str = String($type) == '0'?'otel':'oname';
+		$type_str = String($type) == '0'?'uname':'uid';
 		$keyword = String($.trim($('#searchInput').val()));
-		if($keyword==''){
-			alert('搜索内容不能为空！')
-		}
-        $url = "<?php echo base_url('admin/order/olist/type');?>";
-        window.location.href = $url +'/'+$type_str+'/condition/'+$keyword+'';
+        $url = "<?php echo base_url('admin/user/ulist/type');?>";
+        window.location.href = $url +'/'+$type_str+'/condition/'+$keyword;
     })
 })
+function showModal($val1,$val2,$val3,$val4){
+	$('#user_modal_id').val($val1);
+	$('#user_modal_uname').val($val2);
+	$('#user_modal_address').val($val3);
+	$('#user_modal_info').val($val4);
+}
 </script>
 </body>
 </html>

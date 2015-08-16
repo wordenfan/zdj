@@ -21,41 +21,46 @@
     </div>
     <div class="panel panel-default pt30 pb50">
         <form id="category" class="form-horizontal ng-invalid ng-invalid-required ng-dirty ng-valid-pattern" role="form">
-			
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">爆单公告：</label>
-				<div class="col-md-3">
-					<label class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">开启
-					</label>
-					<label class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">关闭
-					</label>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">公告内容：</label>
-				<div class="col-md-3">
-					<input type="text" value="" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="当前订单较多，配送大约需要70分钟" name="goods_name"/>
-				</div>
-				<div class="col-md-2">	
-					<div class="input-group">
-						<input type="text" class="form-control" id="exampleInputAmount" placeholder="配送时间"><div class="input-group-addon">分钟</div>
-					</div>
-				</div>
-			</div>
-			<hr style="height:1px;border:none;border-top:1px dashed #999;"/>
-			<div class="form-group">
-				<label for="" class="col-md-2 control-label">暂停接单：</label>
-				<div class="col-md-3">
-					<label class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">开启
-					</label>
-					<label class="radio-inline">
-						<input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">关闭
-					</label>
-				</div>
-			</div>
+			<?php foreach ($info_tmp as $key => $value) :?>
+                <?php if($value['name'] == AREA.'ANNOUNCEMENT_MODE'):?>
+                <div class="form-group">
+                    <label for="" class="col-md-2 control-label">爆单公告：</label>
+                    <div class="col-md-3">
+                        <label class="radio-inline">
+                            <input type="radio" name="open_announce" <?php echo $value['value']==1?'checked=TRUE':'';?> id="inlineRadio1" value="1">开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="open_announce" <?php echo $value['value']==1?'':'checked=TRUE';?> id="inlineRadio2" value="0">关闭
+                        </label>
+                    </div>
+                </div>
+                <?php elseif ($value['name'] == AREA.'ANNOUNCEMENT'):?>
+                <div class="form-group">
+                    <label for="" class="col-md-2 control-label">公告内容：</label>
+                    <div class="col-md-3">
+                        <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="当前订单较多，配送大约需要70分钟" name="goods_name"/>
+                    </div>
+                    <div class="col-md-2">	
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="配送时间"><div class="input-group-addon">分钟</div>
+                        </div>
+                    </div>
+                </div>
+                <?php elseif ($value['name'] == AREA.'SITE_CLOSE'):?>
+                <div class="form-group">
+                    <label for="" class="col-md-2 control-label">暂停接单(关闭所有商家)：</label>
+                    <div class="col-md-3">
+                        <label class="radio-inline">
+                            <input type="radio" name="stop_receive" id="stop_receive_id1" <?php echo $value['value']==1?'checked=TRUE':'';?> value="1">开启
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="stop_receive" id="stop_receive_id2" <?php echo $value['value']==1?'':'checked=TRUE';?> value="0">关闭
+                        </label>
+                    </div>
+                </div>
+                <?php endif;?>
+            <?php endforeach;?>
+            
 			<div class="col-md-offset-2 col-md-6">
 				<input type="hidden" name="goods_id" value="0"/>
 				<button type="button" class="btn btn-primary ladda-button" id="addGoodsBtn">
