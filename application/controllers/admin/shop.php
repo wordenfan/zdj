@@ -26,17 +26,13 @@ class Shop extends AdminBase {
             $js_type = $this->uri->segment(5);
             $js_condition = $this->uri->segment(7);
             $where[$js_type] = $js_condition;
-            $total_rows = $this->smd->selectShopInfo(2, $where);
-            $order_list = $this->smd->selectShopInfo(1, $where, '*', $per_page, $cur_page);
             $_url = '/admin/shop/slist/' . $js_type . '/' . $js_condition . '/page/' . $cur_page;
         } else {
-            //总记录数
-            $total_rows = $this->smd->selectShopInfo(2, array());
-            $order_list = $this->smd->selectShopInfo(1, array(), '*', $per_page, $cur_page);
             $_url = '/admin/shop/slist/page';
         }
-        $data['info_tmp'] = $order_list;
-
+        $s_list = $this->smd->shopList($per_page,$cur_page,$where);
+        $total_rows = $s_list['total'];
+        $data['info_tmp'] = $s_list['data'];
         //分页
         $this->load->library('pagination');
         $config = pagination_setting(); //加在分页样式

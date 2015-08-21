@@ -22,23 +22,22 @@ class Order extends AdminBase
         $per_page = config_item('admin_per_page');
         
         //查询
+        $where = array();
         if($this->uri->segment(7)){
             $js_type = $this->uri->segment(5);
             $js_condition = $this->uri->segment(7);
             $where[$js_type] = $js_condition;
-            $total_rows = $this->omd->selectOrderInfo(2,$where);
-            $order_list = $this->omd->selectOrderInfo(1,$where,'*',$per_page,$cur_page);
             $_url = '/admin/order/olist/'.$js_type.'/'.$js_condition.'/page/'.$cur_page;
         }else{
             //每次刷新都会清空redis的list
             $this->load->model('redismodel','redis_m');
             $this->redis_m->del('order');
-            //总记录数
-            $total_rows = $this->omd->selectOrderInfo(2,array());
-            $order_list = $this->omd->selectOrderInfo(1,array(),'*',$per_page,$cur_page);
             $_url = '/admin/order/olist/page';
         }
-        $data['order_list'] = $order_list;
+        //
+        $o_list = $this->omd->orderList($per_page,$cur_page,$where);
+        $total_rows = $o_list['total'];
+        $data['order_list'] = $o_list['data'];
         //分页
         $this->load->library('pagination');
         $config                      = pagination_setting();//加在分页样式

@@ -13,26 +13,26 @@ class ShopModel extends MY_Model
         $this->_table_name = 'shop'; 
         $this->type_table_name = 'food_type'; 
     }
-    //查询adminList
-    public function selectShopInfo($operation,$where,$field='*',$per_page=20,$start_get=1)
+    //查询多个
+    public function shopList($limit = 20, $offset = 1, $where = array(), $like = array()) 
     {
-        $query = $this->db->select($field)
-                 ->from($this->_table_name)
-                 ->where($where);
-        switch ($operation)
-        {
-           case 1:
-               $rdata = $query->limit($per_page,($start_get-1)*$per_page)
-                              ->order_by('id','DESC')
-                              ->get()
-                              ->result_array();
-               break;
-           case 2:
-               $rdata = $query->count_all_results();
-               break;
-        }
-                
-        return $rdata;
+        $result =  $this->db->select('*')
+                        ->from($this->_table_name)
+                        ->like($like)
+                        ->where($where)
+                        ->limit($limit,($offset-1)*$limit)
+                        ->order_by('id','DESC')
+                        ->get()
+                        ->result_array();
+        
+        $count =  $this->db->select('COUNT(*) AS count')
+                           ->from($this->_table_name)
+                           ->like($like)
+                           ->where($where)
+                           ->get()
+                           ->row()->count;
+
+        return array('data' => $result, 'total' => $count);
     }
     //查单个shop
     public function getShop($where,$field='*'){

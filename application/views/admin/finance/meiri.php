@@ -56,19 +56,24 @@
                     <div class="panel-body pt30">
 						<div>
 						<ul id="fan_ul">
+							<?php foreach($order_list as $n=>$m):?>
 							<li style="display:inline-block">
-									<label for="InputName2">1：</label>
+									<label for="InputName2"><?php echo $n+1;?>：</label>
 									<select name="shop_name[]" id="slist"  class="form-control" style="width:125px;">
-										<option value="0">=请选择=</option><option value="23">舅姥爷</option>
+										<option value="0">=请选择=</option>
+										<?php foreach($shop_list as $k=>$v):?>
+										<option value="<?php echo $v['id'];?>"><?php if($m['oshop_id']==$v['id']){echo 'selected';}?></option>
+										<?php endforeach;?>
 									</select>
-									<input type="text" placeholder="支付" style="" name="zf[]" class="form-control w60">
-									<input type="text" placeholder="收取" style="" name="sq[]" class="form-control w60">
-									<input type="text" placeholder="配送费" style="" name="psf[]" class="form-control w70">
-									<input type="text" placeholder="电话" style="" name="dianhua[]" class="form-control w100">
-									<input type="text" placeholder="地址" style="width:120px;" name="dizhi[]" class="form-control w100">
-									<input type="text" placeholder="员工" style="width:60px;" name="psy[]" class="form-control">
-									<input type="text" placeholder="备注" style="width:360px;" name="beizhu[]" class="form-control">
-							</li>				
+									<input type="text" placeholder="支付" value="<?php echo $m['opay'];?>" style="" name="zf[]" class="form-control w60">
+									<input type="text" placeholder="收取"  value="<?php echo $m['osum'];?>" style="" name="sq[]" class="form-control w60">
+									<input type="text" placeholder="配送费" value="" style="" name="psf[]" class="form-control w70">
+									<input type="text" placeholder="电话"  value="<?php echo $m['otel'];?>" style="" name="dianhua[]" class="form-control w100">
+									<input type="text" placeholder="地址"  value="<?php echo $m['oaddress'];?>" style="width:120px;" name="dizhi[]" class="form-control w100">
+									<input type="text" placeholder="员工"  value="" style="width:60px;" name="psy[]" class="form-control">
+									<input type="text" placeholder="备注"  value="" style="width:360px;" name="beizhu[]" class="form-control">
+							</li>		
+							<?php endforeach;?>							
 						</ul>
 						</div>
 						</br>
