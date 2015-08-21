@@ -81,34 +81,34 @@
 							<form class="form-inline" role="form">
 								<div class="col-md-3">
 									<label class="form-label">德鑫全</label>
-									<input type="text" class="form-control" style="width:200;" id="exampleInputEmail2" placeholder="德鑫全">
+									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="德鑫全">
 								</div>
 								<div class="col-md-3">
 									<label class="form-label">舅老爷</label>
-									<input type="text" class="form-control" style="width:200;" id="exampleInputEmail2" placeholder="德鑫全">
+									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="德鑫全">
 								</div>
 								<div class="col-md-3">
 									<label class="form-label">麻辣烫</label>
-									<input type="text" class="form-control" style="width:200;" id="exampleInputEmail2" placeholder="麻辣烫">
+									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="麻辣烫">
 								</div>
 								<div class="col-md-3">
 									<label class="form-label">小时咖喱</label>
-									<input type="text" class="form-control" style="width:200;" id="exampleInputEmail2" placeholder="小时咖喱">
+									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="小时咖喱">
 								</div>
 								</br></br>
 								<div class="col-md-3">
 									<label class="form-label">上交额</label>
-									<input type="text" class="form-control" style="width:200;" id="exampleInputEmail2" placeholder="上交额">
+									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="上交额">
 								</div>
 								<div class="col-md-3">
 									<label class="form-label">&nbsp;日&nbsp期&nbsp;</label>
-									<input type="text" class="form-control" style="width:200;" id="exampleInputEmail2" placeholder="日期">
+									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="日期">
 								</div>
 								<div class="col-md-6">
 									<label class="form-label">&nbsp;备&nbsp;注&nbsp;</label>
 									<input type="text" class="form-control" style="width:90%;" id="exampleInputEmail2"  placeholder="备注">
 								</div>
-								</br></br>
+								</br></br></br>
 								<div><label class="">总计上交：<font color="red">100</font>元；舅姥爷:<font color="red">200</font>元；德鑫全:<font color="red">123</font>元；小时咖喱:<font color="red">123</font>元；麻辣烫:<font color="red">123</font>元</label></div>
 							</form>
 						</div>

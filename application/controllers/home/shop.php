@@ -61,7 +61,7 @@ class Shop extends HomeBase {
             //类别
             $type = $this->fmd->getFoodType(array('shopid'=>$sid));
             $where['status'] = 1;
-            $list = $this->fmd->selectFoodList($id,$where);
+            $list = $this->fmd->selectFoodList($sid,$where);
             //整理数组
             $result_arr = array();
             foreach($type as $ik=>$iv)
