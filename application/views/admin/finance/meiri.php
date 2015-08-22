@@ -62,7 +62,12 @@
 									<select name="shop_name[]" id="slist"  class="form-control" style="width:125px;">
 										<option value="0">=请选择=</option>
 										<?php foreach($shop_list as $k=>$v):?>
-										<option value="<?php echo $v['id'];?>"><?php if($m['oshop_id']==$v['id']){echo 'selected';}?></option>
+										<?php if($m['oshop_id'] == $v['id']):?>
+											<option value="<?php echo $v['id'];?>" selected="selected" ><?php echo $v['name'];?></option>
+										<?php else:?>
+											<option value="<?php echo $v['id'];?>"><?php echo $v['name'];?></option>
+										<?php endif;?>
+										
 										<?php endforeach;?>
 									</select>
 									<input type="text" placeholder="支付" value="<?php echo $m['opay'];?>" style="" name="zf[]" class="form-control w60">
@@ -81,30 +86,39 @@
 							<form class="form-inline" role="form">
 								<div class="col-md-3">
 									<label class="form-label">德鑫全</label>
-									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="德鑫全">
+									<input type="text" class="form-control" style="width:150;" id="dyue" placeholder="德鑫全">
 								</div>
 								<div class="col-md-3">
 									<label class="form-label">舅老爷</label>
-									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="德鑫全">
+									<input type="text" class="form-control" style="width:150;" id="jyue" placeholder="德鑫全">
 								</div>
 								<div class="col-md-3">
 									<label class="form-label">麻辣烫</label>
-									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="麻辣烫">
+									<input type="text" class="form-control" style="width:150;" id="myue" placeholder="麻辣烫">
 								</div>
 								<div class="col-md-3">
 									<label class="form-label">小时咖喱</label>
-									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="小时咖喱">
+									<input type="text" class="form-control" style="width:150;" id="gyue" placeholder="小时咖喱">
 								</div>
 								</br></br>
 								<div class="col-md-3">
 									<label class="form-label">上交额</label>
-									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="上交额">
+									<input type="text" class="form-control" style="width:150;" id="shangjiao" placeholder="上交额">
 								</div>
 								<div class="col-md-3">
 									<label class="form-label">&nbsp;日&nbsp期&nbsp;</label>
-									<input type="text" class="form-control" style="width:150;" id="exampleInputEmail2" placeholder="日期">
+									<input type="text" class="form-control" style="width:150;" id="date" placeholder="日期">
 								</div>
-								<div class="col-md-6">
+								<div class="col-md-3">
+									<label class="form-label">网上支付</label>
+									<input type="text" class="form-control" style="width:150;" id="alipay" placeholder="网上支付金额">
+								</div>
+								<div class="col-md-3">
+									<label class="form-label">上报人</label>
+									<input type="text" class="form-control" style="width:150;" id="clerk">
+								</div>
+								</br></br></br>
+								<div class="col-md-12">
 									<label class="form-label">&nbsp;备&nbsp;注&nbsp;</label>
 									<input type="text" class="form-control" style="width:90%;" id="exampleInputEmail2"  placeholder="备注">
 								</div>
@@ -117,8 +131,8 @@
 							<div class="form-group">
 								<div class="col-md-offset-2 col-md-6">
 									<input type="hidden" value="0" name="goods_id">
-									<button id="addGoodsBtn" class="btn btn-primary ladda-button" type="button">
-										<span class="ladda-label">保存修改</span>
+									<button id="addGoodsBtn" class="btn btn-primary ladda-button" onclick='check_submit()' type="button">
+										保存修改
 									</button>
 								</div>
 							</div>
@@ -132,6 +146,51 @@
         </div>
 </div>
 <script type="text/javascript">
+function check_submit()    
+{    
+        if($("#shangjiao").val().length<1)
+        {
+                alert('请填写上交金额');
+                return false;  
+        }
+        else if($("#dyue").val().length<1)
+        {
+                alert('请填写德鑫全余额');
+                return false;  
+        }
+        else if($("#jyue").val().length<1)
+        {
+                alert('请填写舅姥爷余额');
+                return false;  
+        }
+		else if($("#myue").val().length<1)
+        {
+                alert('请填写麻辣烫余额');
+                return false;  
+        }
+        else if($("#gyue").val().length<1)
+        {
+                alert('请填写咖喱余额');
+                return false;  
+        }
+        else if($("#date").val().length<1)
+        {
+                alert('请填写日期');
+                return false;  
+        }
+        else if($("#alipay").val().length<1)
+        {
+                alert('请填写网上支付金额');
+                return false;   
+        }else if($("#clerk").val().length<1)
+        {
+                alert('请填写上交人');
+                return false;   
+        }else{
+                $("#sub_bt").addClass("pure-button-disabled");
+                return true;
+        }
+}    
 </script>
 </body>
 </html>
