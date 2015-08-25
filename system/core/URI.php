@@ -162,6 +162,12 @@ class CI_URI {
 
 		// If the URI contains only a slash we'll kill it
 		$this->uri_string = ($str == '/') ? '' : $str;
+        
+        //modified at 2015-08-24
+        $serverName = explode('.', $_SERVER['HTTP_HOST']);
+        if (in_array($serverName[0], config_item('core_domain'))) {
+            $this->uri_string = '/' . $serverName[0]."/" . $this->uri_string;
+        }
 	}
 
 	// --------------------------------------------------------------------

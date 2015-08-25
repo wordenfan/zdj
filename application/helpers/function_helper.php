@@ -107,7 +107,12 @@ function get_business_hour($hours,$week)
         //无中间休息时间
         else{
             $arr = explode('-', $hours);
-            $result = check_opening($arr[0], $arr[1]);
+            if(!empty($arr)&&count($arr)>1){
+                $result = check_opening($arr[0], $arr[1]);
+            }else{
+                echo '商店营业时间格式错误';
+                exit;
+            };
         }
         return $result;
     }

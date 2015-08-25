@@ -49,7 +49,7 @@
                     <div class="panel panel-default">
                          <ul class="nav nav-tabs" role="tablist" style="">
                           <li role="presentation" class="active"><a href="#">基本信息</a></li>
-                          <li role="presentation"><a href="#">菜品种类</a></li>
+                          <li role="presentation"><a href="#">类别管理</a></li>
                           <li role="presentation"><a href="#">菜单管理</a></li>
                           <li role="presentation"><a href="#">其他管理</a></li>
                         </ul>
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label">所属类型：</label>
+                                    <label class="col-sm-2 control-label">菜品类型：</label>
                                     <div class="col-sm-2">
                                         <select name="shop_tyep" class="form-control">
                                             <option value="0">请选择分类</option>

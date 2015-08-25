@@ -48,7 +48,7 @@
                 </div>
                 <?php elseif ($value['name'] == AREA.'SITE_CLOSE'):?>
                 <div class="form-group">
-                    <label for="" class="col-md-2 control-label">暂停接单(关闭所有商家)：</label>
+                    <label for="" class="col-md-2 control-label">暂停接单(全部关闭)：</label>
                     <div class="col-md-3">
                         <label class="radio-inline">
                             <input type="radio" name="stop_receive" id="stop_receive_id1" <?php echo $value['value']==1?'checked=TRUE':'';?> value="1">开启

@@ -13,6 +13,18 @@ class Shop extends HomeBase {
         $this->load->model('foodmodel','fmd');
         $this->load->library('shopping','','cart');
     }
+    //
+    public function fruit()
+    {
+//        $data = array('a'=>1,'b'=>2);
+//        unset($data);
+//        $data['c'] = 3;    
+        $url = "http://www.phpddt.com/abc/de/fg.php?id=1";
+        $path = parse_url($url);
+        echo pathinfo($path['path'],PATHINFO_EXTENSION);
+        var_dump($path);
+//        $this->load->view('home/shop/fruitshopinfo',$data);
+    }
     //ajax购物
     public function doShopping()
     {
@@ -86,7 +98,11 @@ class Shop extends HomeBase {
                 array_push($result_arr, $data);
             }
             $info['foodlist_tmp'] = $result_arr;
-            $this->load->view('home/shop/shopinfo',$info);
+            if($info['show_type'] == '2'){
+                $this->load->view('home/shop/imgshop',$info);
+            }else{
+                $this->load->view('home/shop/defaultshop',$info);
+            }
         }else{
             redirect(base_url());
             exit;

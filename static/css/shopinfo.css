@@ -46,6 +46,27 @@
 .food_fenl span a{ color:#7188bb; display:inline-block; padding:6px 13px; border:1px solid #78a6f0; margin:0 0 13px 13px;font-size:14px;}
 .food_fenl span a:hover{background:#5287bd;color:#fff;}
 
+/*图片menu_lstR*/
+.fruit_menusView_item{}
+.fruit_menusView_item{width:678px;overflow:hidden;margin-bottom:3px;padding-top:60px;margin-top:-60px;}
+.fruit_menusView_item h2{width:673px;height:38px;line-height:38px;border-bottom:1px dashed #ccc;color:#ff6600;font-size:16px;padding-left:5px;}
+.fruit_menusView_item ul{width:678px;overflow:hidden;}
+.fruit_menusView_item li{padding:10px 17px;height:220px;width:190px;border-bottom:1px solid #ededed;line-height:36px; cursor:pointer; float:left;}
+.fruit_menusView_item li:hover{background:#fff5f4;}
+.f_right{float:right}
+.fruit_a img{width:190px;height:140px;}
+.fruit_a span{display:inline-block;height:36px;}
+.fruit_b{margin-top:3px;}
+.fruit_b .f_name{font-size:14px;color:#333;}
+.fruit_b .f_sale_num{font-size:12px;color:#999;}
+.fruit_c{}
+.fruit_c .current_price{font-size:16px;color:#fe4d3d;font-weight:bold;}
+.fruit_c .original_price{padding-left:5px;font-size:11px;color:#999;text-decoration:line-through;}
+.fruit_c .buy_btn {padding:0px 8px;margin-top:6px;height:25px;line-height:25px;background-color:#FF3333;color:#FFF;text-align:center;border-radius:5px;}
+.fruit_c .buy_btn  .but_btn_b{border-left:1px dotted #fdfdfd;padding-left:5px;}
+.fruit_c .buy_btn  .but_btn_a{margin-right:5px;}
+
+
 /*menu_lstR*/
 .menu_lstR{width:270px;overflow:hidden;}
 .menu_order{width:268px;overflow:hidden;border:1px solid #ccc;border-top:2px solid #ff6600;}

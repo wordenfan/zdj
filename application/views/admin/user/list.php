@@ -84,9 +84,9 @@
 							<td width="15%"><?php echo $v['mark_info'];?></td>
 							<td width="4%" ><?php echo $d = $v['status']==1?'正常':'禁止';?></td>
 							<td>
-                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" onclick="showModal('<?php echo $v['uid'];?>','<?php echo $v['uname'];?>','<?php echo $v['mark_address'];?>','<?php echo $v['mark_info'];?>')" data-target="#myModal_user">修改</button>
-								<a href="#" class="btn btn-default btn-sm">重置密码</a>
-								<a href="/zadmin/User/userOrder/id/1624.html"class="btn btn-default btn-sm">订单</a>
+                                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" onclick="showModal('<?php echo $v['uid'];?>','<?php echo $v['uname'];?>','<?php echo $v['mark_address'];?>','<?php echo $v['mark_info'];?>')" data-target="#myModal_user">标记信息</button>
+								<a href="/zadmin/User/userOrder/id/1624.html"class="btn btn-default btn-sm">订单</a></br>
+                                <a href="#" class="btn btn-default btn-sm">重置密码</a>
 								<a href="/zadmin/User/edit/id/1624.html" class="btn btn-default btn-sm">禁用</a>
 							</td>
 						</tr>

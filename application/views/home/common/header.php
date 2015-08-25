@@ -10,7 +10,7 @@
     <title>测试标题</title>
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('static/css/base.css');?>" />
     <script type="text/javascript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
-    <script src="http://siteapp.baidu.com/static/webappservice/uaredirect.js" type="text/javascript"></script>
+    <script src="<?php echo base_url('static/js/uaredirect.js');?>" type="text/javascript"></script>
     <script type="text/javascript">uaredirect("http://m.26632.com");</script>
     <script type="text/javascript">
         var baseurl='<?php echo base_url()?>';
