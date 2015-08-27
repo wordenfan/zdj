@@ -59,45 +59,15 @@ class Shop extends HomeBase {
     public function shopinfo()
     {
         $sid =  $this->uri->segment(5);
-        $info = $this->smd->getShop(array('id'=>$sid));
-        if($info)
+        if($sid)
         {
+            $this->load->library('lib_shopinfo','','lib_shopinfo');
+            $info = $this->lib_shopinfo->shopinfo($sid);
             //加载原有物品
             $_list = $this->cart->getAll($sid);
             $_list['total'] = $this->cart->getPrice($sid);
             $food_list = json_encode($_list);
             $info['shop_cart'] = $food_list;
-            //
-            $open_flag = get_business_hour($info['business_hours'],$info['business_week']);
-            $info['open_close'] = $open_flag;
-            //类别
-            $type = $this->fmd->getFoodType(array('shopid'=>$sid));
-            $where['status'] = 1;
-            $list = $this->fmd->selectFoodList($sid,$where);
-            //整理数组
-            $result_arr = array();
-            foreach($type as $ik=>$iv)
-            {
-                $data = array();
-                $data['type_id'] = $iv['id'];
-                $data['type_name'] = $iv['type_name'];
-                $parr = array();
-                foreach($list as $jk=>$jv)
-                {
-                    if($iv['id'] == $jv['food_type'])
-                    {
-                        $tarr = array();
-                        $tarr['food_id'] = $jv['id'];
-                        $tarr['food_name'] = $jv['name'];
-                        $tarr['food_price'] = $jv['price'];
-                        $tarr['food_pic'] = $jv['pic'];
-                        array_push($parr, $tarr);
-                    }
-                }
-                $data['food_list'] = $parr;
-                array_push($result_arr, $data);
-            }
-            $info['foodlist_tmp'] = $result_arr;
             if($info['show_type'] == '2'){
                 $this->load->view('home/shop/imgshop',$info);
             }else{

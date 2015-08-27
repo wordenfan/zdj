@@ -14,7 +14,7 @@ class Home extends MobileBase {
     public function index()
     {
         //店铺
-        $all_temp_arr = $this->smd->shopList();
+        $all_temp_arr = $this->smd->shopList(100);
         $all_arr = $all_temp_arr['data'];
         for($i=0; $i<count($all_arr); $i++)
         {
@@ -36,9 +36,11 @@ class Home extends MobileBase {
                     array_push($all_arr_temp,$all_arr[$m]); 
                 }
             }
+            unset($all_arr);
             $all_arr = $all_arr_temp;
         }
         $data['shop_list'] = $all_arr;
-        var_dump($data['shop_list']);
+//        var_dump($data['shop_list']);
+        $this->load->view('m/index',$data);
     }
 }

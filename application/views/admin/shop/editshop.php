@@ -207,13 +207,9 @@
 									<div class="modal-content">
 										<div class="modal-header">
 											<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-											<h4 class="modal-title" id="myModalLabel"><?php echo isset($shop_name)?$shop_name:'添加商家';?></h4>
+											<h4 class="modal-title" id="myModalLabel">商家名称：<?php echo isset($shop_name)?$shop_name:'添加商家';?></h4>
 										</div>
 										<div class="modal-body">
-											<div class="form-group">
-												<label for="exampleInputPassword1">商店名称</label>
-												<input type="text" class="form-control" id="shop_name_id" value="<?php echo isset($shop_name)?$shop_name:'当前无商家';?>" disabled/>
-											</div>
 											<div class="form-group">
 												<label class="sr-only" >菜品名称</label>
 												<input type="email" class="form-control" id="food_name" placeholder="名称">
@@ -231,12 +227,20 @@
 												</select>
 											</div>
 											<div class="form-group">
-												<label class="sr-only" >原价</label>
-												<input type="email" class="form-control" id="food_price" placeholder="原价">
+												<label class="sr-only" >销售价</label>
+												<input type="email" class="form-control" id="food_price" placeholder="销售价">
 											</div>
 											<div class="form-group">
-												<label class="sr-only" >拿货价</label>
-												<input type="email" class="form-control" id="food_getprice" placeholder="拿货价">
+												<label class="sr-only" >进货价</label>
+												<input type="email" class="form-control" id="food_getprice" placeholder="进货价">
+											</div>
+											<div class="form-group">
+												<label class="sr-only" >原标价</label>
+												<input type="email" class="form-control" id="food_getprice" placeholder="与销售价相同（限用于水果等需展示优惠的）">
+											</div>
+											<div class="form-group">
+												<label class="sr-only" >图片地址</label>
+												<input type="email" class="form-control" id="food_pic" placeholder="/Upload/foodlist/36/36_13.jpg">
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -251,24 +255,26 @@
 								<thead>
 									<tr bgcolor="#FBFCE2">
 										<td width="15%" height="24" align="center">名称</td>
-										<td width="15%" height="24" align="center">原价</td>
-										<td width="15%" height="24" align="center">拿货价</td>
+										<td width="15%" height="24" align="center">原标价</td>
+										<td width="15%" height="24" align="center">销售价</td>
+										<td width="15%" height="24" align="center">进货价</td>
 										<td width="10%" height="24" align="center">分类</td>
 										<td width="10%" align="center">商家</td>
 										<td width="5%" align="center">排序</td>
-										<td width="10%" align="center">管理项</td> 
+										<td width="15%" align="center">管理项</td> 
 									</tr>
 								</thead>
 								<tbody id="goodsList">
 									<?php foreach($food_list as $k=>$v):?>
 										<tr bgcolor="#FFFFFF" align="center" class="hover food_del_flag">
 											<td width="15%" height="24" align="center"><?php echo $v['name'];?></td>
+											<td width="15%" height="24" align="center"><?php echo $v['original_price'];?></td>
+											<td width="15%" height="24" align="center"><?php echo $v['sale_price'];?></td>
 											<td width="15%" height="24" align="center"><?php echo $v['get_price'];?></td>
-											<td width="15%" height="24" align="center"><?php echo $v['price'];?></td>
 											<td width="10%" height="24" align="center"><?php echo $type_name[$v['food_type']];?></td>
 											<td width="10%" align="center"><?php echo $shop_name;?></td>
 											<td width="5%" align="center"><?php echo $v['sort'];?></td>
-											<td width="10%" align="center">
+											<td width="15%" align="center">
 												<button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button>
 											</td>
 										</tr>
