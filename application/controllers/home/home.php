@@ -28,16 +28,13 @@ class Home extends HomeBase {
             $userinfo = json_encode($info);
             echo $userinfo;
         }else{
-            $all_temp_arr = $this->smd->shopList();
-            $all_arr = $all_temp_arr['data'];
+			$this->load->library('lib_shoplist','','lib_shoplist');
+            $all_arr = $this->lib_shoplist->shoplist();
             $open_arr = array();
             $close_arr = array();
             for($i=0; $i<count($all_arr); $i++)
             {
-                //营业状态
-                $flag = get_business_hour($all_arr[$i]['business_hours'],$all_arr[$i]['business_week']);
-                $all_arr[$i]['open_close'] = $flag;
-                if($flag==1)
+                if($all_arr[$i]['open_close']==1)
                 {
                     array_push($open_arr, $all_arr[$i]);
                 }else{

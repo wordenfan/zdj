@@ -10,7 +10,7 @@ class Lib_shopinfo
         $this->ci->load->model('usermodel','umd');
         $this->ci->load->model('shopmodel','smd');
         $this->ci->load->model('foodmodel','fmd');
-//        $this->load->library('shopping','','cart');
+		$this->ci->load->library('shopping','','cart');
     }
     
     /*
@@ -58,4 +58,30 @@ class Lib_shopinfo
         }
         return $shop_detail;
     }
+	//
+	public function doShopping(){
+		$_sid = $this->ci->input->post('sid',true);
+		$_id = $this->ci->input->post('fid',true);
+		$_mod = $this->ci->input->post('fmod',true);
+		$_sendprc = $this->ci->input->post('send_price',true);
+		switch ($_mod)
+		{
+			case 1://增加
+				$_price = $this->ci->input->post('fprice',true);
+				$_name = trim($this->ci->input->post('fname',true));
+				$_type = $this->ci->input->post('ftype',true);
+				$this->ci->cart->addItem($_sid,$_id,$_name,$_price,$_type);
+				break;
+			case 2://减去
+				$this->ci->cart->decItem($_sid,$_id);
+				break;
+			case 3://移除
+				$this->ci->cart->delItem($_sid,$_id);
+				break;
+		}
+		$_list = $this->ci->cart->getAll($_sid);
+		$_list['total'] = $this->ci->cart->getPrice($_sid);//最终合计价格
+		$food_list = json_encode($_list);
+		return $food_list;
+	}
 }

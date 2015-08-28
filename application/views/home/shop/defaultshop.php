@@ -77,7 +77,9 @@
 					<div class="shop_item">
 						<span>				
 							<b class="pin"></b><span class="btip">(品质外卖提供商)</span>
-							<{:hook('ShopIcon',array('shopid'=>$id,'page'=>'shop'))}>	
+							<?php if($free_send==1):?>
+							<b class="mian"></b><span class="btip">(满<?php echo config_item(AREA.'FREE_SEND');?>免配送费)</span>
+							<?php endif;?>
 						</span>
 					</div>
 				</div>

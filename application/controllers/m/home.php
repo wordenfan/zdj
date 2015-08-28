@@ -13,19 +13,12 @@ class Home extends MobileBase {
     //
     public function index()
     {
-        //店铺
-        $all_temp_arr = $this->smd->shopList(100);
-        $all_arr = $all_temp_arr['data'];
-        for($i=0; $i<count($all_arr); $i++)
-        {
-            $flag = get_business_hour($all_arr[$i]['business_hours'],$all_arr[$i]['business_week']);
-            $all_arr[$i]['open_close'] = $flag;
-        }
+		$this->load->library('lib_shoplist','','lib_shoplist');
         //类别
-        $type = $this->db->select('*')->from('onethink_shop_type')->get()->result_array();
-        $data['type_list'] = $type;
+        $data['type_list'] = $this->lib_shoplist->shop_type_list();;
         //
         $cateid = $this->input->get('cateid')?$this->input->get('cateid'):0;
+		$all_arr = $this->lib_shoplist->shoplist();
         if($cateid!=0)
         {
             $all_arr_temp = array();
@@ -40,7 +33,6 @@ class Home extends MobileBase {
             $all_arr = $all_arr_temp;
         }
         $data['shop_list'] = $all_arr;
-//        var_dump($data['shop_list']);
         $this->load->view('m/index',$data);
     }
 }

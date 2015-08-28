@@ -30,7 +30,10 @@
 //                $_list['total'] = $this->cart->getPrice($sid);
 //                $food_list = json_encode($_list);
 //                $info['shop_cart'] = $food_list;
-            
+				//
+				$this->load->model('addonsmodel','amd');
+				$freeSend_arr = $this->amd->freeSend();
+				$info['free_send'] = in_array($info['id'],$freeSend_arr)?1:0;
                 //
                 if($info['show_type'] == '2'){
                     //：TODO
@@ -45,19 +48,22 @@
         }
          //ajax购物
         public function doShopping()
-        {
-            if(IS_POST)
+        {$this->load->library('lib_shopinfo','','lib_shopinfo');
+		$this->lib_shopinfo->doShopping();
+		exit;
+            if($_POST)
             {
-                $_sid = I('post.sid');
-                $_id = I('post.fid');
-                $_mod = I('post.fmod');
-                $_sendprc = I('post.send_price');
+                $_sid = $this->input->post('sid');
+                $_id = $this->input->post('fid');
+                $_mod = $this->input->post('fmod');
+                $_sendprc = $this->input->post('send_price');
                 switch ($_mod)
                 {
                     case 1://增加
-                        $_price = I('post.fprice');
-                        $_name = trim(I('post.fname'));
-                        $_type = I('post.ftype');
+                        $_price = $this->input->post('fprice');
+                        $_name = trim($this->input->post('fname'));
+                        $_type = $this->input->post('ftype');
+						$this->load->library('shopping','','cart');
                         $this->cart->addItem($_sid,$_id,$_name,$_price,$_type);
                         break;
                     case 2://减去

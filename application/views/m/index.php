@@ -38,7 +38,7 @@
   <ul id="product_lst">
 	<?php foreach($shop_list as $k=>$vo):?>
 	<li>
-	<a href="<?php echo base_url('/shop/shopinfo/shopid/'.$vo['id']);?>">
+	<a href="<?php echo base_url('/shop/shopinfo/id/'.$vo['id']);?>">
 		<div class="shop_logo">
 			<img width="56" height="56" src="<?php echo base_url($vo['logo']);?>" class="lst_logo">
 		</div>
@@ -46,7 +46,9 @@
 			<h2><?php echo $vo['name'];?></h2>
 			<p>配送费：<?php echo $vo['send_price'];?>元</p>
 			<p>
-				<{:hook('ShopIcon',array('shopid'=>$vo['id'],'page'=>'mobile_index'))}>
+				<?php if($vo['free_send']==1):?>
+					<b class="mian"></b><span class="btip">(满<?php echo config_item(AREA.'FREE_SEND');?>免配送费)</span>
+				<?php endif;?>
 			</p>
 		</div>
 		<div class="shop_statu">		

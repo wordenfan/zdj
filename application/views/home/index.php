@@ -117,7 +117,9 @@
 					<div class="shop_info_icon">
 						<i class="shop_business"></i>
 						<span><?php echo $v['summary'];?></span>
-						<!--  <{:hook('ShopIcon',array('shopid'=>$vo['id'],'page'=>'index'))}>	-->	
+						<?php if($v['free_send']==1):?>
+						<b class="mian"></b><span class="btip"></span>
+						<?php endif;?>
 						<b class="pin"></b>
 					</div>
 				</div>
@@ -140,7 +142,9 @@
 					<div class="shop_info_icon">
 						<span><?php echo $v['summary'];?></span>
 						<i class="shop_reset"></i>
-						<!--  <{:hook('ShopIcon',array('shopid'=>$vo['id'],'page'=>'index'))}>	-->			
+						<?php if($v['free_send']==1):?>
+						<b class="mian"></b><span class="btip"></span>
+						<?php endif;?>		
 						<b class="pin"></b>
 					</div>
 				</div>

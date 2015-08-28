@@ -58,9 +58,11 @@
 <footer class="footer">
 	<div class="cart">
 		<form  id="orderform" name="orderform" method="post" action="__APP__/Order/index" onsubmit="return submitOrder();">
-			<input id="f_uid" type="hidden" name="o_uid" value="<{$login_flag}>" />
-			<{:hook('ShopIcon',array('shopid'=>$shop_info_tmp['id'],'page'=>'mobile_shop'))}>	
-			<input id="f_shopid" type="hidden" name="o_shopid" value="<{$shop_info_tmp['id']}>" />
+			<input id="f_uid" type="hidden" name="o_uid" value="<?php echo $login_status;?>" />
+			<?php if($free_send ==1):?>
+			<input type="hidden" class="mian"/>
+			<?php endif;?>
+			<input id="f_shopid" type="hidden" name="o_shopid" value="<?php echo $id;?>" />
 			<div id="cart_l">
 				<span>总计:<font>0.0</font>元</span>
 				<span>配送费:<font>6.0</font>元</span>
@@ -78,7 +80,7 @@
 <script>
 	var send_prc = <?php echo $send_price;?>;
 	var food_sum = 0;//每次操作都会导致是否出现配送费的价格变动，所以此为变量
-	var app_url='__CONTROLLER__'; 
+	var app_url='/m/shop'; 
 	var uname = '请登录';
 	var ulink = '__APP__/User/login';
 	var login_status = <?php echo $login_status;?>;
