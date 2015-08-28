@@ -30,12 +30,12 @@
 //                $_list['total'] = $this->cart->getPrice($sid);
 //                $food_list = json_encode($_list);
 //                $info['shop_cart'] = $food_list;
+            
                 //
                 if($info['show_type'] == '2'){
                     //：TODO
                     //$this->load->view('m/shop/imgshop',$info);
                 }else{
-                    var_dump($info['food_list']);exit;
                     $this->load->view('m/shop/shopinfo',$info);
                 }
             }else{
