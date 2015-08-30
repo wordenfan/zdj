@@ -46,8 +46,8 @@
 </div>
 <script type="text/javascript">
 	//百度统计
-	var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-	document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcf4a89a02580f1f4c6dacc552fa42fee' type='text/javascript'%3E%3C/script%3E"));
+	//var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	//document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fcf4a89a02580f1f4c6dacc552fa42fee' type='text/javascript'%3E%3C/script%3E"));
 </script>
 </body>
 </html>

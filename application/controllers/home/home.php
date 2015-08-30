@@ -11,7 +11,6 @@ class Home extends HomeBase {
         $this->load->model('usermodel','umd');
         $this->load->model('shopmodel','smd');
     }
-
     public function index()
     {
         if($_POST)//ajax登录

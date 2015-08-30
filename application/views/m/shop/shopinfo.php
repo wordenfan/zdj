@@ -15,6 +15,7 @@
 	<script src="<?php echo base_url('static/mobile_assets/js/amazeui.js');?>"></script>
 	<script src="<?php echo base_url('static/mobile_assets/js/handlebars.min.js');?>"></script>
 	<script src="<?php echo base_url('static/mobile_assets/js/amazeui.widgets.helper.js');?>"></script>
+	<script src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
 </head>
 <body>
 <script type="text/x-handlebars-template" id="amz-tpl">
@@ -57,8 +58,7 @@
 </div>
 <footer class="footer">
 	<div class="cart">
-		<form  id="orderform" name="orderform" method="post" action="__APP__/Order/index" onsubmit="return submitOrder();">
-			<input id="f_uid" type="hidden" name="o_uid" value="<?php echo $login_status;?>" />
+        <form  id="orderform" name="orderform" method="post" action="<?php echo base_url('m/order/index'); ?>" onsubmit="return submitOrder();">
 			<?php if($free_send ==1):?>
 			<input type="hidden" class="mian"/>
 			<?php endif;?>
@@ -78,11 +78,11 @@
 	</div>
 </footer>
 <script>
-	var send_prc = <?php echo $send_price;?>;
 	var food_sum = 0;//每次操作都会导致是否出现配送费的价格变动，所以此为变量
 	var app_url='/m/shop'; 
-	var uname = '请登录';
-	var ulink = '__APP__/User/login';
+	// var uname = '请登录';
+	// var ulink = '__APP__/User/login';
+	var send_prc = <?php echo $send_price;?>;
 	var login_status = <?php echo $login_status;?>;
 	if(login_status)
 	{
@@ -123,14 +123,7 @@
 						"icon": "chevron-left",         // 字体图标名称: 使用 Amaze UI 字体图标 http://www.amazeui.org/css/icon
 						"customIcon": ""    // 自定义图标 URL，设置此项后当前链接不再显示 icon
 					}],
-					"title": "<?php echo $name;?>",
-					"right": [{
-						"link": ulink,
-						"title": uname,
-						"icon": "user",
-						"customIcon": "",
-						"className": ""
-					}]
+					"title": "<?php echo $name;?>"
 				}
 			}
 		},
@@ -141,7 +134,7 @@
 　　		//showHtml($cart);
 		//类别点击
 		$(".food_lst:eq(0)").show();
-		$('#navlist>ul>li').live('click', function() 
+		$('#navlist>ul>li').on('click', function() 
 		{
 			$(".food_lst").hide();
 			var id = $(this).attr('id');
@@ -179,7 +172,7 @@
 		$('.jian').hide();
 		$('.food_num').hide();
 		var html_str="";//购物列表htnl
-		var free_send_price = "<{:C('FREE_SEND')}>";
+		var free_send_price = <?php echo config_item(AREA.'FREE_SEND');?>;
 		var free_send_flag = false;
 		//类别数量全部清空隐藏
 		$(".shop_left>ul>li>span").html('0');
@@ -207,8 +200,6 @@
 			obj.show();
 			var type_num = parseInt(obj.html())+parseInt(json[w].num);
 			obj.html(type_num);
-			
-
 		}
 		html_str+='<div id="cart_l"><span>总计:<font>'+json["total"]+'</font>元</span><span>配送费:<font>'+send_prc+'</font>元</span></div>';
 		$("#cart_l").remove();
