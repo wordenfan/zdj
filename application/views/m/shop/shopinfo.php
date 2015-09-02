@@ -69,7 +69,7 @@
 			</div>
 			<div id="cart_r">
 				<?php if($open_close == 1):?>
-					<button id="sub_order" type="submit">下一步</button>
+					<button id="sub_order" type="submit"><i class="am-icon-shopping-cart">&nbsp;</i>选好了</button>
 				<?php else:?>
 					<button id="sub_order_disable" disabled="disabled" type="submit">休息中</button>
 				<?php endif;?>

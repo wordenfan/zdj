@@ -17,87 +17,70 @@
 	<script src="<?php echo base_url('static/mobile_assets/js/handlebars.min.js');?>"></script>
 	<script src="<?php echo base_url('static/mobile_assets/js/amazeui.widgets.helper.js');?>"></script>
 </head>
-
-
-
-
 <body>
 <script type="text/x-handlebars-template" id="amz-tpl">
 	{{>header header}}
 </script>
-
 <section class="menu_shop">
   <div class="am-g">
     <div class="col-sm-12">部分食品需要打包盒，已计入食品价格</div>
   </div>
 </section>
 <div class="detail_wrap">
-		<ul>
-			<li>				
-				<div class="am-g detail_til">
-					<div class="col-sm-6">餐品</div>
-					<div class="col-sm-4">价格 * 数量</div>
-					<div class="col-sm-2">小计</div>
-				</div>
-			</li>		
-			<?php foreach($list_tmp as $k=>$mo):?>
-				<li>				
-					<div class="am-g detail_a">
-						<div class="col-sm-6"><?php echo $mo['name'];?></div>
-						<div class="col-sm-4"><?php echo $mo['price'];?><span>*</span><?php echo $mo['num'];?></div>
-						<div class="col-sm-2"><?php echo $mo['price']*$mo['num'];?></div>
-					</div>
-				</li>
-			<?php endforeach;?>	
-			<li>				
-				<div class="am-g detail_b">
-					<div class="col-sm-10 col-sm-offset-2">配送费：<span><b>￥<?php echo $sendprc_tmp;?></b></span>&nbsp;元</div>
-				</div>
-			</li>
-			<li>				
-				<div class="am-g detail_b">
-					<div class="col-sm-6 col-sm-offset-6">共计：<span><b>￥<?php echo $sum;?></b></span>&nbsp;元</div>
-				</div>
-			</li>
-			<li>				
-				<div class="am-g">
-					<div class="col-sm-12 detail_til">收货信息</div>
-				</div>
-			</li>
-		</ul>
-		<form>
-			<input id="f_shopid" type="hidden" name="shopid" value="<?php echo $shopid_tmp;?>" />
-			<input type="hidden" name="name" id="form_name" value="(手机)<?php echo isset($myinfo)?$myinfo['uname']:'';?>" />
-			<div class="form_info">		
-				<div class="am-g form_info_input">
-					<div class="col-sm-3"><label>地址：</label></div>
-					<div class="col-sm-9">
-						<input type="text" name="address" id="form_address" value="<?php echo isset($user_address)?$user_address:''?>" placeholder="输入送餐地址"/>
-					</div>
-				</div>
-				<div class="am-g form_info_input">
-					<div class="col-sm-3"><label>电话：</label></div>
-					<div class="col-sm-9">
-						<input type="text" name="tel" id="form_tel" value="<?php echo isset($user_tel)?$user_tel:''?>" placeholder="输入联系电话，并保持畅通"/>
-					</div>
-				</div>
-				<div class="am-g form_info_input">
-					<div class="col-sm-3"><label>备注：</label></div>
-					<div class="col-sm-9">
-						<input type="text" name="remark" id="form_remark" placeholder="输入备注信息"/>
-					</div>
-				</div>
-			</div>
-		</form>
+    <ul>
+        <li>				
+            <div class="am-g">
+                <div class="col-sm-12 detail_til">收货信息<button class="am-fr" id="add_address">新增地址</button></div>
+            </div>
+        </li>
+        <div>
+            <input id="f_shopid" type="hidden" name="shopid" value="<?php echo $shopid_tmp;?>" />
+            <table class="am-table am-table-centered">
+            <tr>
+                <td rowspan="2" width="30%" class="am-text-middle">(手机)<?php echo isset($myinfo)?$myinfo['uname']:'';?></td>
+                <td><?php echo isset($user_tel)?$user_tel:''?></td>
+            </tr>
+            <tr>
+                <td><?php echo isset($user_address)?$user_address:''?></td>
+            </tr>
+            </table>
+        </div>		
+        <li>				
+            <div class="am-g detail_til">
+                <div class="col-sm-6">餐品</div>
+                <div class="col-sm-4">价格 * 数量</div>
+                <div class="col-sm-2">小计</div>
+            </div>
+        </li>		
+        <?php foreach($list_tmp as $k=>$mo):?>
+            <li>				
+                <div class="am-g detail_a">
+                    <div class="col-sm-6"><?php echo $mo['name'];?></div>
+                    <div class="col-sm-4"><?php echo $mo['price'];?><span>*</span><?php echo $mo['num'];?></div>
+                    <div class="col-sm-2"><?php echo $mo['price']*$mo['num'];?></div>
+                </div>
+            </li>
+        <?php endforeach;?>	
+        <li>				
+            <div class="am-g detail_b">
+                <div class="col-sm-10 col-sm-offset-2">配送费：<span><b>￥<?php echo $sendprc_tmp;?></b></span>&nbsp;元</div>
+            </div>
+        </li>
+        <li>				
+            <div class="am-g detail_b">
+                <div class="col-sm-6 col-sm-offset-6">共计：<span><b>￥<?php echo $sum;?></b></span>&nbsp;元</div>
+            </div>
+        </li>
+    </ul>
 </div>
 <footer class="footer">
 	<div class="cart">
 		<span>共计<font><?php echo $sum;?></font>元</span>
-		<button id="sub_order" >提交订单</button>
+		<button id="sub_order"><i class="am-icon-shopping-cart">&nbsp;</i>确认下单</button>
 	</div>
 </footer>
 <script>
-	var app_url='/m/order'; 
+	var app_url='/m'; 
 	var uname = '请登录';
 	var login_status = <?php echo $login_status;?>;
 	if(login_status)
@@ -134,6 +117,11 @@
 		html = template(data);
 		$tpl.before(html);
 	});
+	//添加地址
+	$("#add_address").click(function() 
+	{
+		window.location.href=app_url+'/user/add_address';
+	})
 	//提交菜品
 	$("#sub_order").click(function() 
 	{
@@ -150,9 +138,9 @@
 		}
 		//表单提交		
 		$('#sub_order').attr('disabled',"true");
-		$.post(app_url+'/sendOrder',{name:jname,tel:jtel,address:jaddress,shopid:jshopid,remark:jremark},function(data)
+		$.post(app_url+'/order/sendOrder',{name:jname,tel:jtel,address:jaddress,shopid:jshopid,remark:jremark},function(data)
 		{
-			window.location.href=app_url+'/orderStatus/st/'+data.flag+'/msg/'+data.msg;
+			window.location.href=app_url+'/order/orderStatus/st/'+data.flag+'/msg/'+data.msg;
 		},'json')
 		
 		
