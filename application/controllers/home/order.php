@@ -79,7 +79,7 @@ class Order extends HomeBase {
                 {
                     require_once  APPPATH.'controllers/home/alipay.php';
                     $alipay = new AliPay();
-//                    $alipay->doalipay($res_arr['msg']);
+                    $alipay->doalipay($res_arr['msg']);
                     exit;
                 }
             }

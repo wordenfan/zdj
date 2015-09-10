@@ -33,8 +33,10 @@ class Shop extends HomeBase {
     public function shopinfo()
     {
         $sid =  intval($this->uri->segment(5));
+        var_dump(11114);exit;
         if($sid)
         {
+            
             $this->load->library('lib_shopinfo','','lib_shopinfo');
             $info = $this->lib_shopinfo->shopinfo($sid);
             //加载原有物品
@@ -47,6 +49,7 @@ class Shop extends HomeBase {
             if($info['show_type'] == '2'){
                 $this->load->view('home/shop/imgshop',$info);
             }else{
+                var_dump(456);exit;
                 $this->load->view('home/shop/defaultshop',$info);
             }
         }else{

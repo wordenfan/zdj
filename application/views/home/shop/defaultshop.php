@@ -97,7 +97,7 @@
 				 <div class="title" style="border-top:0px solid #ccc"><span style="color:#ff0000;float:right;display:block">(如需打包费的已计入餐品价格)</span><a>菜单列表</a></div>
 				
 				<div class="food_fenl" id="food_fen1">
-                    餐品00分类：<?php foreach($foodlist_tmp as $t=>$to):?><span><a href="#anchor<?php echo $t;?>"><?php echo $to['type_name'];?></a></span><?php endforeach;?>
+                    餐品分类：<?php foreach($foodlist_tmp as $t=>$to):?><span><a href="#anchor<?php echo $t;?>"><?php echo $to['type_name'];?></a></span><?php endforeach;?>
 				</div>
                 
                 <?php foreach($foodlist_tmp as $k=>$vo):?>

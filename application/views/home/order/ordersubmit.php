@@ -73,7 +73,7 @@
 			<div class="orders_content">
 				<div class="top_cnt  border_top">
 					<span class="l">配送信息▼</span>
-					<span class="r" style="color:#666">配送00信息可在<i>“用户中心”</b></i>保存</span>
+					<span class="r" style="color:#666">配送信息可在<i>“用户中心”</b></i>保存</span>
 				</div>
 				<ul class="orders_info">
 					<input id="f_uid" type="hidden" name="o_uid" value="<{$uid_tmp}>" />

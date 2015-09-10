@@ -15,7 +15,6 @@ class AliPay extends HomeBase
     //
     public function doalipay($post_arr)
     {
-        echo '==========$$$';
         require_once(APPPATH."third_party/alipay/alipay_submit.class.php");
         
         $uid = $this->login_status();
@@ -73,7 +72,6 @@ class AliPay extends HomeBase
 //            $this->cart = new Shopping();
 //            $this->cart->clearCart();
             
-            var_dump($parameter);exit
             //建立请求
             $alipaySubmit = new AlipaySubmit($this->alipay_config);
             $html_text = $alipaySubmit->buildRequestForm($parameter,"post", "提交中...");
