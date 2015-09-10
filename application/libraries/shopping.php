@@ -2,7 +2,7 @@
 
 class Shopping 
 {
-    private $items=array(); 
+    public $items=array(); 
     
     //初始化设置item;
     public function __construct()
@@ -94,8 +94,13 @@ class Shopping
         $this->checkCookieChange();
     }
     //返回购物车中的所有商品
-    public function getAll ($shop_id) {
-        return is_numeric($shop_id) && isset($this->items[$shop_id]) ? $this->items[$shop_id] : $this->items;
+    public function getShopCart ($shop_id='all') {
+        $cur_shop = array();
+        $all_shop = empty($this->items) ? array() : $this->items;
+        if(is_numeric($shop_id) && isset($this->items[$shop_id])){
+            $cur_shop = $this->items[$shop_id];
+        }
+        return array('cur_shop'=>$cur_shop,'all_shop'=>$all_shop);
     }
     //返回商家数量
     public function getShopNum () {

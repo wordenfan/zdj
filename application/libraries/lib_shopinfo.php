@@ -79,9 +79,20 @@ class Lib_shopinfo
 				$this->ci->cart->delItem($_sid,$_id);
 				break;
 		}
-		$_list = $this->ci->cart->getAll($_sid);
+		$lib_data = $this->ci->cart->getShopCart($_sid);
+        $_list = $lib_data['cur_shop'];
 		$_list['total'] = $this->ci->cart->getPrice($_sid);//最终合计价格
 		$food_list = json_encode($_list);
 		return $food_list;
 	}
+    //
+    public function freeSend($shopid) {
+        $this->ci->load->model('addonsmodel','amd');
+        $freeSend_arr = $this->ci->amd->freeSend();
+        return in_array($shopid,$freeSend_arr) ? 1 : 0;
+    }
+    //基本信息
+    public function shopDetail($where) {
+        return $this->ci->smd->getShop($where);
+    }
 }

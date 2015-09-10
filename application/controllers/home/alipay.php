@@ -15,6 +15,7 @@ class AliPay extends HomeBase
     //
     public function doalipay($post_arr)
     {
+        echo '==========$$$';
         require_once(APPPATH."third_party/alipay/alipay_submit.class.php");
         
         $uid = $this->login_status();
@@ -22,6 +23,7 @@ class AliPay extends HomeBase
         {
             //支付类型
             $payment_type = "1";
+            $qr_pay_mode = 2;//跳转支付
             $notify_url = $this->alipay_config['notify_url'];
             $return_url = $this->alipay_config['return_url'];
             //商户订单号
@@ -30,7 +32,7 @@ class AliPay extends HomeBase
             //订单名称
             $subject = $post_arr['WIDsubject'];
             //付款金额
-            $total_fee = ENVIRONMENT=="development" ? 0.1 : $post_arr['WIDtotal_fee'];
+            $total_fee = ENVIRONMENT=="development" ? 0.01 : $post_arr['WIDtotal_fee'];
             //订单描述
             $body = $post_arr['WIDbody'];
             //商品展示地址
@@ -48,6 +50,7 @@ class AliPay extends HomeBase
                 "partner" => $this->alipay_config['partner'],
                 "seller_email" => $this->alipay_config['seller_email'],
                 "payment_type"	=> $payment_type,
+                "qr_pay_mode"	=> $qr_pay_mode,
                 "notify_url"	=> $notify_url,
                 "return_url"	=> $return_url,
                 "out_trade_no"	=> $out_trade_no,
@@ -69,15 +72,18 @@ class AliPay extends HomeBase
 //            //先从客户端删除cookie等
 //            $this->cart = new Shopping();
 //            $this->cart->clearCart();
+            
+            var_dump($parameter);exit
             //建立请求
             $alipaySubmit = new AlipaySubmit($this->alipay_config);
             $html_text = $alipaySubmit->buildRequestForm($parameter,"post", "提交中...");
+            
             echo $html_text;
         }
     }
     public function notifyurl()
     { 
-        log_message('Error', '==asdfasdfasfasf==');
+        log_message('Error', '==notifyurl=======01');
         require_once APPPATH.'third_party/alipay/alipay_notify.class.php';
         $alipayNotify = new AlipayNotify($this->alipay_config);
         $verify_result = $alipayNotify->verifyNotify();
@@ -106,6 +112,7 @@ class AliPay extends HomeBase
     }
     public function returnurl()
     {   
+        log_message('Error', 'returnurl====0');
         require_once APPPATH.'third_party/alipay/alipay_notify.class.php';
         $alipayNotify = new AlipayNotify($this->alipay_config);
         $verify_result = $alipayNotify->verifyReturn();

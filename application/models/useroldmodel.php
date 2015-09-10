@@ -59,11 +59,10 @@ class UserOldModel extends MY_Model
     protected function updateMemberOld($uid,$uname,$pay)
     {
         $idata = array(
-            'uid'         => $uid,
             'uname'       => $uname,
             'order_sum'   => '`order_sum`+'.$pay,
             'order_num'   => '`order_num`+1',
         );
-        $this->db->update($this->_table_name, $idata); 
+        $this->db->where(array('uid'=>$uid))->update($this->_table_name, $idata); 
     }
 }

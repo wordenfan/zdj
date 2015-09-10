@@ -20,8 +20,9 @@
             $this->load->model('shopmodel','smd');
             $this->load->library('shopping','','cart');
             $this->load->library('lib_shopinfo','','lib_shopinfo');
+            
             //
-            if(get_cookie('cart'))
+            if($_POST && !empty($this->cart->getAll()))
             {
                 $shopid = $this->input->post('o_shopid',true);
                 $_info = $this->lib_shopinfo->shopinfo($shopid);

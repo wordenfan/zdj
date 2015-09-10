@@ -4,15 +4,10 @@
     }
     class Shop extends MobileBase
     {
-        var $smd;
-        var $fmd;
-        var $tmd;
-        var $mmd;
-        var $cart;//购物车
         
-        public function _initialize()
-        {
-            parent::_initialize();
+        public function __construct() {
+            parent::__construct();
+            $this->load->library('shopping','','lib_cart');
         }
         //商家店铺
         public function shopinfo()
@@ -23,14 +18,11 @@
                 $this->load->library('lib_shopinfo','','lib_shopinfo');
                 $info = $this->lib_shopinfo->shopinfo($sid);
                 //加载原有物品
-//                $_list = $this->cart->getAll($sid);
-//                $_list['total'] = $this->cart->getPrice($sid);
-//                $food_list = json_encode($_list);
-//                $info['shop_cart'] = $food_list;
-				//
-				$this->load->model('addonsmodel','amd');
-				$freeSend_arr = $this->amd->freeSend();
-				$info['free_send'] = in_array($info['id'],$freeSend_arr)?1:0;
+                $lib_data = $this->lib_cart->getShopCart($sid);
+                $_list = $lib_data['cur_shop'];
+                $_list['total'] = $this->lib_cart->getPrice($sid);
+                $info['shop_cart'] = json_encode($_list);
+				$info['free_send'] = $this->lib_shopinfo->freeSend($sid);
                 //
                 if($info['show_type'] == '2'){
                     //：TODO

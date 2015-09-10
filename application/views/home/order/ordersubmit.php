@@ -73,7 +73,7 @@
 			<div class="orders_content">
 				<div class="top_cnt  border_top">
 					<span class="l">配送信息▼</span>
-					<span class="r" style="color:#666">配送信息可在<i>“用户中心”</b></i>保存</span>
+					<span class="r" style="color:#666">配送00信息可在<i>“用户中心”</b></i>保存</span>
 				</div>
 				<ul class="orders_info">
 					<input id="f_uid" type="hidden" name="o_uid" value="<{$uid_tmp}>" />
@@ -81,13 +81,10 @@
 					<li><b>*</b>手机号码：<input class="send_info" type="text" id="info_tel" value="<?php echo $tel_tmp;?>" placeholder="请输入手机号"></li>
 					<li><b>*</b>配送地址：<input class="send_info" type="text" id="info_address" value="<?php echo $address_tmp;?>" placeholder="请输入详细的收餐地址"></li>
 					<li><b>&nbsp;</b>备注信息：<span><b><input class="send_info" id="info_mark" type="text" value="" placeholder="备注信息(选填)"></b></span></li>
-
-
 					<li><b>&nbsp;</b>支付方式：
 							<input type="radio" value="1" name="pay_type"/>&nbsp;餐到付款
 							<input type="radio" value="2" name="pay_type" checked="ckecked"/>&nbsp;在线支付
 					</li>
-				</ul>
 				</ul>
 			</div>
 			<div class="orders_tips">
@@ -110,7 +107,7 @@
 				<input type="hidden" id="WID_mark" name="WID_mark" value="" />
 				<input type="hidden" id="WID_shopid" name="WID_shopid" value="<?php echo $shopid_tmp; ?>" />
 				<input type="hidden" id="WID_uid" name="WID_uid" value="<?php echo $uid_tmp; ?>" />
-				<input type="hidden" id="" name="from_type" value="alipay" />
+				<input type="hidden" id="" name="from_type" value="pc_alipay" />
 			</form>
 		</div>
 	</div>
@@ -138,7 +135,7 @@ $("#submit_id").click(function()
 	var _tel = $("#info_tel").val();
 	var _address = $("#info_address").val();
 	//未登录
-	if(!id)  
+	if(!id)
 	{
 		alert('请先登录!');
 		window.location.href = '<?php echo base_url('home/user/login?req_url='.$_SERVER["REQUEST_URI"]); ?>';
@@ -156,9 +153,9 @@ $("#submit_id").click(function()
 	var _mark = $("#info_mark").val();
 	if(pay_type==1)//货到付款
 	{
-		$.post('<?php echo base_url('home/order/dosubmit');?>',{name:_name,tel:_tel,address:_address,from_type:'pc_order',remark:_mark,shopid:"<?php echo $shopid_tmp; ?>"},function(data)
+		$.post('<?php echo base_url('home/order/dosubmit');?>',{name:_name,tel:_tel,address:_address,from_type:'pc_home',remark:_mark,shopid:"<?php echo $shopid_tmp; ?>"},function(data)
 		{
-			if(data.flag=='true')
+			if(data.flag==1)
 			{
 				$("#submit_id").val("确认提交");
 				$("#submit_id").removeClass("clicked").attr("disabled", false);
@@ -170,7 +167,7 @@ $("#submit_id").click(function()
 			}
 		},'json')
 	}else if(pay_type==2){//在线支付
-		showPayDiv();
+		//showPayDiv();
 		$("#WID_name").val(_name);
 		$("#WID_tel").val(_tel);
 		$("#WID_address").val(_address);
