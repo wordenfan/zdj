@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>系统用户管理</title>
+	<load href="__STATIC__/css/admin_base.css" />
+	<load href="__STATIC__/css/admin_page.css" />
+	<load href='__STATIC__/js/jquery-1.7.1.min.js'/>
+	<script type="text/javascript">
+		$(function(){
+			$('.nodel').click(function(){
+				alert('<{$Think.lang.lan_zyd}>');
+				return false;
+			});
+		});
+	</script>
+</head>
+<body>
+<form action="" method="post">
+	<table width="98%" border="0" align="center" cellpadding="2" cellspacing="1" bgcolor="#D6D6D6">
+		<tr>
+			<td height="27" colspan="13" background="__STATIC__/images/admin/tbg.gif" bgcolor="#E7E7E7">
+			<table width="96%" border="0" cellspacing="1" cellpadding="1">
+				<tr>
+					<td width="40%" style="padding-left:10px;"><b><strong>当前位置：<a href="__CONTROLLER__/index">商家管理</a> >> 食谱列表（<{$shop_name}>）</strong></b> </td>
+					<td width="60%" align="right"><a href="#"><u id="z_add">添加食谱</u></a></td>
+				</tr>
+			</table>
+			</td>
+		</tr>
+		<tr bgcolor="#FBFCE2">
+			<td width="15%" height="24" align="center">名称</td>
+			<td width="15%" height="24" align="center">原价</td>
+			<td width="15%" height="24" align="center">拿货价</td>
+			<td width="10%" height="24" align="center">分类</td>
+			<td width="5%" align="center">排序</td>
+			<td width="20%" align="center">管理项</td> 
+		</tr>
+		<foreach name='info_tmp' item='list'>
+		<tr bgcolor="#FFFFFF" align="center" class="hover">
+			<td width="15%" height="24" align="center"><{$list['food_name']}></td>
+			<td width="15%" height="24" align="center"><{$list['price']}></td>
+			<td width="15%" height="24" align="center"><{$list['get_price']}></td>
+			<td width="10%" align="center"><{$list['type_name']}></td>
+			<td width="5%" align="center"><{$list['sort']}></td>
+			<td width="20%" align="center">
+				<a href="__CONTROLLER__/foodListEdit/shopid/<{$shop_id}>/foodid/<{$list['food_id']}>/shopname/<{$shop_name}>"><u>编辑</u></a> |
+				<a href=""><u>禁用</u></a> |
+				<a href=""  class='confirmdel'><u>删除</u></a>
+			</td>
+		</tr>
+		</foreach>
+		<tr id="foot_page" ><input type='hidden' value="<{$shop_id}>" name='shop_id'/></tr>
+		<script>
+		$('#z_add').live('click', function() 
+		{
+			var html_str = '<tr bgcolor="#FFFFFF" align="center" class="hover"><td width="15%" height="24" align="center"><input type="text" id="title" name="fname[]" size="16" /></td><td width="15%" height="24" align="center"><input type="text" id="title" name="yuanjia[]" size="16"  /></td><td width="15%" height="24" align="center"><input type="text" id="title" name="nahuojia[]" size="16" /></td><td width="10%" align="center"><select name="type[]" style="width:310px" onchange="selectInput(this)"><foreach name="type_list" item="vo"><option value="<{$vo.id}>"><{$vo.type_name}></option></foreach></select></td><td width="5%" align="center"><input name="sort[]" type="text" id="title" size="16" /></td><td width="20%" align="center"><a href="#"><u>编辑</u></a></td></tr>';
+			$("#foot_page").before(html_str);
+		});
+		</script>
+	</table>
+	<div style="margin:10px 0px 0px 10px;">
+		<input type="submit" value="保存信息" class="coolbg np" style="width:100px;"/>
+	</div>
+	</form>
+</body>
+</html>

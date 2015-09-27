@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>添加文章</title>
+	<load href="__STATIC__/css/admin_base.css" />
+	<load href='__STATIC__/js/jquery-1.7.1.min.js'/>
+    <load href='__STATIC__/js/ajaxfileupload.js'/>
+	<script  type="text/javascript">
+		function doaction()
+		{
+			if($("#title").val().length<1)
+			{
+				alert('请填写标题');
+				return false;
+			}else if(editor.text().length<1)
+			{
+				alert('请填写文档内容');
+				return false;
+			}else if($("#summary_id").val().length<1)
+			{
+				alert('请填写摘要');
+				return false;
+			}else if($("#previmg").attr("src").length<1)
+			{
+				alert('请上传图片');
+				return false;
+			}else{
+				return true;
+			}
+			//var html = editor.html();
+			//alert("==="+html);
+		}
+	</script>
+</head>
+<body background='__STATIC__/images/admin/allbg.gif' leftmargin='8' topmargin='8'>
+	<table width="98%" border="0" align="center" cellpadding="3" cellspacing="1" bgcolor="#D6D6D6">
+  <tr>
+    <td height="19" background="__STATIC__/images/admin/tbg.gif" bgcolor="#E7E7E7"> 
+      <table width="96%" border="0" cellspacing="1" cellpadding="1">
+        <tr> 
+          <td style="padding-left:10px;"><b><strong>当前位置：<a href="__CONTROLLER__/index">商家管理</a> >> <a href="__CONTROLLER__/foodList/shopid/<{$shop_id}>/name/<{$shop_name}>">食谱列表（<{$shop_name}>）</a> >> 添加食谱</strong></b> </td>
+        </tr>
+      </table></td>
+   </tr>
+  <tr>
+  <td height="215" align="center" valign="top" bgcolor="#FFFFFF">
+	<form  onsubmit="return doaction();" action="" name="form1" method="post"  >
+        <table width="98%" border="0" cellspacing="1" cellpadding="1">     
+		<tr> 
+			<td width="8%" height="30"><span class='red'>*</span>店家：</td>
+			<td width="92%" style="text-align:left;">
+				<input value="<{$shop_name}>" name="shop" disabled="true" id="shop" size="16" style="width:300px" />
+			</td>
+		</tr>  
+		<tr> 
+			<td width="8%" height="30"><span class='red'>*</span>类名：</td>
+			<td width="92%" style="text-align:left;">
+				<input name="type_name" type="text" id="title" size="16" style="width:300px" />
+			</td>
+		</tr> 
+		<tr> 
+			<td colspan='2' align='left'>
+				<input type="submit" value="保存信息" class="coolbg np" />
+			</td>
+		</tr>
+		<input type='hidden' value="<{$shop_id}>" name='shop_id'/>
+		</table>
+	</form>
+	</td>
+</tr>
+</table>
+</body>
+</html>

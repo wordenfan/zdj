@@ -1,0 +1,98 @@
+@charset "utf-8";
+/* CSS Document */
+.w_cntnb{width:1022px; overflow:hidden; background:#fff;  margin:0 auto; margin-bottom:78px;}
+
+.guide_nav{ width:968px;margin:18px 0 11px 30px;height:12px;padding-left:8px; border-left:3px solid #ff6600; line-height:12px;}
+.order_wrap{width:978px; overflow:hidden;padding:0 22px 0 22px;}
+
+
+.menu_lstL{width:700px;overflow:hidden;}
+.menu_title{width:680px;height:36px;line-height:36px;padding-left:20px;background:url(../images/boxTitle_bg.png) 8px center no-repeat;}
+.menu_shop{margin-bottom:20px;width:678px;height:145px;overflow:hidden;border:1px solid #ccc;border-top:2px solid #ff6600;padding-left:20px;padding-top:20px;}
+.menu_shopL{float:left;width:165px;height:140px;overflow:hidden;float:left;margin-right:24px;}
+.menu_shopM{width:406px;height:140px;overflow:hidden;float:left;}
+.menu_shopM h2{font-size:12px;font-weight:normal;color:#ff6600;height:26px;}
+.menu_shopM h2 span{ display:inline-block;float:left;height:26px;line-height:26px;margin-right:10px;font-size:14px;}
+.menu_shopM h2 img{margin:6px 5px 0 0;}
+.shop_item{color:#999;height:25px;line-height:25px;}
+.shop_item span{ display:inline-block;float:left;}
+.shop_item img{margin-top:4px;}
+.menu_shopR{float:left;width:50px;height:140px;}
+.btip{margin-right:10px;}
+/*menus_view*/
+.menus_view{width:678px;overflow:hidden;border:1px solid #ccc;padding:8px 10px 23px 10px;margin-bottom:38px;}
+.menus_view .title{width:656px;height:38px;line-height:38px;margin-bottom:20px;background:url(../images/shop_titleBG.gif) 4px center no-repeat;padding-left:22px;border-bottom:1px solid #ccc;}
+.menus_viewTip{width:668px; background:#f9f5ee;border:1px solid #ececea;height:32px;line-height:32px;padding-left:10px;color:#999;margin-bottom:10px;color:#333;}
+.menusView_item{width:678px;overflow:hidden;margin-bottom:3px;padding-top:60px;margin-top:-60px;}
+.menusView_item h2{width:673px;height:38px;line-height:38px;border-bottom:1px dashed #ccc;color:#ff6600;font-size:16px;padding-left:5px;}
+.menusView_item ul{width:678px;overflow:hidden;}
+.menusView_item li{height:36px;width:339px;border-bottom:1px solid #ededed;line-height:36px; cursor:pointer; float:left;}
+.menusView_item li:hover{background:#73a7e0;}
+.food_num{width:60px;height:36px;overflow:hidden;color:#fff;}
+.food_name{width:520px;height:36px;overflow:hidden;}
+.food_price{width:90px;height:36px;overflow:hidden;color:#ff4600;}
+.menusView_item span{ display:inline-block;float:left;height:36px;}
+.menusView_item li:hover span{color:#fff;height:36px;}
+.menusView_item img{margin:11px 0 0 5px;}
+.menusView_item li .food_num span{width:42px;height:36px;display:block; line-height:36px; text-align:center;font-size:14px;font-weight:bold;}
+.menusView_item li:hover .food_num span{width:42px;height:36px;display:block;background:#4884c2;}
+.menusView_item li.selected .food_num span{background:#4884c2;}
+.food_num{width:60px;height:36px;overflow:hidden;color:#fff;}
+.food_name{width:200px;height:36px;overflow:hidden;}
+.food_price{width:50px;height:36px;overflow:hidden;color:#ff4600;}
+
+.food_fenl{width:678px;border-bottom:1px solid #ccc; font-size:14px;padding-left:5px;}
+.food_fen1_fixed{ position:fixed !important; top:0px; background:#fff;padding-top:10px;}
+.food_fenl span a{ color:#7188bb; display:inline-block; padding:6px 13px; border:1px solid #78a6f0; margin:0 0 13px 13px;font-size:14px;}
+.food_fenl span a:hover{background:#5287bd;color:#fff;}
+
+/*图片menu_lstR*/
+.fruit_menusView_item{}
+.fruit_menusView_item{width:678px;overflow:hidden;margin-bottom:3px;padding-top:60px;margin-top:-60px;}
+.fruit_menusView_item h2{width:673px;height:38px;line-height:38px;border-bottom:1px dashed #ccc;color:#ff6600;font-size:16px;padding-left:5px;}
+.fruit_menusView_item ul{width:678px;overflow:hidden;}
+.fruit_menusView_item li{padding:10px 17px;height:220px;width:190px;border-bottom:1px solid #ededed;line-height:36px; cursor:pointer; float:left;}
+.fruit_menusView_item li:hover{background:#fff5f4;}
+.f_right{float:right}
+.fruit_a img{width:190px;height:140px;}
+.fruit_a span{display:inline-block;height:36px;}
+.fruit_b{margin-top:3px;}
+.fruit_b .f_name{font-size:14px;color:#333;}
+.fruit_b .f_sale_num{font-size:12px;color:#999;}
+.fruit_c{}
+.fruit_c .current_price{font-size:16px;color:#fe4d3d;font-weight:bold;}
+.fruit_c .original_price{padding-left:5px;font-size:11px;color:#999;text-decoration:line-through;}
+.fruit_c .buy_btn {padding:0px 8px;margin-top:6px;height:25px;line-height:25px;background-color:#FF3333;color:#FFF;text-align:center;border-radius:5px;}
+.fruit_c .buy_btn  .but_btn_b{border-left:1px dotted #fdfdfd;padding-left:5px;}
+.fruit_c .buy_btn  .but_btn_a{margin-right:5px;}
+
+
+/*menu_lstR*/
+.menu_lstR{width:270px;overflow:hidden;}
+.menu_order{width:268px;overflow:hidden;border:1px solid #ccc;border-top:2px solid #ff6600;}
+.menu_order_fixed{ position:fixed !important; top:0; background:#fff;}
+.menu_order h2{width:233px;height:35px;border-bottom:1px solid #ededed;background:#f8f8f8;font-weight:normal;line-height:35px;padding-left:35px;background:url(../images/boxTitle_bg.png) 20px center no-repeat;color:#333;}
+
+.orders_tody{width:248px;padding:2px 10px;overflow:hidden;color:#666; max-height:390px; overflow-y:scroll;}
+.orders_tody table td,.orders_psg td{border-bottom:1px dashed #ccc;padding:12px 0; text-align:left;}
+.orders_tody table th{border-bottom:1px solid #ccc;padding:12px 0; text-align:left;}
+.cart_food_name{text-overflow:ellipsis;white-space:nowrap;width:68px;overflow:hidden;display:block;}
+.order_count{border:1px solid #ccc;padding:0 8px;height:18px;line-height:18px;}
+.send_fee input{ vertical-align:middle;}
+.send_fee_num{color:#ff6600;font-size:14px;}
+.sum_price{width:248px;padding:12px 10px;font-size:14px; text-align:right;color:#333;}
+.orders_send{padding-top:14px;width:268px;overflow:hidden;}
+.mem_info_item{width:268px;overflow:hidden;margin-bottom:12px;}
+.sendInfo_next button{width:248px;height:38px;line-height:38px; text-align:center;color:#fff;font-size:14px;font-weight:bold;background:#FF4600; cursor:pointer;border:none;margin:0 10px 30px 10px;}
+
+.amount_count{width:76px;height:22px;}
+.amount_count input{width:20px;height:20px;line-height:20px;text-align:center;border:1px solid #ccc;color:#333;font-family:Arial;font-size:12px;margin:0 3px;float:left;}
+.amount_count a.jian{display:block;width:15px;height:15px; background:url(../images/jian.gif) left center no-repeat; cursor:pointer;float:left;margin-top:4px;}
+.amount_count a.jia{display:block;width:15px;height:15px; background:url(../images/jia.gif) right center no-repeat; cursor:pointer;float:left;margin-top:4px;}
+
+.order_delete{color:#ff6600;cursor:pointer}
+/*food_img*/
+._box{ position: absolute;z-index:9 }
+
+.menu_shopM b{width:15px; height:15px; display:block;float:left; margin:5px 5px 0px 0px;background:url(../images/icon.png) -75px -100px no-repeat; }
+.menu_shopM .pin{background-position:-60px -100px; float:left;}
