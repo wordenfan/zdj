@@ -50,8 +50,8 @@ $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'root';
-$db['default']['password'] = '123456';
-$db['default']['database'] = 'new';
+$db['default']['password'] = 'fenghe_110';
+$db['default']['database'] = 'zdj';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = 'onethink_';
 $db['default']['pconnect'] = TRUE;
