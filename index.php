@@ -1,5 +1,7 @@
 <?php
 
+echo phpinfo();
+exit;
 
 define('ENVIRONMENT', 'development');
 
