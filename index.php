@@ -1,8 +1,5 @@
 <?php
 
-echo phpinfo();
-exit;
-
 define('ENVIRONMENT', 'development');
 
 if (defined('ENVIRONMENT'))
