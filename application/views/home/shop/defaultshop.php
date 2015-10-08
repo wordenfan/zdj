@@ -16,7 +16,7 @@
 	</div>	
 </div>
 <!--login-->
-<div id="show_login_div">
+<div id="show_login_div" class="show_float_div">
 	<div class="login_header">
         <button class="login_close" type="button" onclick="hideLogin()">×</button>
         <h3>登录</h3>
@@ -116,8 +116,8 @@
                                             <?php endif;?>
                                         </span>
                                     </div>
-                                    <div class="food_price r">
-                                        <span>￥<label><?php echo $mo['food_price']; ?></label></span><span></span>
+                                    <div class="sale_price r">
+                                        <span>￥<label><?php echo $mo['sale_price']; ?></label></span><span></span>
                                     </div>
                                 </li>
                             <?php endforeach;?>
@@ -195,7 +195,7 @@ $(".menusView_item ul li").click(function()
 		var _type = $(this).children("input").attr("id");
 		var _id = $(this).children("input").val();
 		var _name = $.trim($(this).children(".food_name").children("span").text());
-		var _price = $(this).children(".food_price").children("span").children("label").text();
+		var _price = $(this).children(".sale_price").children("span").children("label").text();
 		var click_obl = $(this);//供下方动画调用，否则无法调用到this
 		$.post('/home/shop/doShopping',{sid:_sid,fid:_id,ftype:_type,fname:_name,fprice:_price,fmod:1,send_price:send_prc},function(data)
 		{

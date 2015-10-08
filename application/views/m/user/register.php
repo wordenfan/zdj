@@ -15,10 +15,8 @@
 	<script src="<?php echo base_url('static/mobile_assets/js/amazeui.js');?>"></script>
 	<script src="<?php echo base_url('static/mobile_assets/js/handlebars.min.js');?>"></script>
 	<script src="<?php echo base_url('static/mobile_assets/js/amazeui.widgets.helper.js');?>"></script>
+	<script src="<?php echo base_url('static/js/validate_form_object.js');?>"></script>
 </head>
-
-
-
 
 <body style="background:#f4f4f4">
 <script type="text/x-handlebars-template" id="amz-tpl">
@@ -27,20 +25,31 @@
 
 <div class="detail_wrap">
 	<div class="login_tab">
-        <form class="am-form">
-            <p><input type="text" id="add_uname" name="add_uname" placeholder="您的称谓"/></p>
-            <p><input type="text" id="tel" name="tel" placeholder="联系电话"/></p>
-            <p><input type="text" id="address" name="address" placeholder="详细送餐地址"/></p>
-            <p><input type="button" id="login_submit" value="保存地址"/></p>
-        </form>
+		<p id="user_prompt">注册信息:</p>
+		<p><input type="text" id="reg_tel" name="uname" placeholder="输入手机号"/></p>
+		<p><input type="password" id="pwd_id" name="pwd" placeholder="输入密码"/></p>
+		<p><input type="password" id="repwd_id" name="pwd2" placeholder="确认密码"/></p>
+		<p>
+			<div class="am-g">
+				<div class="col-sm-7 mreg1">
+					<input type="text" id="tel_code_id" name="verify" placeholder="手机验证码"/>
+				</div>
+				<div class="col-sm-4 mreg3">
+					<span><a>获取手机验证码</a></span>
+				</div>
+			</div>
+		</p>
+		<p><input type="button" id="login_submit" value="注册"/></p>
+		<p><a href="login" >已有账号？点击登录</a></p>
 	</div>
 </div>
 <script>
 	$(function() {
 		//初始化
-		var app_url='/m/user';  
+		var app_url='/m/user'; 
 		var screen_height = $(window).height();
 		$('.detail_wrap').css('height',screen_height-30);
+		var validate = new validate_form(); 
 		//amaze
 		var $tpl = $('#amz-tpl'),
 		source = $tpl.text(),
@@ -55,24 +64,67 @@
 						"icon": "chevron-left",         // 字体图标名称: 使用 Amaze UI 字体图标 http://www.amazeui.org/css/icon
 						"customIcon": ""    // 自定义图标 URL，设置此项后当前链接不再显示 icon
 					}],
-					"title": "管理地址"
+					"title": "宅当家-注册"
 				}
 			}
 		},
 		html = template(data);
 		$tpl.before(html);
+		//发送手机验证码
+		$('.mreg3').click(function()
+		{
+			$tel = $('#reg_tel').val();
+			if(isNaN($tel)){
+				alert('手机号只能为数字');
+				return;
+			}
+			if($tel.length!=11){
+				alert('手机号必须为11位');
+				return;
+			}
+			$.post('/common/sms/send_reg_code',{reg_tel:$tel},function(data){
+				if(data.status == 1){
+					alert(data.msg);
+				}else{
+					alert(data.msg);
+				}
+			},'json');
+		})
+		//ajax表单提交注册
 		$('#login_submit').click(function()
 		{
-			$('#login_submit').attr('disabled',"true");
-			var uid = <?php echo $uid_tmp;?>;
-			$.post(app_url+'/add_address',{add_uname:$('#add_uname').val(),tel:$('#tel').val(),address:$('#address').val(),uid:uid},function(data)
+			//初步判断
+			var _tel = $('#reg_tel').val();
+			var _pwd = $('#pwd_id').val();
+			var _rpwd = $('#repwd_id').val();
+			var _code = $('#tel_code_id').val();
+			
+			if(_pwd.length<6)
 			{
-				if(data.status == 1){
-					window.location.href='/m/order/index';
-				}else{
-					alert('添加失败，请重新添加');
-				}
-			},'json')
+				$("#user_prompt").html("<font color='red'>密码长度错误</font>");
+				return;
+			}
+			//====确认密码====
+			else if(_pwd != _rpwd)
+			{
+				$("#user_prompt").html("<font color='red'>两次密码输入不一致</font>");
+				return;
+			}
+			//后台验证
+			else{
+				$(this).css("disabled","disabled");//防止重复提交
+				$.post(app_url+'/register',{reg_tel:_tel,password:_pwd,tel_code:_code},function(data)
+				{
+					var json = eval(data);
+					if(json.status == 1)
+					{
+						$("#user_prompt").html("<font color='green'>"+json.msg+"</font>");
+						location.href = json.data;
+					}else{
+						$("#user_prompt").html("<font color='red'>"+json.msg+"</font>");
+					}
+				},'json')
+			}
 		})
 	});
 </script>

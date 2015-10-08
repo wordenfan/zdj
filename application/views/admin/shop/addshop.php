@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">所属类型：</label>
                                     <div class="col-sm-2">
-                                        <select name="shop_tyep" class="form-control">
+                                        <select name="shop_type" class="form-control">
                                             <option value="0">请选择分类</option>
                                             <?php foreach ($shop_type as $type_k => $type_v):?>
                                                 <option value="<?php echo $type_k;?>"  <?php echo (isset($info['type'])&&$type_k==$info['type'])?'selected':'';?> ><?php echo $type_v;?></option>

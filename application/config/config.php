@@ -379,5 +379,7 @@ $config['REDIS_PORT'] = '6379';
 $config['shop_type'] = array('1'=>'中餐','2'=>'西餐','3'=>'日韩','4'=>'生鲜');
 //二级域名
 $config['core_domain'] = array('m','z');
+$config['mobiel_url'] = 'm.26632.com';
 
 include 'alipay_conf.php';
+include 'sms_conf.php';

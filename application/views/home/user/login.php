@@ -17,9 +17,9 @@
 		<form id="myform" name="myform" method="post" action="">
 		<div class="reg_cnt">
 			<div class="reg_item" id="nichName">
-				<span class="reg_name l">昵&nbsp;&nbsp;&nbsp;&nbsp;称：</span>
+				<span class="reg_name l">昵称/手机号：</span>
 				<div class="reg_input l">
-					<input type="text" name="uname" id="username" maxlength="16" placeholder="填写昵称" />
+					<input type="text" name="keyword" id="keyword" maxlength="16" placeholder="输入昵称/手机号" />
 				</div>
 				<div class="reg_tips l"><p id="user_prompt"><span></span></p></div>
 			</div>

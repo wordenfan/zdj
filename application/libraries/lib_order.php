@@ -8,7 +8,7 @@ class Lib_order
     {
         $this->ci = &get_instance();
         $this->ci->load->library('shopping','','lib_cart');
-        $this->ci->load->library('lib_shopinfo','','lib_shopinfo');
+        $this->ci->load->library('lib_shop','','lib_shop');
     }
 	/*
      *如果是aiipay的则返回$alipay_post继续支付
@@ -28,40 +28,40 @@ class Lib_order
         $data = array();
         switch ($from_type){
             case 'pc_alipay' :
-                $data['shop_id'] = $this->ci->input->post('WID_shopid');
-                $data['ord_name'] = $this->ci->input->post('WID_name');
-                $data['ord_tel'] = $this->ci->input->post('WID_tel');
-                $data['ord_address'] = $this->ci->input->post('WID_address');
+                $data['shop_id']    = $this->ci->input->post('WID_shopid');
+                $data['ord_name']   = $this->ci->input->post('WID_name');
+                $data['ord_tel']    = $this->ci->input->post('WID_tel');
+                $data['ord_address']= $this->ci->input->post('WID_address');
                 $data['ord_remark'] = $this->ci->input->post('WID_mark');
                 //
                 $alipay_post = array();
                 $alipay_post['WIDout_trade_no'] = $this->ci->input->post('WIDout_trade_no');
-                $alipay_post['WIDsubject'] = $this->ci->input->post('WIDsubject');
-                $alipay_post['WIDtotal_fee'] = $this->ci->input->post('WIDtotal_fee');
-                $alipay_post['WIDbody'] = $this->ci->input->post('WIDbody');
-                $alipay_post['WIDshow_url'] = $this->ci->input->post('WIDshow_url');
+                $alipay_post['WIDsubject']      = $this->ci->input->post('WIDsubject');
+                $alipay_post['WIDtotal_fee']    = $this->ci->input->post('WIDtotal_fee');
+                $alipay_post['WIDbody']         = $this->ci->input->post('WIDbody');
+                $alipay_post['WIDshow_url']     = $this->ci->input->post('WIDshow_url');
                 $data['pay_status'] = 2;
                 break;;
             case 'pc_home' :
-                $data['shop_id'] = $this->ci->input->post('shopid');
-                $data['ord_name'] = $this->ci->input->post('name');
-                $data['ord_tel'] = $this->ci->input->post('tel');
-                $data['ord_address'] = $this->ci->input->post('address');
+                $data['shop_id']    = $this->ci->input->post('shopid');
+                $data['ord_name']   = $this->ci->input->post('add_uname');
+                $data['ord_tel']    = $this->ci->input->post('tel');
+                $data['ord_address']= $this->ci->input->post('address');
                 $data['ord_remark'] = $this->ci->input->post('remark');
                 $data['pay_status'] = 0;
                 break;
             case 'mobile_home' :
-                $data['shop_id'] = $alipay_mobile_pc[0];
-                $data['ord_name'] = $alipay_mobile_pc[1];
-                $data['ord_tel'] = $alipay_mobile_pc[2];
-                $data['ord_address'] = $alipay_mobile_pc[4];
-                $data['ord_remark'] = $alipay_mobile_pc[3];
+                $data['shop_id']    = $this->ci->input->post('shopid');
+                $data['ord_name']   = $this->ci->input->post('add_uname');
+                $data['ord_tel']    = $this->ci->input->post('tel');
+                $data['ord_address']= $this->ci->input->post('address');
+                $data['ord_remark'] = $this->ci->input->post('remark');
                 $data['pay_status'] = 0;
                 break;
         }
         //
         $shop_id    =  $data['shop_id'];
-        $shop_info  =  $this->ci->lib_shopinfo->shopDetail(array('id'=>$shop_id));
+        $shop_info  =  $this->ci->lib_shop->shopDetail(array('id'=>$shop_id));
         $open_close =  get_business_hour($shop_info['business_hours'],$shop_info['business_week']);
         if($open_close==0)
         {
@@ -96,6 +96,9 @@ class Lib_order
         if($res_arr['status'] == 1){
             $res_arr['msg'] = empty($alipay_post)?'订单提交成功,配送员即刻为您配送!':$alipay_post;
             $res_arr['status'] = 1;
+        }else{
+            $res_arr['msg'] = '订单提交失败，请重新下单!';
+            $res_arr['status'] = 0;
         }
         return $res_arr; 
 	}
@@ -104,30 +107,40 @@ class Lib_order
     private function add_order($order_info,$shop_info,$food_list) 
     {
         $this->ci->load->model('ordermodel','omd');
-        $this->ci->load->model('useroldmodel','uomd');
+        $this->ci->load->library('lib_user','','lib_user');
+        
+        $shop_id = $order_info['shop_id'];
+        $_total  = $this->ci->lib_cart->getPrice($shop_id);
         
         //只能先插入order表
-        $data['oname'] = $order_info['ord_name'];
-        $data['otel'] = $order_info['ord_tel'];
-        $data['oaddress'] = $order_info['ord_address'];
-        $data['remark'] = $order_info['ord_remark'];
+        $data['oname']      = $order_info['ord_name'];
+        $data['otel']       = $order_info['ord_tel'];
+        $data['oaddress']   = $order_info['ord_address'];
+        $data['remark']     = $order_info['ord_remark'];
         $data['pay_status'] = $order_info['pay_status'];
-        $data['oshop_id'] = $order_info['shop_id'];
-        $data['osum_real'] = $order_info['sum_real'];
-        $data['opay'] = $order_info['sum_real']*$shop_info['discount'];
-        $data['oip'] = getIPaddress();
-        $data['osum'] = 100;
-        $data['send_price'] = 100;
-        $data['oshop_name'] = $shop_info['name'];
-        $data['oshop_tel'] = $shop_info['telephone'];
-        $data['oshop_address'] = $shop_info['address'];
-        $data['uid'] = $this->ci->my_data['myinfo']['uid'];
-        $data['uname'] = $this->ci->my_data['myinfo']['uname'];
-        $data['opublish'] = $_SERVER['REQUEST_TIME'];
-        $data['oid'] = order_id_generate();
+        $data['oshop_id']   = $shop_id;
+        $data['osum_real']  = $order_info['sum_real'];
+        $data['opay']       = $order_info['sum_real']*$shop_info['discount'];
+        $data['oip']        = getIPaddress();
+        //是否享受减免配送费
+        $data['osum']       = $shop_info['send_price'] + $_total;
+        $data['send_price'] = $shop_info['send_price'];
+        $in_free_send       = $this->ci->lib_shop->freeSend($shop_id);
+        if($in_free_send && $_total >= config_item(AREA.'FREE_SEND')){
+            $data['osum'] = $_total; 
+            $data['send_price'] = 0;
+        }
+        //
+        $data['oshop_name']        = $shop_info['name'];
+        $data['oshop_tel']         = $shop_info['telephone'];
+        $data['oshop_address']     = $shop_info['address'];
+        $data['uid']               = $this->ci->my_data['myinfo']['uid'];
+        $data['uname']             = $this->ci->my_data['myinfo']['uname'];
+        $data['opublish']          = $_SERVER['REQUEST_TIME'];
+        $data['oid']               = order_id_generate();
         $data['alipay_trade_code'] = $this->ci->input->post('WIDout_trade_no')?$this->ci->input->post('WIDout_trade_no'):0;
-        //是否是新用户
-        $data['user_status'] = $this->ci->uomd->addInfo($data['uid'],$data['uname'],$data['osum']);                
+        $data['user_status']       = $this->ci->lib_user->getUserStatus(array('uid'=>$data['uid']));
+        $this->ci->lib_user->addUserOld($data['uid'],$data['uname'],$data['osum']);
         $snid = $this->ci->omd->addOrder($data);
         if(!$snid){
             $res['msg'] = '插入order失败';
@@ -150,5 +163,15 @@ class Lib_order
         $res['msg'] = '批量插入orderlist失败';
         $res['status'] = 1;
         return $res;
+    }
+    //
+    public function getOrderList($limit = 20, $offset = 1, $where=array(),$like=array()) {
+        $this->ci->load->model('ordermodel','omd');
+        return $this->ci->omd->orderList($limit,$offset,$where,$like);
+    }
+    //修改订单状态
+    public function changeOrderStatus($oid,$data) {
+        $this->ci->load->model('ordermodel','omd');
+        return $this->ci->omd->changeOrderStatus($oid,$data);
     }
 }

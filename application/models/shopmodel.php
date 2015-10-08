@@ -49,7 +49,9 @@ class ShopModel extends MY_Model
         return $insert_id;
     }
     //
-    public function update($data,$where){
-        $this->db->where($where)->update($this->_table_name,$data);
+    public function update($shop_id,$data){
+        $this->db->where(array('id'=>$shop_id))->update($this->_table_name,$data);
+        return $this->db->affected_rows();
     }
+    
 }

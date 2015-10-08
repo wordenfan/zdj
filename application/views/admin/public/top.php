@@ -20,7 +20,7 @@
 		    </div>
 	        <ul ng-if="user.name" class="list-inline header-top ng-scope">
 	          <li>Hi ,<span class="red-txt-cl ng-binding" >91批购</span></li>
-	          <li><a target="_top" href="/system/login/logout" class="text-danger">退出</a></li>
+	          <li><a target="_top" href="/admin/login/do_logout" class="text-danger">退出</a></li>
 	        </ul> 
 	        <div class="clear"></div>
 	    </div>

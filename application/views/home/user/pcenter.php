@@ -19,29 +19,23 @@
 		function dosave(obj)
 		{
 			obj.disabled =true;
-			var js_name = $('#nname').val();
 			var js_sex = $('input[name="sex"]:checked').val();
 			var js_age = $('#age').val();
 			var js_uid = $('#uid').val();
-			$.post(baseurl+'/home/User/pcenter',{uname:js_name,usex:js_sex,uage:js_age,uid:js_uid},function(data)
+			$.post(baseurl+'home/user/pcenter',{usex:js_sex,uage:js_age,uid:js_uid},function(data)
 			{
 				obj.disabled =false;
 				var json = eval(data);
-				var uname = json.ajax_name;
-				var uage = json.ajax_age;
-				var usex = json.ajax_sex;
-				var uid = json.ajax_uid;
-				if(uid == -1)
+				var uage = json.data.ajax_age;
+				var usex = json.data.ajax_sex;
+				if(json.status != 1)
 				{
-					$('#nname').val();
 					$("input[name='sex'][value=1]").attr("checked",true);
 					$('#age').val();
 					$("#show_msg").html("<font color='red'>"+uname+"</font>");
 				}else{
-					$("#nname").val(uname);
 					$("input[name='sex'][value="+usex+"]").attr("checked",true);
 					$("#age").val(uage);
-					$("#uid").val(uid);
 					$("#show_msg").html("<font color='green'>数据保存成功！</font>");
 				}
 			},'json')
@@ -58,7 +52,7 @@
 			<div class="mem_info_item">
 				<span class="account_name l">昵称：</span>
 				<div class="account_input l">
-					<input type="text" value="<?php echo $uname;?>" id="nname" name="name" />
+					<input type="text" disabled value="<?php echo $uname;?>" id="nname" name="name" />
 				</div>
 			</div>
 			<div class="mem_info_item">

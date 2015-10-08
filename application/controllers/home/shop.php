@@ -25,31 +25,28 @@ class Shop extends HomeBase {
     //ajax购物
     public function doShopping()
     {
-		$this->load->library('lib_shopinfo','','lib_shopinfo');
-		$data = $this->lib_shopinfo->doShopping();
+		$this->load->library('lib_shop','','lib_shop');
+		$data = $this->lib_shop->doShopping();
 		echo $data;
     }
     //
     public function shopinfo()
     {
         $sid =  intval($this->uri->segment(5));
-        var_dump(11114);exit;
         if($sid)
         {
-            
-            $this->load->library('lib_shopinfo','','lib_shopinfo');
-            $info = $this->lib_shopinfo->shopinfo($sid);
+            $this->load->library('lib_shop','','lib_shop');
+            $info = $this->lib_shop->shopinfo($sid);
             //加载原有物品
             $lib_data = $this->lib_cart->getShopCart($sid);
             $_list = $lib_data['cur_shop'];
             $_list['total'] = $this->lib_cart->getPrice($sid);
             $info['shop_cart'] = json_encode($_list);
-            $info['free_send'] = $this->lib_shopinfo->freeSend($sid);
+            $info['free_send'] = $this->lib_shop->freeSend($sid);
 			//
             if($info['show_type'] == '2'){
                 $this->load->view('home/shop/imgshop',$info);
             }else{
-                var_dump(456);exit;
                 $this->load->view('home/shop/defaultshop',$info);
             }
         }else{

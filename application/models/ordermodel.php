@@ -84,4 +84,9 @@ class orderModel extends MY_Model
             show_message('',base_url(),3,'支付宝订单状态错误，请联系客服');
         }
     }
+    //
+    public function changeOrderStatus($oid,$data){
+        $this->db->where('oid',$oid)->update($this->_table_name,$data);
+        return $this->db->affected_rows();
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-class Lib_shopinfo 
+class Lib_shop 
 {
     private $ci;
     
@@ -42,12 +42,13 @@ class Lib_shopinfo
                     if($iv['id'] == $jv['food_type'])
                     {
                         $tarr = array();
-                        $tarr['food_id'] = $jv['id'];
-                        $tarr['food_name'] = $jv['name'];
-                        $tarr['food_price'] = $jv['sale_price'];
+                        $tarr['food_id']        = $jv['id'];
+                        $tarr['food_name']      = $jv['name'];
                         $tarr['food_get_price'] = $jv['get_price'];
-                        $tarr['food_origin_price'] = $jv['original_price'];
-                        $tarr['food_pic'] = $jv['pic'];
+                        $tarr['sale_price']     = $jv['sale_price'];
+                        $tarr['original_price'] = $jv['original_price'];
+                        $tarr['sale_num']       = $jv['sale_num'];
+                        $tarr['food_pic']       = $jv['pic'];
                         array_push($parr, $tarr);
                     }
                 }
@@ -94,5 +95,9 @@ class Lib_shopinfo
     //基本信息
     public function shopDetail($where) {
         return $this->ci->smd->getShop($where);
+    }
+    //更新
+    public function shopUpdate($shop_id,$where) {
+        return $this->ci->smd->update($shop_id,$where);
     }
 }

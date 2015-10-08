@@ -34,6 +34,9 @@ span.account_name{width:50px;height:30px;line-height:30px; text-align:right;marg
 .mem_order_lists th{border-bottom:1px solid #ccc;height:40px;padding-left:16px; vertical-align:middle; text-align:left;}
 .mem_order_lists td{border-bottom:1px solid #ccc;padding-top:10px;padding-bottom:10px;padding-left:16px; vertical-align:middle; text-align:left;}
 .mem_order_lists a{color:#578ec5;}
+.mem_order_lists span{margin-left:3px;text-decoration:underline;cursor:pointer}
+.mem_order_lists span:hover{color:#ff6600}
+.memberR_cnt #add_new_id{display:block;border:1px solid #999;margin:15px 0px 0px 0px;padding:5px;cursor:pointer}
 .order_number{color:#578ec5;}
 
 

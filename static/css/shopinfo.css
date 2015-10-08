@@ -30,7 +30,7 @@
 .menusView_item li:hover{background:#73a7e0;}
 .food_num{width:60px;height:36px;overflow:hidden;color:#fff;}
 .food_name{width:520px;height:36px;overflow:hidden;}
-.food_price{width:90px;height:36px;overflow:hidden;color:#ff4600;}
+.sale_price{width:90px;height:36px;overflow:hidden;color:#ff4600;}
 .menusView_item span{ display:inline-block;float:left;height:36px;}
 .menusView_item li:hover span{color:#fff;height:36px;}
 .menusView_item img{margin:11px 0 0 5px;}
@@ -39,7 +39,7 @@
 .menusView_item li.selected .food_num span{background:#4884c2;}
 .food_num{width:60px;height:36px;overflow:hidden;color:#fff;}
 .food_name{width:200px;height:36px;overflow:hidden;}
-.food_price{width:50px;height:36px;overflow:hidden;color:#ff4600;}
+.sale_price{width:50px;height:36px;overflow:hidden;color:#ff4600;}
 
 .food_fenl{width:678px;border-bottom:1px solid #ccc; font-size:14px;padding-left:5px;}
 .food_fen1_fixed{ position:fixed !important; top:0px; background:#fff;padding-top:10px;}
@@ -59,12 +59,14 @@
 .fruit_b{margin-top:3px;}
 .fruit_b .f_name{font-size:14px;color:#333;}
 .fruit_b .f_sale_num{font-size:12px;color:#999;}
-.fruit_c{}
-.fruit_c .current_price{font-size:16px;color:#fe4d3d;font-weight:bold;}
+
+.fruit_c .sale_price{font-size:16px;color:#fe4d3d;font-weight:bold;}
 .fruit_c .original_price{padding-left:5px;font-size:11px;color:#999;text-decoration:line-through;}
-.fruit_c .buy_btn {padding:0px 8px;margin-top:6px;height:25px;line-height:25px;background-color:#FF3333;color:#FFF;text-align:center;border-radius:5px;}
-.fruit_c .buy_btn  .but_btn_b{border-left:1px dotted #fdfdfd;padding-left:5px;}
-.fruit_c .buy_btn  .but_btn_a{margin-right:5px;}
+.fruit_c .buy_btn {padding:0px 5px;margin-top:3px;height:25px;line-height:25px;background-color:#FF3333;color:#FFF;text-align:center;border-radius:5px;}
+
+.fruit_c .buy_btn  .hidden_buy_num{display:none}
+.fruit_c .buy_btn  .show_buy_num{display:block;display:inline}
+.fruit_c .buy_btn   label{padding-left:5px;margin-right:5px;}
 
 
 /*menu_lstR*/

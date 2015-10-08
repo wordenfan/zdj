@@ -27,12 +27,23 @@
 
 <div class="detail_wrap">
 	<div class="login_tab">
-        <form class="am-form">
-            <p><input type="text" id="add_uname" name="add_uname" placeholder="您的称谓"/></p>
-            <p><input type="text" id="tel" name="tel" placeholder="联系电话"/></p>
-            <p><input type="text" id="address" name="address" placeholder="详细送餐地址"/></p>
-            <p><input type="button" id="login_submit" value="保存地址"/></p>
-        </form>
+		<?php foreach($address_array as $k=>$v):?>
+			<div <?php if($v['is_default'] != 1) echo 'onclick="set_default_address('.$v['id'].')"';?> >
+			<table class="am-table am-table-centered" style="margin:25px 0px 0px 0px;border:1px solid #aaa;border-left:0px;">
+				<tr class="<?php if($v['is_default'] == 1) echo 'm_default_address';?>">
+					<td rowspan="2" width="15%" class="am-text-middle m_set_default"><?php if($v['is_default'] != 1) echo '设为默认';?></td>
+					<td rowspan="2" width="30%" class="am-text-middle"><?php echo isset($v)?$v['add_uname']:'';?></td>
+					<td><?php echo isset($v)?$v['tel']:''?></td>
+				</tr>
+				<tr class="<?php if($v['is_default'] == 1) echo 'm_default_address';?>">
+					<td><?php echo isset($v)?$v['address']:''?></td>
+				</tr>
+			</table>
+			</div>
+		<?php endforeach;?>
+		<?php if(count($address_array)<2):?>
+			<div id="add_address">+新增地址</div>
+		<?php endif;?>
 	</div>
 </div>
 <script>
@@ -61,18 +72,10 @@
 		},
 		html = template(data);
 		$tpl.before(html);
-		$('#login_submit').click(function()
+		//添加地址
+		$('#add_address').click(function()
 		{
-			$('#login_submit').attr('disabled',"true");
-			var uid = <?php echo $uid_tmp;?>;
-			$.post(app_url+'/add_address',{add_uname:$('#add_uname').val(),tel:$('#tel').val(),address:$('#address').val(),uid:uid},function(data)
-			{
-				if(data.status == 1){
-					window.location.href='/m/order/index';
-				}else{
-					alert('添加失败，请重新添加');
-				}
-			},'json')
+			window.location.href=app_url+'/add_address';
 		})
 	});
 </script>

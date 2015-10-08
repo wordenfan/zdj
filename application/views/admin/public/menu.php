@@ -44,9 +44,6 @@ $(function(){
 					<li  class="sub-menu ng-scope">
                         <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/order/olist');?>">订单列表</a>
                     </li>
-					<li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="add.htm">添加订单</a>
-                    </li>
 				</ul>           
             </li>
 			<li class="ng-scope">
@@ -77,9 +74,6 @@ $(function(){
 					<li  class="sub-menu ng-scope">
                         <a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/news/nlist');?>">新闻列表</a>
                     </li>
-					<li  class="sub-menu ng-scope">
-                        <a target="main-frame" class="ng-binding ng-scope" href="/system/user/addUser">添加新闻</a>
-                    </li>
 				</ul>           
             </li>
                         <li class="ng-scope">
@@ -106,18 +100,6 @@ $(function(){
 					</li>
 					<li  class="sub-menu ng-scope">
 						<a target="main-frame" class="ng-binding ng-scope" href="<?php echo base_url('admin/finance/yuangong');?>">员工结算</a>
-					</li>
-				</ul>           
-            </li>
-			<li class="ng-scope">
-                <span class="glyphicon"></span>
-                <a class="ng-binding ng-scope">其他管理</a>
-                <ul>
-					<li  class="sub-menu ng-scope">
-						<a target="main-frame" class="ng-binding ng-scope" href="/system/manager/">管理员列表</a>
-					</li>
-					<li  class="sub-menu ng-scope">
-						<a target="main-frame" class="ng-binding ng-scope" href="/system/role/">角色管理</a>
 					</li>
 				</ul>           
             </li>

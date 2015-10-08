@@ -40,32 +40,29 @@
 		<div class="login_gg l">
 			<div class="login_state">
 				<h2 class="login_title box_title">用户登录</h2>
-				<!--logined-->
-				<?php if($login_status>0):?>
-					<div class="logined" >
-						<div class="login_info">
-						<div class="login_pic l"></div>
-						<div class="login_infoR l">
-						<div class="lg_info_top">hi  <?php echo $myinfo['uname'];?><a href="<?php echo base_url('home/user/logout');?>">退出>></a></div>
-						<div class="lg_info_btm">宅当家，用心创造便利</div>
-						</div>
-						</div>
-						<div class="enter_btn"><a href="<?php echo base_url('home/user/pcenter');?>">进入个人中心</a></div>
+				<!--logined1-->
+				<div class="logined" style="display:<?php echo $login_status>0?'block':'none'?>">
+					<div class="login_info">
+					<div class="login_pic l"></div>
+					<div class="login_infoR l">
+					<div class="lg_info_top">hi  <?php echo $myinfo['uname'];?><a href="<?php echo base_url('home/user/logout');?>">退出>></a></div>
+					<div class="lg_info_btm">宅当家，用心创造便利</div>
 					</div>
-					<!--logined-->
-				<?php else :?>
-					<!--no logined-->
-					<div class="no_login">
-					<form action="" method="post" name="loginform" id="loginform" onsubmit="return false;">
-						<input type="text" autocomplete="off" id="uname" name="uname" placeholder="昵称" />
-						<input type="password" autocomplete="off" id="pwd" name="pwd" placeholder="密码" />
-						<div class="log_reg">
-						<button type="button" class="login_to l" id="lgbt" onclick="dologin(this);"><b></b>账号登陆</button>
-						<a class="user_reg r" href="<?php echo base_url('home/user/register');?>">用户注册</a>
-						</div>
-					</form>
 					</div>
-				<?php endif;?>
+					<div class="enter_btn"><a href="<?php echo base_url('home/user/pcenter');?>">进入个人中心</a></div>
+				</div>
+				<!--logined2-->
+				<!--no logined-->
+				<div class="no_login" style="display:<?php echo $login_status>0?'none':'block'?>">
+				<form action="" method="post" name="loginform" id="loginform" onsubmit="return false;">
+					<input type="text" autocomplete="off" id="uname" name="uname" placeholder="昵称/手机号" />
+					<input type="password" autocomplete="off" id="pwd" name="pwd" placeholder="密码" />
+					<div class="log_reg">
+					<button type="button" class="login_to l" id="lgbt" onclick="dologin(this);"><b></b>账号登陆</button>
+					<a class="user_reg r" href="<?php echo base_url('home/user/register');?>">用户注册</a>
+					</div>
+				</form>
+				</div>
 				<!--no logined-->
 			</div>
 			<ul class="gg">
@@ -172,20 +169,19 @@
 			obj.disabled =true;
 			var js_ud = $('#uname').val();
 			var js_pwd = $('#pwd').val();
-			$.post(baseurl+'home/home/index',{uname:js_ud,pwd:js_pwd},function(data)
+			$.post(baseurl+'home/home/index',{keyword:js_ud,pwd:js_pwd},function(data)
 			{
 				obj.disabled =false;
 				var json = eval(data);
-				var uname = json.ajax_uname;
-				var uid = json.ajax_uid;
-				if(uid == -1)
+				alert(json.status);
+				if(json.status == 1)
 				{
-					$("#pwd").val("")
-					alert('用户名或密码错误！');
-				}else{
 					$(".no_login").css("display","none");
 					$(".logined").css("display","block");
-					$(".lg_info_top").html("hi "+ uname +"<a href='<?php echo base_url('home/User/logout');?>'>退出登录>></a>");
+					$(".lg_info_top").html("hi "+ json.data +"<a href='<?php echo base_url('home/user/logout');?>'>退出登录>></a>");
+				}else{
+					$("#pwd").val("")
+					alert('用户名或密码错误！');
 				}
 			},'json')
 		}

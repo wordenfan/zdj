@@ -8,9 +8,10 @@
 .reg_item span.reg_name{width:128px;overflow:hidden;height:30px;line-height:30px;display:block; text-align:right;margin-right:18px;}
 .reg_input{width:300px;overflow:hidden;}
 .reg_input input{width:290px;height:28px;border:1px solid #ccc;padding-left:8px;line-height:34px;}
-.indenty_code{width:210px;margin-right:12px;}
-.indenty_code input{width:200px;height:28px;border:1px solid #ccc;padding-left:8px;line-height:28px;}
-.verify_code{width:80px;height:30px;background:#FF4600;}
+.indenty_code{width:160px;margin-right:12px;}
+.indenty_code input{width:150px;height:28px;line-height:28px;border:1px solid #ccc;padding-left:8px;line-height:28px;}
+.verify_code{width:130px;height:28px;text-align:center;border:1px solid #ccc;cursor:pointer;vertical-align: middle;}
+.verify_code a{height:28px;line-height:28px;text-align:center;vertical-align: middle;color:#e65210}
 .reg_input button{width:280px;height:40px;line-height:40px; text-align:center;color:#fff; cursor:pointer;background:#FF4600;}
 .reg_xieyi{display:block;height:22px;line-height:22px;background:url(../images/xieyi.gif) 5px center no-repeat;padding-left:20px;}
 .reg_tips{width:480px;overflow:hidden;margin-left:20px;height:30px; position:relative;line-height:30px;}

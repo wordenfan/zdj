@@ -1,14 +1,17 @@
 <?php $this->load->view('home/common/header');?>
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('static/css/base.css');?>" />
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('static/css/orders.css');?>" />
+    <link type="text/css" rel="stylesheet" href="http://yui.yahooapis.com/pure/0.3.0/forms-min.css" />
     <script> javascript:window.history.forward(1); </script>
 </head>
 <body>
     <?php $this->load->view('home/common/menu');?>
-<!--以上为动态载入区-->
-<!--login-->
+<!--address_start-->
 <div id="bg"></div>
-<div id="show_login_div">
+<?php $this->load->view('home/common/public_address');?>
+<!--address_end-->
+<!--Alipay-->
+<div id="show_login_div" class="show_float_div">
 	<div class="login_header">
         <a href="../../../../../wwwroot/Application/Home/View/Order/index.html"></a>
         <a href="../../../../../wwwroot/Application/Home/View/Shop/shopinfo.html"></a>
@@ -66,26 +69,48 @@
 			<ul class="orders_fee_lst">
 				<li>配送费用：<span><b>￥<?php echo $sendprc_tmp;?></b></span></li>
 				<li>订单总价：<span><b>￥<?php echo $sum;?></b></span></li>
-				<li>送达时间：立即配送</li>
 			</ul>
 		</div>
 		<div class="member_cnt w950">
 			<div class="orders_content">
-				<div class="top_cnt  border_top">
+				<div class="top_cnt">
 					<span class="l">配送信息▼</span>
-					<span class="r" style="color:#666">配送信息可在<i>“用户中心”</b></i>保存</span>
 				</div>
-				<ul class="orders_info">
-					<input id="f_uid" type="hidden" name="o_uid" value="<{$uid_tmp}>" />
-					<li><b>*</b>您的称谓：<input class="send_info" type="text" id="info_name" value="<?php echo $name_tmp;?>" id="info_tel" name="o_tel" placeholder="怎么称呼您"/></li>
-					<li><b>*</b>手机号码：<input class="send_info" type="text" id="info_tel" value="<?php echo $tel_tmp;?>" placeholder="请输入手机号"></li>
-					<li><b>*</b>配送地址：<input class="send_info" type="text" id="info_address" value="<?php echo $address_tmp;?>" placeholder="请输入详细的收餐地址"></li>
-					<li><b>&nbsp;</b>备注信息：<span><b><input class="send_info" id="info_mark" type="text" value="" placeholder="备注信息(选填)"></b></span></li>
-					<li><b>&nbsp;</b>支付方式：
-							<input type="radio" value="1" name="pay_type"/>&nbsp;餐到付款
-							<input type="radio" value="2" name="pay_type" checked="ckecked"/>&nbsp;在线支付
-					</li>
+				<ul class="curAddrPanel" style="">
+					<?php foreach($address_array as $av):?>
+						<?php if(isset($av['add_uname'])&&isset($av['tel'])&&isset($av['address'])):?>
+						<li class="addr-item">
+							<input type="hidden" id="address_id" value="<?php echo $av['id'];?>">
+							<div class="addr-title">        
+								<div class="addr-user">            
+									<span class="name"><?php echo $av['add_uname'];?></span>    
+								</div>        
+								<div class="addr-action"><a onclick="addr_set_default(<?php echo $av['id'];?>)">设为默认</a><a class="addr-edit" onclick="addr_update(<?php echo $av['id'];?>,'<?php echo $av['add_uname'];?>','<?php echo $av['tel'];?>','<?php echo $av['address'];?>')">修改</a></div>    
+							</div>
+							<div class="addr-con"><p class="phone"><?php echo $av['tel'];?></p><p class="addr-desc"><?php echo $av['address'];?></p></div>
+							<span class="select-ico" addr_id="<?php echo $av['id'];?>" style="visibility:<?php echo $av['is_default']==1?'visible':'hidden';?>"></span>
+						</li>
+						<?php endif;?>
+					<?php endforeach;?>
+					<?php if(count($address_array)<2):?>
+						<li class="addr-item addr_item_new">  
+							<span class="add_new" style="">新增送餐地址</span>
+						</li>
+					<?php endif;?>
 				</ul>
+				<form class="pure-form pure-form-stacked">
+				<ul class="curMarkPanel" style="">
+					<li>支付方式：
+						<input type="radio" value="1" name="pay_type"  checked="ckecked"/>&nbsp;餐到付款
+						<input type="radio" value="2" name="pay_type"/>&nbsp;在线支付
+					</li>
+					<li>送达时间：<select id="state" style="display:inline-block">
+								<option>立即送达</option>
+								</select>
+					</li>
+					<li>备注信息：<span><b><input style="display:inline-block" class="send_info" id="info_mark" type="text" value="" placeholder="备注信息(选填)"></b></span></li>
+				</ul>
+				</form>
 			</div>
 			<div class="orders_tips">
 				<p>1.请保持电话畅通；若号码无效，我们将会把您的订单设为无效</p>
@@ -99,7 +124,7 @@
 				<input type="hidden" id="" name="WIDout_trade_no" value="<?php echo $alipay_trade_code; ?>" />
 				<input type="hidden" id="" name="WIDsubject" value="(<?php echo $shopname_tmp; ?>)订单" />
 				<input type="hidden" id="" name="WIDtotal_fee" value="<?php echo $sum; ?>" />
-				<input type="hidden" id="" name="WIDbody" value="用户(<?php echo $name_tmp; ?>)" />
+				<input type="hidden" id="" name="WIDbody" value="用户(<?php echo isset($myinfo)?$myinfo['uname']:'';?>)" />
 				<input type="hidden" id="" name="WIDshow_url" value="http://www.163.com/myorder.html" />
 				<input type="hidden" id="WID_name" name="WID_name" value="" />
 				<input type="hidden" id="WID_tel" name="WID_tel" value="" />
@@ -130,12 +155,15 @@ $("#return_id").click(function()
 //提交订单
 $("#submit_id").click(function() 
 {
-	var id = $("#f_uid").val();
-	var _name = $("#info_name").val();
-	var _tel = $("#info_tel").val();
-	var _address = $("#info_address").val();
+	var uid = <?php echo isset($myinfo)?$myinfo['uid']:'';?>;
+	var addr_id = $(".curAddrPanel li:eq(0) .select-ico").attr('addr_id');//选中地址的ｉｄ
+	var _name = $(".curAddrPanel li:eq(0) .name").html();
+	var _tel = $(".curAddrPanel li:eq(0) .phone").html();
+	var _address = $(".curAddrPanel li:eq(0) .addr-desc").html();
+	var pay_type=$('input:radio[name="pay_type"]:checked').val();
+	var _mark = $("#info_mark").val();
 	//未登录
-	if(!id)
+	if(!uid)
 	{
 		alert('请先登录!');
 		window.location.href = '<?php echo base_url('home/user/login?req_url='.$_SERVER["REQUEST_URI"]); ?>';
@@ -143,19 +171,14 @@ $("#submit_id").click(function()
 	}//配送信息不全
 	else if(_name==""||_tel==""||_address=="")
 	{
-		alert('请填写完整配送信息！');
+		alert('配送信息不完整！');
 		return false;
 	}
-	var pay_type=$('input:radio[name="pay_type"]:checked').val();
-	var _name = $("#info_name").val();
-	var _tel = $("#info_tel").val();
-	var _address = $("#info_address").val();
-	var _mark = $("#info_mark").val();
 	if(pay_type==1)//货到付款
 	{
-		$.post('<?php echo base_url('home/order/dosubmit');?>',{name:_name,tel:_tel,address:_address,from_type:'pc_home',remark:_mark,shopid:"<?php echo $shopid_tmp; ?>"},function(data)
+		$.post('<?php echo base_url('home/order/dosubmit');?>',{add_uname:_name,tel:_tel,address:_address,from_type:'pc_home',remark:_mark,shopid:"<?php echo $shopid_tmp; ?>"},function(data)
 		{
-			if(data.flag==1)
+			if(data.status==1)
 			{
 				$("#submit_id").val("确认提交");
 				$("#submit_id").removeClass("clicked").attr("disabled", false);
@@ -167,7 +190,7 @@ $("#submit_id").click(function()
 			}
 		},'json')
 	}else if(pay_type==2){//在线支付
-		//showPayDiv();
+		showPayDiv();
 		$("#WID_name").val(_name);
 		$("#WID_tel").val(_tel);
 		$("#WID_address").val(_address);
@@ -191,5 +214,9 @@ function hideLogin() {
 	document.getElementById("show_login_div").style.display ='none';
     window.location.href='<?php echo base_url('home/user/myorder');?>';
 }
+//新增地址
+$('.add_new').click(function(){
+	showAddressEdit();
+});
 </script>
 <?php $this->load->view('home/common/footer');?>

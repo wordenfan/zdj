@@ -57,19 +57,19 @@
                       <table class="table table-condensed table-hover table-bordered" style="font-size:12px;" >
                         <thead>
 						<tr bgcolor="#FBFCE2">
-							<td width="5%" height="24" align="center">ID</td>
+							<td width="4%" height="24" align="center">ID</td>
 							<td width="8%" height="24" align="center">下单时间</td>
 							<td width="8%" height="24" align="left">订单商家</td>
 							<td width="10%" height="24" align="center">商家电话</td>
-							<td width="6%" height="24" align="center">用户名称</td>
-							<td width="20%" height="24" align="center">用户地址</td>
-							<td width="10%" height="24" align="center">用户电话</td>
+							<td width="6%" height="24" align="center">订餐用户</td>
+							<td width="20%" height="24" align="center">订餐地址</td>
+							<td width="10%" height="24" align="center">订餐电话</td>
 							<td width="7%" height="24" align="center">实价--支出</td>
 							<td width="4%" height="24" align="center">收取</td>
 							<td width="5%" height="24" align="center">类型</td>
 							<td width="5%" height="24" align="center">支付</td>
 							<td width="4%" align="center">状态</td>
-							<td width="8%" align="center">管理项</td>
+							<td width="9%" align="center">管理项</td>
 						</tr>
                         </thead>
                         <tbody id="goodsList">
@@ -85,14 +85,39 @@
 							<td align="center"><?php echo $v['osum_real'].' - '.$v['opay'];?></td>
 							<td align="center" id="money"><?php echo $v['osum'];?></td>
 							<td align="center">
-								<font color="red">新用户</font>
-										</td>
+								<?php if($v['user_status'] == 1):?>
+									<font color="red">新用户</font>
+								<?php else:?>
+									<font color="green">老用户</font>
+								<?php endif;?>
+							</td>
 							<td align="center">
-												<font color="grey">未付</font>		</td>
+								<?php if($v['pay_status'] == 0):?>
+									<font color="grey">到付</font>
+								<?php elseif($v['pay_status'] == 1):?>
+									<font color="green">已网付</font>
+								<?php elseif($v['pay_status'] == 2):?>
+									<font color="red">未网付</font>
+								<?php endif;?>
+							</td>
 							<td align="center" id="status_a">
-								<font color="green">成功</font>		</td>
+								<?php if($v['order_status'] == 1):?>
+									<font color="green">成功</font>
+								<?php elseif($v['order_status'] == 2):?>
+									<font color="red">取消</font>
+								<?php else:?>
+									<font color="gray">未受理</font>
+								<?php endif;?>
+							</td>
 							<td align="right">
-												<a href="/zadmin/Order/operate/oid/5960/stu/2.html"><u>撤销</u></a>		</td>
+								<?php if($v['order_status'] == 0):?>
+									<a href="/admin/order/operate/oid/<?php echo $v['oid'];?>/stu/1"><u>接单</u></a>
+									<a href="/admin/order/operate/oid/<?php echo $v['oid'];?>/stu/2"><u>取消</u></a>
+									<a href="/admin/order/operate/oid/<?php echo $v['oid'];?>/stu/2"><u>撤销</u></a>
+								<?php else:?>
+									<a href="/admin/order/operate/oid/<?php echo $v['oid'];?>/stu/2"><u>撤销</u></a>
+								<?php endif;?>
+							</td>
 						</tr>
 						<?php endforeach;?>
 						</tbody>
@@ -118,10 +143,10 @@ $(function(){
 		$type_str = String($type) == '0'?'otel':'oname';
 		$keyword = String($.trim($('#searchInput').val()));
 		if($keyword==''){
-			alert('搜索内容不能为空！')
+			alert('搜索内容为空将显示全部内容！')
 		}
         $url = "<?php echo base_url('admin/order/olist/type');?>";
-        window.location.href = $url +'/'+$type_str+'/condition/'+$keyword+'';
+        window.location.href = $url +'/'+$type_str+'/condition/'+encodeURIComponent($keyword)+'';
     })
 })
 </script>

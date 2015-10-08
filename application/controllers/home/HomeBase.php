@@ -52,4 +52,11 @@ class HomeBase extends MY_Controller
             exit();
         }
     }
+    //提示信息
+    protected function retrieveJson($status, $data, $errorMsg=''){
+        $retrieve = array('status'=>$status, 'data'=>$data, 'msg'=>$errorMsg);
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($retrieve);
+        exit();
+    }
 }

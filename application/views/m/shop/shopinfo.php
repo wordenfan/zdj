@@ -43,11 +43,11 @@
 				<ul id="food_lst_<?php echo $wo['type_id'];?>" class="food_lst" style="display:none;margin-top:0;" >
 					<?php foreach($wo['food_list'] as $k=>$mo):?>
 						<li id="f_<?php echo $mo['food_id'];?>" class="f_list_li">
-							<span><?php echo $mo['food_name'];?></span><span class="price">￥<?php echo $mo['food_price'];?></span>
+							<span><?php echo $mo['food_name'];?></span><span class="price">￥<?php echo $mo['sale_price'];?></span>
 							<div class="operate">
 								<a href="javascript:void(0)" class="jian" id="decrease_id" cid="<?php echo $mo['food_id'];?>">－</a>
 								<input type="text" value="1" class="food_num" readonly />
-								<a href="javascript:void(0)" class="jia" id="increase_id" ctype="<?php echo $wo['type_id'];?>" cid="<?php echo $mo['food_id'];?>" cname="<?php echo $mo['food_name'];?>" cprice="<?php echo $mo['food_price'];?>">＋</a>
+								<a href="javascript:void(0)" class="jia" id="increase_id" ctype="<?php echo $wo['type_id'];?>" cid="<?php echo $mo['food_id'];?>" cname="<?php echo $mo['food_name'];?>" cprice="<?php echo $mo['sale_price'];?>">＋</a>
 							</div>
 						</li>
 					<?php endforeach;?>
@@ -213,7 +213,7 @@
 		if(id==0)
 		{
 			alert('请先登录!');
-			window.location.href = '__APP__/User/login?req_url=<{$req_url}>';
+			window.location.href = '';
 			return false;
 		}else if(food_sum < parseFloat(_start_price))
 		{

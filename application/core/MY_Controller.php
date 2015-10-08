@@ -9,10 +9,10 @@ class MY_Controller extends CI_Controller
         //设置区域HD
         if(!defined('AREA'))
         {
-            //define('AREA','HD_');
-            //define('AREA_ID','1');
-            define('AREA','SN_');
-            define('AREA_ID','2');
+            define('AREA','HD_');
+            define('AREA_ID','1');
+//            define('AREA','SN_');
+//            define('AREA_ID','2');
         }
     }
 }

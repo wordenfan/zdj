@@ -16,7 +16,7 @@
 	</div>	
 </div>
 <!--login-->
-<div id="show_login_div">
+<div id="show_login_div" class="show_float_div">
 	<div class="login_header">
         <button class="login_close" type="button" onclick="hideLogin()">×</button>
         <h3>登录</h3>
@@ -77,12 +77,18 @@
 					<div class="shop_item">
 						<span>				
 							<b class="pin"></b><span class="btip">(品质外卖提供商)</span>
-							&lt;{:hook('ShopIcon',array('shopid'=&gt;$id,'page'=&gt;'shop'))}&gt;	
+							<?php if($free_send==1):?>
+							<b class="mian"></b><span class="btip">(满<?php echo config_item(AREA.'FREE_SEND');?>免配送费)</span>
+							<?php endif;?>
 						</span>
 					</div>
 				</div>
 				<div class="menu_shopR">
-					<img width="50" height="132" src="/static/images/station_open.gif">
+					<?php if($open_close == 0): ?>
+					<img src="<?php echo base_url('static/images/station_rest.gif');?>" width="50" height="132" />
+					<?php else:?>
+					<img src="<?php echo base_url('static/images/station_open.gif');?>" width="50" height="132" />
+					<?php endif;?>
 				</div>
 			</div>
 			<div class="menus_view">
@@ -90,58 +96,35 @@
 				<div class="menus_viewTip">暂无简介</div>
 				<div style="border-top:0px solid #ccc" class="title"><span style="color:#ff0000;float:right;display:block">(如需打包费的已计入餐品价格)</span><a>菜单列表</a></div>
 				<div id="food_fen1" class="food_fenl">
-					餐品分类：<span><a href="#anchor0">粥、主食</a></span>
-					<span><a href="#anchor1">炒菜</a></span>				
-					<span><a href="#anchor1">汤类</a></span>				
-					<span><a href="#anchor1">凉菜</a></span>				
+					餐品分类：<?php foreach($foodlist_tmp as $t=>$to):?><span><a href="#anchor<?php echo $t;?>"><?php echo $to['type_name'];?></a></span><?php endforeach;?>
 				</div>
-				<div id="anchor0" class="fruit_menusView_item">
-					<h2>测试类别一</h2>
+				<?php foreach($foodlist_tmp as $k=>$vo):?>
+                    <div class="fruit_menusView_item"  id="anchor<?php echo $k; ?>">
+					<h2><?php echo $vo['type_name']; ?></h2>
 					<ul>
+						<?php foreach($vo['food_list'] as $m=>$mo):?>
 						<li>
+							<input type="hidden" id="<?php echo $vo['type_name']; ?>" value="<?php echo $mo['food_id']; ?>" />
 							<div class="fruit_a">
 								<img src="http://p0.meituan.net/210.0/xianfu/ddae2361a7580a960463a0037aefd96452447.jpg" />
 							</div>
 							<div class="fruit_b">
-								<span class="f_name" title="柠檬汁／常温">柠檬汁／常温</span>
-								<span class="f_right f_sale_num" title="柠檬汁／常温">已售14份</span>
+								<span class='f_name' title="<?php echo $mo['food_name']; ?>"><?php echo $mo['food_name']; ?></span>
+								<span class="f_right f_sale_num" title="柠檬汁／常温">已售<?php echo $mo['sale_num']; ?>份</span>
 							</div>
 							<div class="fruit_c">
-								<span class="current_price">¥17.00</span>
-								<span class="original_price">¥10.00</span>
-								<div class="f_right buy_btn"><span class="but_btn_a">3</span><span class="but_btn_b">购买</span></div>
+								<span class="sale_price">¥<label><?php echo $mo['sale_price']; ?></label></span>
+								<span class="original_price">¥<label><?php echo $mo['original_price']; ?></label></span>
+								<div class="f_right buy_btn">
+									<span id="buy_num" class="hidden_buy_num"><b>3</b><label>|</label></span>
+									<span style="display:inline">购买</span>
+								</div>
 							</div>
 						</li>
-						<li>
-							<div class="fruit_a">
-								<img src="http://p0.meituan.net/210.0/xianfu/ddae2361a7580a960463a0037aefd96452447.jpg" />
-							</div>
-							<div class="fruit_b">
-								<span class="f_name" title="柠檬汁／常温">柠檬汁／常温</span>
-								<span class="f_right f_sale_num" title="柠檬汁／常温">已售14份</span>
-							</div>
-							<div class="fruit_c">
-								<span class="current_price">¥17.00</span>
-								<span class="original_price">¥10.00</span>
-								<div class="f_right buy_btn"><span class="but_btn_a">3</span><span class="but_btn_b">购买</span></div>
-							</div>
-						</li>
-						<li>
-							<div class="fruit_a">
-								<img src="http://p0.meituan.net/210.0/xianfu/ddae2361a7580a960463a0037aefd96452447.jpg" />
-							</div>
-							<div class="fruit_b">
-								<span class="f_name" title="柠檬汁／常温">柠檬汁／常温</span>
-								<span class="f_right f_sale_num" title="柠檬汁／常温">已售14份</span>
-							</div>
-							<div class="fruit_c">
-								<span class="current_price">¥17.00</span>
-								<span class="original_price">¥10.00</span>
-								<div class="f_right buy_btn"><span class="but_btn_a">3</span><span class="but_btn_b">购买</span></div>
-							</div>
-						</li>
+						<?php endforeach;?>
 					</ul>
-				</div>
+					</div>
+                <?php endforeach;?>
 			</div>
 		</div>
        <div class="menu_lstR r">
@@ -164,7 +147,7 @@
 				</tr>
 				</tbody></table>
 			</div>
-			<input type="hidden" value="" name="o_uid" id="f_uid">
+			<input id="f_uid" type="hidden" name="o_uid" value="<?php echo isset($myinfo)?$myinfo['uid']:'';?>" />
 			<div class="sum_price">合计：<span class="send_fee_num">￥6</span> </div>
 			<div class="orders_send">
 				<div class="sendInfo_next">
@@ -178,33 +161,18 @@
 </div>
 <!--底部-->
 <script>
+
 //加载完毕
 $(function(){
     $cart = <?php echo $shop_cart; ?>;
     showHtml($cart);
 }); 
 
-//显示图片
-$(".food_pic").click(function(event)
-{
-	showPic($(this).attr('id'));
-	event.stopPropagation();
-})
-function showPic(url) {
-	$("#show_food_pic").children("img").attr("src",url);
-	$("#bg").css("display","block");
-	$("#show_img_div").css("display","block");
-}
-function hidePic() {
-	$("#show_food_pic").children("img").attr("src","");
-	document.getElementById("bg").style.display ='none';
-	document.getElementById("show_img_div").style.display ='none';
-}
 //购物车操作
 var send_prc = <?php echo $send_price; ?>;
 var food_sum = 0;//每次操作都会导致是否出现配送费的价格变动，所以此为变量
 //====增加
-$(".menusView_item ul li").click(function()
+$(".fruit_menusView_item ul li").click(function()
 {
 	var tm_flag = <?php echo $open_close; ?>;
 	if(tm_flag == 1)
@@ -212,27 +180,25 @@ $(".menusView_item ul li").click(function()
 		var _sid = <?php echo $id ;?>;
 		var _type = $(this).children("input").attr("id");
 		var _id = $(this).children("input").val();
-		var _name = $.trim($(this).children(".food_name").children("span").text());
-		var _price = $(this).children(".food_price").children("span").children("label").text();
+		var _name = $.trim($(this).children(".fruit_b").children(".f_name").text());
+		var _price = $(this).children(".fruit_c").children(".sale_price").children("label").text();
 		var click_obl = $(this);//供下方动画调用，否则无法调用到this
 		$.post('/home/shop/doShopping',{sid:_sid,fid:_id,ftype:_type,fname:_name,fprice:_price,fmod:1,send_price:send_prc},function(data)
 		{
 			//动画
-			/*
-			var carton_obj = click_obl.children(".food_num").children("span");
-			var tmp;
-			if(tmp) tmp.remove(); 
-			var box=carton_obj.parent();
-			tmp=carton_obj.clone();
-			var p=carton_obj.offset();
-			var p2=$('.sum_price').offset();
-			tmp.addClass('_box').css(p).appendTo(box);
-			tmp.appendTo(box);
-			p2=$.extend(p2,{height:5,width:5,opacity:10});
-			$(tmp).animate(p2, "normal",function(){
-				tmp.remove();  
-			});
-			*/
+			// var carton_obj = click_obl.children(".food_num").children("span");
+			// var tmp;
+			// if(tmp) tmp.remove(); 
+			// var box=carton_obj.parent();
+			// tmp=carton_obj.clone();
+			// var p=carton_obj.offset();
+			// var p2=$('.sum_price').offset();
+			// tmp.addClass('_box').css(p).appendTo(box);
+			// tmp.appendTo(box);
+			// p2=$.extend(p2,{height:5,width:5,opacity:10});
+			// $(tmp).animate(p2, "normal",function(){
+				// tmp.remove();  
+			// });
 			//
 			showHtml(data);
 		},'json')
@@ -278,11 +244,11 @@ $('body').on('click','#decrease_id', function()
 function showHtml(json)
 {
 	var html_str="";//购物列表htnl
-	var select_arr=[];//选中的数组
-	var nm = $(".menusView_item ul li");
+	var nm = $(".fruit_menusView_item ul li #buy_num");
+	var aaa = $(".fruit_menusView_item ul li");
 	var free_send_price = "<?php echo config_item(AREA.'FREE_SEND');?>";
 	nm.removeClass();//还原1
-	nm.children(".food_num").children("span").text("+");//还原2
+	nm.addClass("hidden_buy_num");
 	for(var w in json )
 	{
 		//合计总额
@@ -300,19 +266,18 @@ function showHtml(json)
 			}
 			break;
 		}
-		//左侧变为选中并且更新数量
 		for(i=0;i<nm.length;i++)
 		{
-			if(nm.eq(i).children("input").val()==w)//id相同
+			if(aaa.eq(i).children("input").val()==w)//id相同
 			{
-				nm.eq(i).children(".food_num").children("span").text(json[w].num);
-				nm.eq(i).addClass("selected");
-				select_arr.push(nm.eq(i));
+				nm.eq(i).children("b").text(json[w].num);
+				nm.eq(i).removeClass();
+				nm.eq(i).addClass("show_buy_num");
 			}
 		}
 		//右侧刷新界面
 		html_str+='<tr class="flist_id"><input id="f_id" type="hidden" value='+w+' /><td id="f_name"><span class="cart_food_name" title="'+json[w].name+'">'+json[w].name+'</span></td><td><div class="amount_count"><a href="javascript:void(0)" id="decrease_id" class="jian yoyo_amountJian" cid="'+w+'"></a><input type="text" readonly = "true" id = "amount_id" name="amount3" value="'+json[w].num+'" /><a href="javascript:void(0)" id="increase_id" class="jia yoyo_amountJia" cid="'+w+'" ctype="'+json[w].type+'" cname="'+json[w].name+'" cprice="'+json[w].price+'"></a></div></td><td id="unit_price">￥'+Math.round(json[w].price*json[w].num*100)/100+'</td><td><span class="order_delete" cid="'+w+'">移除</span></td></tr>';
-		}
+	}
 	$("tr").remove(".flist_id");
 	$("#sendtab_id").before(html_str);
 }

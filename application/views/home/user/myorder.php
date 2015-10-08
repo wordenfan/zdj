@@ -32,7 +32,7 @@
          </tr>
         </thead>
         <tbody>
-        <?php foreach($list as $k=>$vo): ?>
+        <?php foreach($data as $k=>$vo): ?>
 		<tr>
 			<td class="order_number"><a target="_blank" href="<?php echo base_url('home/order/orderinfo/oid/'.$vo['oid']);?>"><?php echo $vo['oid'];?></a></td>
 			<td><?php echo date('Y-m-d',$vo['opublish']);?></td>

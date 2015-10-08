@@ -83,7 +83,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">菜品类型：</label>
                                     <div class="col-sm-2">
-                                        <select name="shop_tyep" class="form-control">
+                                        <select name="shop_type" class="form-control">
                                             <option value="0">请选择分类</option>
                                             <?php foreach ($shop_type as $type_k => $type_v):?>
                                                 <option value="<?php echo $type_k;?>"  <?php echo (isset($info['type'])&&$type_k==$info['type'])?'selected':'';?> ><?php echo $type_v;?></option>
@@ -127,8 +127,8 @@
                                     </div>
                                 </div>
 								<div class="col-md-offset-2 col-md-6">
-                                    <input type="hidden" name="shop_id" id="shop_id_id" value="0"/>
-                                    <button type="submit" class="btn btn-primary ladda-button" id="addGoodsBtn">
+                                    <input type="hidden" name="shop_id" id="shop_id_id" value="<?php echo $info['id']?>"/>
+                                    <button type="submit" class="btn btn-primary ladda-button" id="editShopBtn">
                                         <span class="ladda-label">提交</span>
                                     </button>
                                     <button type="button" class="btn btn-success ladda-button" id="callBackGoodsBtn">
@@ -228,19 +228,23 @@
 											</div>
 											<div class="form-group">
 												<label class="sr-only" >销售价</label>
-												<input type="email" class="form-control" id="food_price" placeholder="销售价">
+												<input type="email" class="form-control" id="sale_price" placeholder="销售价">
 											</div>
 											<div class="form-group">
 												<label class="sr-only" >进货价</label>
-												<input type="email" class="form-control" id="food_getprice" placeholder="进货价">
+												<input type="text" class="form-control" id="get_price" placeholder="进货价">
 											</div>
 											<div class="form-group">
 												<label class="sr-only" >原标价</label>
-												<input type="email" class="form-control" id="food_getprice" placeholder="与销售价相同（限用于水果等需展示优惠的）">
+												<input type="text" class="form-control" id="original_price" placeholder="与销售价相同（限用于水果等需展示优惠的）">
+											</div>
+											<div class="form-group">
+												<label class="sr-only" >已售出(月)</label>
+												<input type="text" class="form-control" id="sale_num" placeholder="已售出">
 											</div>
 											<div class="form-group">
 												<label class="sr-only" >图片地址</label>
-												<input type="email" class="form-control" id="food_pic" placeholder="/Upload/foodlist/36/36_13.jpg">
+												<input type="text" class="form-control" id="food_pic" placeholder="商品图片如：/Upload/foodlist/36/36_13.jpg，没有可不填">
 											</div>
 										</div>
 										<div class="modal-footer">
@@ -256,8 +260,9 @@
 									<tr bgcolor="#FBFCE2">
 										<td width="15%" height="24" align="center">名称</td>
 										<td width="15%" height="24" align="center">原标价</td>
-										<td width="15%" height="24" align="center">销售价</td>
-										<td width="15%" height="24" align="center">进货价</td>
+										<td width="10%" height="24" align="center">销售价</td>
+										<td width="10%" height="24" align="center">已售出(月)</td>
+										<td width="10%" height="24" align="center">进货价</td>
 										<td width="10%" height="24" align="center">分类</td>
 										<td width="10%" align="center">商家</td>
 										<td width="5%" align="center">排序</td>
@@ -269,8 +274,9 @@
 										<tr bgcolor="#FFFFFF" align="center" class="hover food_del_flag">
 											<td width="15%" height="24" align="center"><?php echo $v['name'];?></td>
 											<td width="15%" height="24" align="center"><?php echo $v['original_price'];?></td>
-											<td width="15%" height="24" align="center"><?php echo $v['sale_price'];?></td>
-											<td width="15%" height="24" align="center"><?php echo $v['get_price'];?></td>
+											<td width="10%" height="24" align="center"><?php echo $v['sale_price'];?></td>
+											<td width="10%" height="24" align="center"><?php echo $v['sale_num'];?></td>
+											<td width="10%" height="24" align="center"><?php echo $v['get_price'];?></td>
 											<td width="10%" height="24" align="center"><?php echo $type_name[$v['food_type']];?></td>
 											<td width="10%" align="center"><?php echo $shop_name;?></td>
 											<td width="5%" align="center"><?php echo $v['sort'];?></td>
@@ -292,6 +298,10 @@
 <script type="text/javascript">
 $(function(){
 	//添加菜品,ajax局部刷新
+    // $('#editShopBtn').click(function(){
+		// alert(111);
+	// })
+	//添加菜品,ajax局部刷新
     $('#add_food').click(function(){
 		$('#myModal_food').modal('hide');
 		var food_shop_id = "<?php echo $shop_id;?>";
@@ -299,20 +309,23 @@ $(function(){
 		var food_name = $('#food_name').val();
 		var food_sort = $('#food_sort').val();
 		var food_cat_id = $('#food_cat_id').val();
-		var food_price = $('#food_price').val();
-		var food_getprice = $('#food_getprice').val();
+		var sale_price = $('#sale_price').val();
+		var get_price = $('#get_price').val();
+		var original_price = $('#original_price').val();
+		var food_pic = $('#food_pic').val();
+		var sale_num = $('#sale_num').val();
 		if(!food_shop_id){
 			alert('当前商家无效');
 			return;
 		}else if(!food_cat_id){
-			alert('请选择类别');
+			alert('请选择类别'+food_cat_id);
 			return;
 		}
-		$.post('/admin/shop/add_food',{shop_id:food_shop_id,food_name:food_name,food_sort:food_sort,type_id:food_cat_id,food_price:food_price,food_getprice:food_getprice},function(tjson){
+		$.post('/admin/shop/add_food',{shop_id:food_shop_id,food_name:food_name,food_sort:food_sort,type_id:food_cat_id,sale_price:sale_price,get_price:get_price,original_price:original_price,food_pic:food_pic,sale_num:sale_num},function(tjson){
 			var food_type_html = '';
 			for(var w in tjson)
 			{
-				food_type_html+='<tr bgcolor="#FFFFFF" align="center" class="hover food_del_flag"><td width="15%" height="24" align="center">'+tjson[w].name+'</td><td width="15%" height="24" align="center">'+tjson[w].get_price+'</td><td width="15%" height="24" align="center">'+tjson[w].price+'</td><td width="10%" height="24" align="center">'+tjson[w].food_type+'</td><td width="10%" align="center">'+shop_name+'</td><td width="5%" align="center">'+tjson[w].sort+'</td><td width="10%" align="center"><button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button></td></tr>';
+				food_type_html+='<tr bgcolor="#FFFFFF" align="center" class="hover food_del_flag"><td width="15%" height="24" align="center">'+tjson[w].name+'</td><td width="15%" height="24" align="center">'+tjson[w].original_price+'</td><td width="15%" height="24" align="center">'+tjson[w].sale_price+'</td><td width="10%" height="24" align="center">'+tjson[w].sale_num+'</td><td width="10%" height="24" align="center">'+tjson[w].get_price+'</td><td width="10%" height="24" align="center">'+tjson[w].food_type+'</td><td width="10%" align="center">'+shop_name+'</td><td width="5%" align="center">'+tjson[w].sort+'</td><td width="10%" align="center"><button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button></td></tr>';
 			}
 			//更新(菜单tab)的菜单列表
 			$('.food_del_flag').remove();
@@ -331,7 +344,7 @@ $(function(){
 		}
 		$.post('/admin/shop/add_food_type',{shop_id:shop_id,type_name:type_name},function(json){
 			var food_type_html = '';
-			var food_list_type_html = '<select name="food_cat_id" class="form-control" id="food_type"><option value="0">请选择分类</option>';
+			var food_list_type_html = '<select name="food_cat_id" class="form-control" id="food_cat_id"><option value="0">请选择分类</option>';
 			for(var w in json)
 			{
 				food_type_html+='<tr bgcolor="#FFFFFF" align="center" class="hover type_del_flag"><td width="10%" height="24" align="center">'+json[w].id+'</td><td width="20%" height="24" align="center">'+json[w].type_name+'</td><td width="30%" align="center">'+shop_name+'</td><td width="15%" align="center"><button id="type_edit" class="btn btn-default btn-sm" type="button">编辑</button></td></tr>';
@@ -342,7 +355,7 @@ $(function(){
 			$('.type_del_flag').remove();
 			$('#type_foot_page').before(food_type_html);
 			//更新(菜单tab)的类型选择
-			$('#food_type').remove();
+			$('#food_cat_id').remove();
 			$('#food_list_food_type').html(food_list_type_html);
 			
 		},'json');

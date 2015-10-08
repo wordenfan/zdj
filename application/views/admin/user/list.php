@@ -35,11 +35,11 @@
                         <div class="col-md-2" style="padding-left:0px">
                             <select class="form-control w150" id="search_type" name="search_type" >
                                 <option value="0">用户名称</option>
-                                <option value="1" >用户id</option>
+								<!--<option value="1" >用户id</option>-->
                             </select>
                         </div>
                         <div class="col-md-3" style="padding-left:0px">
-                            <input type="text" name="keyword" class="form-control w250" placeholder="号码/ID" id="searchInput">
+                            <input type="text" name="keyword" class="form-control w250" placeholder="请输入用户名称" id="searchInput">
                         </div>
                         <div class="col-md-5" style="">
                             <button type="button" class="btn btn-info ladda-button" id="searchBtn" >
@@ -64,7 +64,7 @@
 						<td width="6%" align="center">注册时间</td>
 						<td width="6%" align="center">上次登录</td>
 						<td width="6%" align="center">电话</td>
-						<td width="20%" align="center">配送地址</td>
+						<td width="20%" align="center">配送地址(默认)</td>
 						<td width="15%" align="center">标记地址</td>
 						<td width="15%" align="center">其他标记</td>
 						<td width="4%" align="center">状态</td>
@@ -141,9 +141,13 @@ $(function(){
 		var mark_address = $('#user_modal_address').val();
 		var mark_info = $('#user_modal_info').val();
         var url = "<?php echo base_url('admin/user/updateInfo');?>";
-		$.post(url,{uid:uid,mark_address:mark_address,mark_info,mark_info},function(data){
-			window.location.href="<?php echo base_url('admin/user/ulist');?>";
-		})
+		$.post(url,{uid:uid,mark_address:mark_address,mark_info:mark_info},function(data){
+			if(data.status == 1){
+				window.location.href="<?php echo base_url('admin/user/ulist');?>";
+			}else{
+				alert('更新失败');
+			}
+		},'json')
     })
 	//搜索
 	$("#searchBtn").click(function(){

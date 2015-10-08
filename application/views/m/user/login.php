@@ -17,9 +17,6 @@
 	<script src="<?php echo base_url('static/mobile_assets/js/amazeui.widgets.helper.js');?>"></script>
 </head>
 
-
-
-
 <body style="background:#f4f4f4">
 <script type="text/x-handlebars-template" id="amz-tpl">
 	{{>header header}}
@@ -27,21 +24,19 @@
 
 <div class="detail_wrap">
 	<div class="login_tab">
-        <form class="am-form">
-            <p><input type="text" id="add_uname" name="add_uname" placeholder="您的称谓"/></p>
-            <p><input type="text" id="tel" name="tel" placeholder="联系电话"/></p>
-            <p><input type="text" id="address" name="address" placeholder="详细送餐地址"/></p>
-            <p><input type="button" id="login_submit" value="保存地址"/></p>
-        </form>
+	<form id="myform" name="myform" method="post" action="">
+		<p><input type="text" name="keyword" placeholder="输入昵称/手机号"/></p>
+		<p><input type="password" name="pwd" placeholder="输入密码"/></p>
+		<p><input type="submit" id="login_submit" value="登录"/></p>
+		<p><a href="register" >没有账号？点击注册</a></p>
+	</form>
 	</div>
 </div>
 <script>
+	var screen_height = $(window).height();
+	//alert(screen_height);
+	$('.detail_wrap').css('height',screen_height-30);
 	$(function() {
-		//初始化
-		var app_url='/m/user';  
-		var screen_height = $(window).height();
-		$('.detail_wrap').css('height',screen_height-30);
-		//amaze
 		var $tpl = $('#amz-tpl'),
 		source = $tpl.text(),
 		template = Handlebars.compile(source),
@@ -55,25 +50,12 @@
 						"icon": "chevron-left",         // 字体图标名称: 使用 Amaze UI 字体图标 http://www.amazeui.org/css/icon
 						"customIcon": ""    // 自定义图标 URL，设置此项后当前链接不再显示 icon
 					}],
-					"title": "管理地址"
+					"title": "宅当家-登录"
 				}
 			}
 		},
 		html = template(data);
 		$tpl.before(html);
-		$('#login_submit').click(function()
-		{
-			$('#login_submit').attr('disabled',"true");
-			var uid = <?php echo $uid_tmp;?>;
-			$.post(app_url+'/add_address',{add_uname:$('#add_uname').val(),tel:$('#tel').val(),address:$('#address').val(),uid:uid},function(data)
-			{
-				if(data.status == 1){
-					window.location.href='/m/order/index';
-				}else{
-					alert('添加失败，请重新添加');
-				}
-			},'json')
-		})
 	});
 </script>
 </body>

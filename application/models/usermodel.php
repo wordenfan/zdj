@@ -8,32 +8,35 @@
 class UserModel extends MY_Model
 {
     private $_table_name;
+    private $_address_table_name;
     
     public function __construct() {
         parent::__construct();
-        $this->_table_name = 'user'; 
+        $this->_table_name = 'onethink_user'; 
+        $this->_address_table_name = 'onethink_user_address'; 
         $this->load->model('redismodel','redisM');
     }
     
-    //查询adminList
+    //查询adminList,$field目前为全查询
     public function selectUserInfo($operation,$where,$field='*',$per_page=20,$start_get=1)
-    {
-        $query = $this->db->select($field)
+    {   
+        $query = $this->db->select('onethink_user.*,onethink_user_address.add_uname,onethink_user_address.tel,onethink_user_address.address,onethink_user_address.mark_address')
                  ->from($this->_table_name)
+                 ->join($this->_address_table_name, 'onethink_user.uid = onethink_user_address.uid AND onethink_user_address.is_default = 1','left')
                  ->where($where);
         switch ($operation)
         {
            case 1:
                $rdata = $query->limit($per_page,($start_get-1)*$per_page)
-                              ->order_by('uid','DESC')
+                              ->order_by('onethink_user.uid','DESC')
+                              ->group_by("onethink_user.uid")
                               ->get()
                               ->result_array();
                break;
            case 2:
                $rdata = $query->count_all_results();
                break;
-        }
-                
+        }       
         return $rdata;
     }
     
@@ -49,12 +52,10 @@ class UserModel extends MY_Model
     }
     
     //登录
-    public function login($username, $pwd)
+    public function login($where, $pwd)
     {
-        $map = array();
-        $map['uname'] = $username;
         //验证用户密码
-        $user = $this->getUserInfo($map,'uid,uname,password,status');
+        $user = $this->getUserInfo($where,'uid,uname,reg_tel,password,status');
         if($user && $user['status'])
         {
             if(think_ucenter_md5($pwd,config_item('USER_AUTH_KEY')) === $user['password'])
@@ -69,7 +70,7 @@ class UserModel extends MY_Model
         }
     }
     //增加用户
-    public function addUser($uname,$pwd)
+    public function addUser($uname,$reg_tel,$pwd)
     {
         $area_data = $this->db->select('id,code')->from('area')->get()->result_array();
         foreach($area_data as $k=>$v)
@@ -79,6 +80,7 @@ class UserModel extends MY_Model
         $area_id = array_keys($area_arr,AREA);
         $data=array(
             'uname' => strip_tags($uname),
+            'reg_tel' => $reg_tel,
             'password' => think_ucenter_md5($pwd,config_item('USER_AUTH_KEY')),
             'reg_time' => time(),
             'reg_areaid'=> $area_id[0],
@@ -87,6 +89,11 @@ class UserModel extends MY_Model
         $this->db->insert($this->_table_name,$data);
         $uid = $this->db->insert_id();
         return $uid;
+    }
+    //更新
+    public function updateUser($uid,$data) {
+        $this->db->where(array('uid'=>$uid))->update($this->_table_name,$data);
+        return $this->db->affected_rows();
     }
     //自动登录
     public function autoLogin($uid)
@@ -132,9 +139,5 @@ class UserModel extends MY_Model
         $this->session->unset_userdata('user_auth_sign');
         $this->session->sess_destroy();
         delete_cookie("login_auto");
-    }
-    //更新标记地址等
-    public function updateInfo($where,$data) {
-        $this->db->where($where)->update($this->_table_name,$data);
     }
 }

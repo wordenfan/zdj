@@ -24,34 +24,33 @@ class Order extends HomeBase {
             $_list = $lib_data['all_shop'];
             if(!empty($_list))
             {
-                $this->load->library('lib_shopinfo','','lib_shopinfo');
+                $this->load->library('lib_shop','','lib_shop');
                 $shopid_arr = array_keys($_list);//返回所有键值，因为目前是单店模式
                 $shopid = $shopid_arr[0];
                 //
-                $_info = $this->lib_shopinfo->shopDetail(array('id'=>$shopid));
+                $_info = $this->lib_shop->shopDetail(array('id'=>$shopid));
                 $_total = $this->cart->getPrice($shopid); 
                 $data = array();
                 $data['shopname_tmp'] = $_info['name'];
                 $data['list_tmp'] = $_list[$shopid];
                 $data['shopid_tmp'] = $shopid;
                 //
-                $udata = $this->lib_user->getUserById(9);
-                $data['uid_tmp'] = $udata['base_info']['uid'];
-                $data['name_tmp'] = $udata['base_info']['uname'];
-                $data['tel_tmp'] = $udata['address_info'][0]['tel'];
-                $data['address_tmp'] = $udata['address_info'][0]['address'];
-                $data['alipay_trade_code'] = $_SERVER['REQUEST_TIME'] . UID;
-                $data['sendprc_tmp'] = $_info['send_price'];
-                $data['sum'] = $data['sendprc_tmp'] + $_total; 
+                $udata = $this->lib_user->getUserAllInfoById($uid);
+                $data['uid_tmp']            = $udata['base_info']['uid'];
+                $data['address_array']      = $udata['address_info'];
+                $data['alipay_trade_code']  = $_SERVER['REQUEST_TIME'] . UID;
+                $data['sendprc_tmp']        = $_info['send_price'];
+                $data['sum']                = $data['sendprc_tmp'] + $_total; 
+                
                 //是否享受减免配送费
-                $in_free_send = $this->lib_shopinfo->freeSend($shopid);
+                $in_free_send = $this->lib_shop->freeSend($shopid);
                 if($in_free_send && $_total >= config_item(AREA.'FREE_SEND')){
                     $data['sendprc_tmp'] = 0;
                     $data['sum'] = $_total; 
                 }
                 $this->load->view('home/order/ordersubmit',$data);
             }else{
-                show_message('',base_url(),3,'购物车无数据,访问无效');
+                show_message('',base_url(),3,'购物车无数据或已过期,访问无效');
             }
         }
     }

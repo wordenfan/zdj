@@ -25,7 +25,7 @@ class Order extends AdminBase
         $where = array();
         if($this->uri->segment(7)){
             $js_type = $this->uri->segment(5);
-            $js_condition = $this->uri->segment(7);
+            $js_condition = urldecode($this->uri->segment(7));
             $where[$js_type] = $js_condition;
             $_url = '/admin/order/olist/'.$js_type.'/'.$js_condition.'/page/'.$cur_page;
         }else{
@@ -36,6 +36,7 @@ class Order extends AdminBase
         }
         //
         $o_list = $this->omd->orderList($per_page,$cur_page,$where);
+        
         $total_rows = $o_list['total'];
         $data['order_list'] = $o_list['data'];
         //分页
@@ -71,35 +72,15 @@ class Order extends AdminBase
     }
     public function operate()
     {
-        if(isset($_GET['oid'])&&isset($_GET['stu']))
+        $oid = $this->uri->segment(5);
+        $stu = $this->uri->segment(7);
+        if(isset($oid)&&isset($stu))
         {
-            $data['status'] = $_GET['stu'];
-            $res = $this->ormd->where('oid='.$_GET['oid'])->save($data);
-            CacheData::reset_order_cache();
-            if($res)
-            {
-                $this->redirect(MODULE_ALIAS.'/Admin/Order/index');
-            }else{
-                $this->error($this->ormd->getError());
-            }
+            $data['order_status'] = $stu;
+            $this->load->library('lib_order','','lib_order');
+            $affected_rows = $this->lib_order->changeOrderStatus($oid,$data);
+            //CacheData::reset_order_cache();
+            redirect('/admin/order/olist');
         }
-    }
-    //
-    public function ad_index()
-    {
-        $tdata = array();
-        $this->load->view('admin/index',$tdata);
-    }
-    //
-    public function ad_top()
-    {
-        $tdata = array();
-        $this->load->view('admin/public/top',$tdata);
-    }
-    //
-    public function ad_menu()
-    {
-        $tdata = array();
-        $this->load->view('admin/public/menu',$tdata);
     }
 }

@@ -66,7 +66,6 @@ body{width:auto; height:100%;}
 .detail_wrap ul{margin:0px;padding:0px;}
 .detail_wrap li{text-align:left;height:40px;line-height:40px;font-size:14px;border-bottom:1px solid #dedede;}
 .detail_til{font-weight:bold;background:#ededed;border-bottom:1px solid #ccc;}
-#add_address{margin:7px 0px;background:#fff;color:#e65210;padding:6px 10px 4px 12px;font-size:12px;letter-spacing:2px;border:1px solid #e65210;}
 .detail_b{text-align:right;padding-right:20px;}
 .detail_b b{color:#e65210}
 .detail_c{margin-top:20px}
@@ -75,20 +74,21 @@ body{width:auto; height:100%;}
 .success_tips{font-size:14px;color:#999}
 .success_a{margin:30px 0px 30px 0px;text-align:center;vertical-align: middle;}
 .success_b{display:block;width:96%;background:#e65210;color:#ffffff;font-size:14px;letter-spacing:2px;height:40px;line-height:40px;text-align:center;margin:0 auto;margin-top:40px}
-
+/* 注册登陆*/
 .login_tab{margin:20px 20px;}
 .login_tab input{width:100%;height:40px;line-height:40px;}
 #login_submit{width:100%;background:#e65210;color:#ffffff;border:0px;border-radius:5px}
 .mreg1,.mreg2,.mreg3{padding:0px;}
-.mreg2{margin:0 auto;text-align:center;}
-.mreg2 img{border:1px solid #ccc;}
-.mreg3{height:40px;line-height:40px;border:1px solid #ccc;background-color:#fff;text-align:center;}
-.mreg3 a{color:#e65210;cursor:pointer}
-.mreg3 a:hover{color:#e65210}
-.mreg3 a:link{color:#e65210;}
+.mreg3{height:40px;line-height:40px;border:1px solid #ccc;background-color:#fff;text-align:center;cursor:pointer}
+.mreg3 a{color:#e65210;}
 /* 免配送费插件*/
 .home_text span{float:left;margin-right:10px;}
 .home_text .mian{background: url("../../images/icon.png") no-repeat scroll -75px -100px rgba(0, 0, 0, 0);display: block;float: left;height: 15px;margin: 2px 5px 0 0;width: 15px;}
-
+/*配送地址*/
+#manage_address{margin:7px 0px;background:#fff;color:#e65210;padding:6px 10px 4px 12px;font-size:12px;letter-spacing:2px;border:1px solid #e65210;}
+#add_address{margin-top:25px;text-align:center;background:#e65210;padding:10px;color:#fff;cursor:pointer}
+.m_default_address{background:#dadada;}
+.m_set_default{text-decoration:underline;text-align:center;vertical-align:middle;margin-top:10px;}
+.remark_textarea{width:100%;margin:15px 5px 5px 5px;border:1px solid #ccc;}
 
 

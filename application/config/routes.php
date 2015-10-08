@@ -39,7 +39,9 @@
 */
 
 $route['default_controller'] = "home/home";
-$route['404_override'] = '';
+$route['zadmin']             = "admin/index/index";
+
+$route['404_override']       = '';
 
 
 /* End of file routes.php */

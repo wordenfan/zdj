@@ -82,7 +82,7 @@ a.red:hover{ text-decoration:underline;}
 #show_img_div a{cursor:pointer;width:40px;height:40px;background:url(../images/closeBtn.gif) center center no-repeat;position:absolute;display:block;right:5px;top:5px; z-index:10001;}
 
 /*login 浮层*/
-#show_login_div{display:none;position:fixed;top:25%;left:50%;width:460px;height:270px;margin-left:-230px;border:5px solid #999;background-color:white;z-index:1002;overflow: auto;}
+.show_float_div{overflow:hidden;display:none;position:fixed !important; position:absolute;top:25%;left:50%;width:460px;height:270px;margin-left:-230px;border:5px solid #999;background-color:white;z-index:1002;overflow: auto;}
 .login_header{padding:9px 15px;background-color:#e94b36}
 .login_header h3{font-size:16px;line-height:30px;margin:0;color:#fff;}
 .login_close{margin-top:2px;padding:0;border:0 none;background:none;cursor:pointer;float:right;color:#fff;font-size:20px;line-height:20px;font-weight:bold;}
@@ -94,11 +94,13 @@ a.red:hover{ text-decoration:underline;}
 .f_login_reg{ width:460px;color:#ff6600;background:#f5f5f5;height:35px;line-height:35px;border-top:2px solid #ddd;box-shadow:0 1px 0 #fff inset; overflow:hidden;}
 .f_login_reg a{padding-left:15px;font-size:12px;color:#000}
 .lg_prompt{color:#666;padding-top:10px;width:250px;height:30px;line-height:30px;display:block;margin-right:18px;}
+/*地址浮层*/
+#show_address_div{height:290px;}
+#show_address_div .address_body{height:180px;}
 
 /* ie6 */
 body{width:100%; height:100%;}
-#show_login_div{ overflow:hidden;}
-#show_img_div,#show_login_div,#bg{ position:fixed !important; position:absolute;}
+#show_img_div,#bg{ position:fixed !important; position:absolute;}
 #bg{ background:#000;top:0px; left:0px; width:100%; height:100%;_height:3000px;filter: progid:DXImageTransform.Microsoft.Alpha(opacity=70);}
 #show_food_pic{ position:absolute; z-index:1010; width:320px; height:240px; overflow:hidden;}
 #show_img_div .d_closeBtn img{width:40px; height:40px;}

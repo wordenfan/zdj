@@ -35,7 +35,6 @@ class User extends AdminBase
             $_url = '/admin/user/ulist/page';
         }
         $data['info_tmp'] = $order_list;
-
         //分页
         $this->load->library('pagination');
         $config                      = pagination_setting();//加在分页样式
@@ -58,10 +57,17 @@ class User extends AdminBase
     
     //更新标记地址等
     public function updateInfo() {
-        $where['uid'] = $this->input->post('uid');
-        $data['mark_address'] = trim($this->input->post('mark_address'));
-        $data['mark_info'] = trim($this->input->post('mark_info'));
-        $this->umd->updateInfo($where,$data);
-        echo 1;
+        $this->load->library('lib_user','','lib_user');
+        
+        $uid = $this->input->post('uid');
+        $user_data['mark_info'] = trim($this->input->post('mark_info'));
+        $this->lib_user->updateUser($uid,$user_data);
+        //
+        $address_data['mark_address'] = trim($this->input->post('mark_address'));
+        $user_address_arr = $this->lib_user->getUserAddress($uid);
+        $address_default_id = $user_address_arr[0]['id'];
+        $this->lib_user->updateAddress($address_default_id,$address_data);
+        $json = array('status'=>1,'msg'=>'成功');
+        echo json_encode($json);
     }
 }

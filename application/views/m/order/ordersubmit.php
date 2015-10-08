@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo $name;?></title>
+	<title>提交订单</title>
 	<meta name="description" content="">
 	<meta name="keywords" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -30,21 +30,30 @@
     <ul>
         <li>				
             <div class="am-g">
-                <div class="col-sm-12 detail_til">收货信息<button class="am-fr" id="add_address">新增地址</button></div>
+                <div class="col-sm-12 detail_til">收货信息<button class="am-fr" id="manage_address">管理地址</button></div>
             </div>
         </li>
         <div>
             <input id="f_shopid" type="hidden" name="shopid" value="<?php echo $shopid_tmp;?>" />
-            <table class="am-table am-table-centered">
+			<?php if(empty($address_array)):?>
+			<div>
+                <div style="margin:20px;"><center>请点击"管理地址"完善配送信息</center></div>
+            </div>
+			<?php else:?>
+			<table class="am-table am-table-centered" style="margin-bottom:0px;">
             <tr>
-                <td rowspan="2" width="30%" class="am-text-middle">(手机)<?php echo isset($myinfo)?$myinfo['uname']:'';?></td>
-                <td><?php echo isset($user_tel)?$user_tel:''?></td>
+                <td rowspan="2" width="30%" class="am-text-middle"><?php echo isset($address_array[0]['add_uname'])?$address_array[0]['add_uname']:''?></td>
+                <td><?php echo isset($address_array[0]['tel'])?$address_array[0]['tel']:''?></td>
             </tr>
             <tr>
-                <td><?php echo isset($user_address)?$user_address:''?></td>
+                <td><?php echo isset($address_array[0]['address'])?$address_array[0]['address']:''?></td>
             </tr>
             </table>
-        </div>		
+			<div>
+				<textarea id="form_remark" class="remark_textarea" placeholder="请填写备注"></textarea>
+			</div>
+			<?php endif;?>
+        </div>	
         <li>				
             <div class="am-g detail_til">
                 <div class="col-sm-6">餐品</div>
@@ -118,29 +127,30 @@
 		$tpl.before(html);
 	});
 	//添加地址
-	$("#add_address").click(function() 
+	$("#manage_address").click(function() 
 	{
-		window.location.href=app_url+'/user/add_address';
+		window.location.href=app_url+'/user/manage_address';
 	})
 	//提交菜品
 	$("#sub_order").click(function() 
 	{
-		var jname = $('#form_name').val();
-		var jtel = $('#form_tel').val();
-		var jaddress = $('#form_address').val();
-		var jshopid = "<?php echo $shopid_tmp;?>";
-		var jremark = $('#form_remark').val();
+		var add_uname = $('table').find('tr').eq(0).find('td').eq(0).html();
+		var tel = $('table').find('tr').eq(0).find('td').eq(1).html();
+		var address = $('table').find('tr').eq(1).find('td').eq(0).html();
+		var shopid = "<?php echo $shopid_tmp;?>";
+		var remark = $('.remark_textarea').val();
+		var from_type = 'mobile_home';
 		//配送信息不全
-		if(jname==""||jtel==""||jaddress=="")
+		if(add_uname==""||tel==""||address=="")
 		{
 			alert('请填写完整配送信息！');
 			return false;
 		}
 		//表单提交		
 		$('#sub_order').attr('disabled',"true");
-		$.post(app_url+'/order/sendOrder',{name:jname,tel:jtel,address:jaddress,shopid:jshopid,remark:jremark},function(data)
+		$.post(app_url+'/order/dosubmit',{from_type:from_type,add_uname:add_uname,tel:tel,address:address,shopid:shopid,remark:remark},function(data)
 		{
-			window.location.href=app_url+'/order/orderStatus/st/'+data.flag+'/msg/'+data.msg;
+			window.location.href=app_url+'/order/orderStatus?st='+data.status+'&msg='+data.msg;
 		},'json')
 		
 		
