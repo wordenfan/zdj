@@ -2,5 +2,5 @@
 # *.a       # 忽略所有 .a 结尾的文件
 # !lib.a    # 但 lib.a 除外
 # build/    # 忽略 build/ 目录下的所有文件
-application/config/database.php
-nbproject/
+/application/config/database.php
+/nbproject/
