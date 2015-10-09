@@ -1,5 +1,6 @@
 <?php
 
+
 define('ENVIRONMENT', 'development');
 
 if (defined('ENVIRONMENT'))
