@@ -40,11 +40,9 @@ class UserOldModel extends MY_Model
     //更新
     public function updateMemberOld($uid,$uname,$pay)
     {
-        $idata = array(
-            'uname'       => $uname,
-            'order_sum'   => 'order_sum+'.$pay,
-            'order_num'   => 'order_num+1',
-        );
-        $this->db->where(array('uid'=>$uid))->update($this->_table_name, $idata); 
+        $this->db->set('uname',$uname);
+        $this->db->set('order_sum','order_sum+'.$pay, false);//第三个参数阻止被转义
+        $this->db->set('order_num','order_num+1', false);
+        $this->db->where(array('uid'=>$uid))->update($this->_table_name); 
     }
 }
