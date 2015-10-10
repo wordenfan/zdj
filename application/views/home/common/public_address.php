@@ -44,9 +44,9 @@
 				</div>
 			</div>
 			<div class="f_login_item">
-				<span class="f_login_span l">昵&nbsp;&nbsp;&nbsp;&nbsp;称：</span>
+				<span class="f_login_span l">收货人：</span>
 				<div class="l">
-					<input type="text" placeholder="填写昵称" maxlength="16" id="add_uname">
+					<input type="text" placeholder="填写收货人" maxlength="16" id="add_uname">
 				</div>
 			</div>
 			<div class="f_login_item">

@@ -242,7 +242,7 @@ class User extends HomeBase {
         $data['reg_tel']  = $this->input->post('reg_tel',TRUE);
         $data['password'] = $this->input->post('password',TRUE);
         $data['uname']    = '用户'.substr($data['reg_tel'], 7);
-        $session_code = $this->session->userdata['reg_code'];
+        $session_code = $this->session->userdata['reg_code']?$this->session->userdata['reg_code']:'';
         if($tel_code != $session_code[0]){
             $this->retrieveJson(0,'','手机验证码错误');
         }

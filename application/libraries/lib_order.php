@@ -17,9 +17,11 @@ class Lib_order
     public function doSubmit() 
     {
         $this->ci->load->model('foodmodel','fmd');
+        
 		$from_type = $this->ci->input->post('from_type') ? $this->ci->input->post('from_type'):0;
         if(!$from_type || !$_POST){ 
             $res_arr['msg'] = '订单来源错误';
+            $res_arr['data'] = 0;
             $res_arr['status'] = 0;
             return $res_arr; 
         }
@@ -66,12 +68,14 @@ class Lib_order
         if($open_close==0)
         {
             $res_arr['msg'] = '不巧，店家或配送员刚刚下班';
+            $res_arr['data'] = 0;
             $res_arr['status'] = 0;
             return $res_arr; 
         }
         if($this->ci->lib_cart->getShopNum()<1)
         {
             $res_arr['msg'] = '购物车为空';
+            $res_arr['data'] = 0;
             $res_arr['status'] = 0;
             return $res_arr; 
         }
@@ -93,12 +97,16 @@ class Lib_order
         }
         //
         $res_arr = $this->add_order($data,$shop_info,$list);
-        if($res_arr['status'] == 1){
-            $res_arr['msg'] = empty($alipay_post)?'订单提交成功,配送员即刻为您配送!':$alipay_post;
-            $res_arr['status'] = 1;
-        }else{
-            $res_arr['msg'] = '订单提交失败，请重新下单!';
-            $res_arr['status'] = 0;
+        if($res_arr['status'] == 1)
+        {
+            $this->ci->lib_cart->clearCart();
+            //支付宝继续执行
+            if(!empty($alipay_post)){
+                require_once  APPPATH.'controllers/home/alipay.php';
+                $alipay = new AliPay();
+                $alipay->doalipay($alipay_post);
+                exit;
+            }
         }
         return $res_arr; 
 	}
@@ -144,6 +152,7 @@ class Lib_order
         $snid = $this->ci->omd->addOrder($data);
         if(!$snid){
             $res['msg'] = '插入order失败';
+            $res['data'] = 0;
             $res['status'] = 0;
             return $res;
         }
@@ -157,10 +166,12 @@ class Lib_order
         $affected_rows = $this->ci->db->affected_rows();
         if(!$affected_rows) {
             $res['msg'] = '批量插入orderlist失败';
+            $res['data'] = 0;
             $res['status'] = 0;
             return $res;
         }
-        $res['msg'] = '批量插入orderlist失败';
+        $res['msg'] = '订单提交成功,配送员即刻为您配送!';
+        $res['data'] = array('snid'=>$snid);
         $res['status'] = 1;
         return $res;
     }

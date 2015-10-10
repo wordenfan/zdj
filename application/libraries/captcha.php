@@ -3,7 +3,7 @@ class Captcha
 {
 	var $width='80';
 	var $num='4';
-	var $height='30';
+	var $height='36';
 	var $name='randcode';
 
 	public function __construct($conf="")
@@ -41,7 +41,7 @@ class Captcha
             /*
             * 绘制基本框架
             */
-            $bgcolor = imagecolorallocate($im, 255, 255, 255); //设置背景颜色
+            $bgcolor = imagecolorallocate($im, 250, 250, 250); //设置背景颜色
             ImageFill($im, 0, 0, $bgcolor); //填充背景色
             if($border)
             {
