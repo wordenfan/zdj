@@ -222,3 +222,11 @@ request body = <TemplateSMS>
                   </TemplateSMS>
 request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/8a48b5514b0b8727014b1f6582770db0/SMS/TemplateSMS?sig=1A0C799079677A92E1D72B1DFF681EFF
 response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>112314</statusCode><statusMsg>【短信】短信下发超过当日发送限制</statusMsg></Response>
+request body = <TemplateSMS>
+                    <to>18561527901</to> 
+                    <appId>8a48b5514b0b8727014b1fc998600dff</appId>
+                    <templateId>14077</templateId>
+                    <datas><data>9021</data></datas>
+                  </TemplateSMS>
+request url = https://sandboxapp.cloopen.com:8883/2013-12-26/Accounts/8a48b5514b0b8727014b1f6582770db0/SMS/TemplateSMS?sig=AD70715A02AC59C0E003F941C8B6243B
+response body = <?xml version="1.0" encoding="UTF-8" standalone="yes"?><Response><statusCode>000000</statusCode><TemplateSMS><dateCreated>20151010114234</dateCreated><smsMessageSid>2015101011423420478134</smsMessageSid></TemplateSMS></Response>

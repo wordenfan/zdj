@@ -169,7 +169,7 @@ $("#submit_id").click(function()
 		window.location.href = '<?php echo base_url('home/user/login?req_url='.$_SERVER["REQUEST_URI"]); ?>';
 		return false;
 	}//配送信息不全
-	else if(_name==""||_tel==""||_address=="")
+	else if(typeof(_name)=="undefined"||typeof(_tel)=="undefined"||typeof(_address)=="undefined")
 	{
 		alert('配送信息不完整！');
 		return false;

@@ -19,7 +19,7 @@
 			<div class="reg_item" id="nichName">
 				<span class="reg_name l">手机号：</span>
 				<div class="reg_input l">
-					<input type="text" name="reg_tel" id="reg_tel" autocomplete="off" maxlength="16" placeholder="输入手机号" />
+					<input type="text" name="reg_tel" id="reg_tel" maxlength="16" placeholder="输入手机号" />
 				</div>
 			</div>
 			<div class="reg_item" id="set_password">

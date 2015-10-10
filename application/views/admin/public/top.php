@@ -4,14 +4,28 @@
 <title>系统管理</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
-<style type="text/css">
-@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide{display:none !important;}ng\:form{display:block;}.ng-animate-block-transitions{transition:0s all!important;-webkit-transition:0s all!important;}.ng-hide-add-active,.ng-hide-remove{display:block!important;}
-</style>
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/bootstrap.min.css') ;?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/ad_base.css') ;?>" />
 <link rel="stylesheet" type="text/css" href="<?php echo base_url('static/css/ad_module.css') ;?>" />
+<script Language="JavaScript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
+<script Language="JavaScript" src="<?php echo base_url('static/js/swfobject.js');?>"></script>
 </head>
 <body>
+<script type="text/javascript">
+	var flashvars = {url:"<?php echo base_url('static/flash/');?>"};
+	var params = {};
+	params.allowscriptaccess = "sameDomain";
+	var attributes = {};
+	attributes.id = "order";
+	attributes.name = "order";
+	attributes.align = "middle";
+	swfobject.embedSWF(
+		"<?php echo base_url('static/flash/order.swf');?>", "flashContent", 
+		"1px", "1px", 
+		"9.0.0", "expressInstall.swf",
+		flashvars, params, attributes);
+</script>
+<div id="flashContent"></div>
 <div id="header" class="ng-scope">
 	<div ng-controller="appheaderCtrl" class="header-top-logo ng-scope" role="navigation">
 	    <div class="container">
@@ -26,5 +40,28 @@
 	    </div>
      </div>
 </div>
+<script>
+	$(function(){
+		/*
+		function getElement(){
+			$(".order_id").each(function(i){
+				arr.push($(this).find('a').eq(0).html());
+			})
+		}*/
+		function refresh_orderlist()
+		{
+			$.post('/admin/order/refreshOrder',{tt:123},function(data)
+			{
+				// alert(data);
+				if(data=='new')
+				{
+					var flash=document.getElementById("order");
+					flash.jsCall();
+				}
+			},'json')
+		}
+		setInterval(refresh_orderlist,30000);
+	})
+</script>
 </body>
 </html>

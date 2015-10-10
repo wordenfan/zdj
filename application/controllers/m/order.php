@@ -68,11 +68,10 @@
             {
                 $this->load->library('lib_order','','lib_order');
                 $res_arr = $this->lib_order->doSubmit();
-                if($res_arr['status'] == 1)
-                {
-                    $this->load->library('cachedata','','cachedata');
-                    $this->cachedata->saveCache();
-                }
+            }else{
+                $res_arr['msg'] = '非法提交';
+                $res_arr['data'] = 0;
+                $res_arr['status'] = 0;
             }
             $json_tm = json_encode($res_arr);
             echo $json_tm;

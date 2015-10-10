@@ -56,32 +56,17 @@ class Order extends HomeBase {
     }
     //执行写库命令
     public function dosubmit()
-    {
-        //检查是否登录,未登录跳转
+    {   
         $uid = $this->login_status();
-        $from_type = $this->input->post('from_type') ? $this->input->post('from_type'):0;
-        if(!$from_type || !$_POST){ 
-            $res_arr['msg'] = '订单来源错误';
-            $res_arr['status'] = 0;
-        }
         //提交订单
         if($_POST && $uid)
         {
             $this->load->library('lib_order','','lib_order');
             $res_arr = $this->lib_order->doSubmit();
-            if($res_arr['status'] == 1)
-            {
-                $this->load->library('cachedata','','cachedata');
-                $this->cachedata->saveCache();
-                //alipay
-                if($from_type == 'pc_alipay')
-                {
-                    require_once  APPPATH.'controllers/home/alipay.php';
-                    $alipay = new AliPay();
-                    $alipay->doalipay($res_arr['msg']);
-                    exit;
-                }
-            }
+        }else{
+            $res_arr['msg'] = '非法提交';
+            $res_arr['data'] = 0;
+            $res_arr['status'] = 0;
         }
         $json_tm = json_encode($res_arr);
         echo $json_tm;

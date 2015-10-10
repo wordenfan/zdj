@@ -61,7 +61,7 @@ class Order extends AdminBase
     public function refreshOrder()
     {
         if($_POST)
-        {           
+        {          
             $this->load->model('redismodel','redis_m');
             $new_order = $this->redis_m->llen('order');
             $flag = intval($new_order)>0?'new':'old';
