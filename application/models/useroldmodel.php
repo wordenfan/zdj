@@ -42,8 +42,8 @@ class UserOldModel extends MY_Model
     {
         $idata = array(
             'uname'       => $uname,
-            'order_sum'   => 'order_sum+'.$pay,
-            'order_num'   => 'order_num+1',
+            'order_sum'   => '`order_sum`+'.$pay,
+            'order_num'   => '`order_num`+1',
         );
         $this->db->where(array('uid'=>$uid))->update($this->_table_name, $idata); 
     }

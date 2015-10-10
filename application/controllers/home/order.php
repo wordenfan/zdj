@@ -101,6 +101,7 @@ class Order extends HomeBase {
                 $map['uid'] = $res['uid'];
                 $this->load->library('lib_user','','lib_user');
                 $lib_data = $this->lib_user->getUserAllInfoById($map['uid']);
+                var_dump($lib_data);exit;
                 $data['userinfo_tmp']  = $lib_data;
                 $user_order_data = $this->omd->getOrderInfo($map);
                 $data['userorder_tmp']  = $user_order_data;
