@@ -137,7 +137,7 @@ class Shopping
     }
     //清空购物车
     public function clearCart () {
-//        $this->items = array();
-//        delete_cookie('cart');
+        $this->items = array();
+        delete_cookie('cart');
     }
 }
