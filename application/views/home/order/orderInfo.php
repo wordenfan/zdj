@@ -48,8 +48,8 @@
 		</ul>
         <?php if(!empty($userinfo_tmp)) :?>
 			<ul class="orders_info_mark">
-				<li>标记地址：<span><?php echo $userinfo_tmp['mark_address'];?></span></li>
-				<li>标记备注：<span><?php echo $userinfo_tmp['mark_info'];?></span></li>
+				<li>标记地址：<span><?php echo $userinfo_tmp['address_info']['mark_address'];?></span></li>
+				<li>标记备注：<span><?php echo $userinfo_tmp['base_info']['mark_info'];?></span></li>
 			</ul>
 			<ul class="orders_info_mark_list">
                 <?php foreach($userorder_tmp as $k=>$od) :?>

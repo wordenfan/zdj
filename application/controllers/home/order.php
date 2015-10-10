@@ -99,8 +99,9 @@ class Order extends HomeBase {
             if($this->my_data['role']!='guest')
             {
                 $map['uid'] = $res['uid'];
-                $user_data = $this->umd->getUserInfo($map,'mark_address,mark_info');
-                $data['userinfo_tmp']  = $user_data;
+                $this->load->library('lib_user','','lib_user');
+                $lib_data = $this->lib_user->getUserAllInfoById($map['uid']);
+                $data['userinfo_tmp']  = $lib_data;
                 $user_order_data = $this->omd->getOrderInfo($map);
                 $data['userorder_tmp']  = $user_order_data;
             }

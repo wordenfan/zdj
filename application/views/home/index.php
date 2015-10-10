@@ -173,7 +173,6 @@
 			{
 				obj.disabled =false;
 				var json = eval(data);
-				alert(json.status);
 				if(json.status == 1)
 				{
 					$(".no_login").css("display","none");
