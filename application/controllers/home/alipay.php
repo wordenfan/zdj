@@ -60,18 +60,7 @@ class AliPay extends HomeBase
                 "anti_phishing_key"	=> $anti_phishing_key,
                 "exter_invoke_ip"	=> $exter_invoke_ip,
                 "_input_charset"	=> $this->alipay_config['input_charset'],
-//                "extra_common_param"=> $_POST['WID_shopid'].','.$_POST['WID_name'].','.$_POST['WID_tel'].','.$_POST['WID_mark'].','.$_POST['WID_address'].','.$_POST['WID_uid'].','.$_POST['WIDout_trade_no'],
             );
-//            //该缓存只是为了解决支付宝的notify回调无法调用cookie的问题
-//            $cache_data = cookie('cart');
-//            if($cache_data)
-//            {
-//                S('ali_cart',$cache_data,array('type'=>'file','length'=>10,'expire'=>300));
-//            }
-//            //先从客户端删除cookie等
-//            $this->cart = new Shopping();
-//            $this->cart->clearCart();
-            
             //建立请求
             $alipaySubmit = new AlipaySubmit($this->alipay_config);
             $html_text = $alipaySubmit->buildRequestForm($parameter,"post", "提交中...");
@@ -81,24 +70,23 @@ class AliPay extends HomeBase
     }
     public function notifyurl()
     { 
-        log_message('Error', '==notifyurl=======01');
+        log_message('Error', 'open_______notifyurl====>');
         require_once APPPATH.'third_party/alipay/alipay_notify.class.php';
         $alipayNotify = new AlipayNotify($this->alipay_config);
         $verify_result = $alipayNotify->verifyNotify();
-        log_message('Error', 'notifyurl改变==交易状态0');
         if($verify_result)
         {
-            log_message('Error', 'notifyurl改变==交易状态1');
             //商户订单号
             $out_trade_no = $_POST['out_trade_no'];
             $trade_no = $_POST['trade_no'];
             $trade_status = $_POST['trade_status'];
+            log_message('Error', 'out_trade_no:'.$out_trade_no.'==trade_no:'.$trade_no);
             if($_POST['trade_status'] == 'TRADE_FINISHED'||$_POST['trade_status'] == 'TRADE_SUCCESS') {
-                log_message('Error', 'notifyurl改变==交易状态2');
+                log_message('Error', 'notifyurl交易状态1');
                 $this->load->model('ordermodel','omd');
                 //订单状态未修改则修改
                 if(!$this->omd->checkPayStatus($out_trade_no)){
-                    log_message('Error', 'notifyurl改变==交易状态3');
+                    log_message('Error', 'notifyurl交易状态3');
                     $this->omd->changePayStatus($out_trade_no);
                 }
             }
@@ -110,7 +98,7 @@ class AliPay extends HomeBase
     }
     public function returnurl()
     {   
-        log_message('Error', 'returnurl====0');
+        log_message('Error', 'open_______returnurl====>');
         require_once APPPATH.'third_party/alipay/alipay_notify.class.php';
         $alipayNotify = new AlipayNotify($this->alipay_config);
         $verify_result = $alipayNotify->verifyReturn();
