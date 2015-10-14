@@ -17,7 +17,7 @@ class Lib_shoplist
 		//插件
 		$freeSend_arr = $this->ci->amd->freeSend();
 		//
-        $all_temp_arr = $this->ci->smd->shopList(100);
+        $all_temp_arr = $this->ci->smd->shopList(100,1,array('status'=>1));
         $all_arr = $all_temp_arr['data'];
         for($i=0; $i<count($all_arr); $i++)
         {
