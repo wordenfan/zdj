@@ -72,7 +72,7 @@
                         <tbody id="goodsList">
 						<?php foreach($order_list as $k=>$v):?>
 						<tr bgcolor="#FFFFFF" align="center" class="hover">
-							<td align="center" class="order_id"><a href="<?php echo base_url('home/order/orderInfo/oid/'.$v['oid']);?>" style="color:#ff0000;text-decoration:underline;" target="_blank"><?php echo $v['snid'];?></a></td>
+                            <td align="center" class="order_id"><a href="<?php echo base_url('home/order/orderInfo/oid/'.(strlen($v['oid'])>6?$v['oid']:$v['snid']));?>" style="color:#ff0000;text-decoration:underline;" target="_blank"><?php echo $v['snid'];?></a></td>
 							<td align="center"><?php echo date('m-d H:i',$v['opublish']);?></td>
 							<td align="left"><?php echo $v['oshop_name'];?></td>
 							<td align="left"><?php echo $v['oshop_tel'];?></td>

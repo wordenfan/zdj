@@ -33,8 +33,9 @@
 		        <h1>管理系统</h1>
 		    </div>
 	        <ul ng-if="user.name" class="list-inline header-top ng-scope">
-	          <li>Hi ,<span class="red-txt-cl ng-binding" >91批购</span></li>
-	          <li><a target="_top" href="/admin/login/do_logout" class="text-danger">退出</a></li>
+                <li><a style="text-decoration: underline" target="_blank" href="/home/home/index" class="text-danger">网站首页</a></li>
+                <li>Hi ,<span class="red-txt-cl ng-binding" ><?php echo $myinfo['uname'];?></span></li>
+                <li><a target="_top" href="/admin/login/do_logout" class="text-danger">退出</a></li>
 	        </ul> 
 	        <div class="clear"></div>
 	    </div>

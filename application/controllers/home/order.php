@@ -88,12 +88,13 @@ class Order extends HomeBase {
     {
         //未登录跳转
         $uid = $this->login_status();
-        $oid = $this->uri->segment(5);//oid
-        if(isset($oid)&&!empty($oid))
+        $search_id = $this->uri->segment(5);//oid
+        if(isset($search_id)&&!empty($search_id))
         {
+            $search_key = strlen($search_id)>6?'oid':'snid';
             $this->load->model('ordermodel','omd');
             $this->load->model('orderlistmodel','olmd');
-            $where['oid'] = $oid;
+            $where[$search_key] = $search_id;
             $res = $this->omd->getOrderInfo($where);
             //管理员及客服
             if($this->my_data['role']!='guest')
