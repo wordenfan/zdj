@@ -48,8 +48,7 @@
 		</ul>
         <?php if(!empty($userinfo_tmp)) :?>
 			<ul class="orders_info_mark">
-                <?php var_dump($userinfo_tmp['address_info']);exit;?>
-				<li>标记地址：<span><?php echo $userinfo_tmp['address_info'][0]['mark_address'];?></span></li>
+                <li>标记地址：<span><?php echo empty($userinfo_tmp['address_info'])?'':$userinfo_tmp['address_info'][0]['mark_address'];?></span></li>
 				<li>标记备注：<span><?php echo $userinfo_tmp['base_info']['mark_info'];?></span></li>
 			</ul>
 			<ul class="orders_info_mark_list">
