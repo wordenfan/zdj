@@ -34,7 +34,7 @@
         <tbody>
         <?php foreach($data as $k=>$vo): ?>
 		<tr>
-			<td class="order_number"><a target="_blank" href="<?php echo base_url('home/order/orderinfo/oid/'.$vo['oid']);?>"><?php echo $vo['oid'];?></a></td>
+			<td class="order_number"><a target="_blank" href="<?php echo base_url('home/order/orderinfo/oid/'.$vo['snid']);?>"><?php echo $vo['snid'];?></a></td>
 			<td><?php echo date('Y-m-d',$vo['opublish']);?></td>
 			<td><a href="<?php echo base_url('home/shop/shopinfo/shopid/'.$vo['oshop_id']);?>"><?php echo $vo['oshop_name'];?></a><input type="hidden" value="<?php echo $vo['oshop_id'];?>"/></td>
 			<td>￥<?php echo $vo['osum'];?></td>		   
