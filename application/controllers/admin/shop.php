@@ -23,6 +23,7 @@ class Shop extends AdminBase {
 
         //查询
         $where = array();
+        $where['status'] = 1;
         if ($this->uri->segment(7)) {
             $js_type = $this->uri->segment(5);
             $js_condition = $this->uri->segment(7);

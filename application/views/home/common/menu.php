@@ -39,8 +39,8 @@
   <div class="w1000">
     <ul class="nav_in l">
       <li><a href="<?php echo base_url(); ?>" class="current">首页</a></li>
-      <li><a href="<{:U('Group/index')}>">团体订餐</a></li>
-      <li><a href="<{:U('Area/index')}>">配送区域</a></li>
+      <li><a href="<?php echo base_url('/home/group/index'); ?>">团体订餐</a></li>
+      <li><a href="<?php echo base_url('/home/area/index'); ?>">配送区域</a></li>
       <li><a href="#">积分商城</a></li>
     </ul>
     <a href="#" class="view_last r" style="display:none">最近浏览</a>
