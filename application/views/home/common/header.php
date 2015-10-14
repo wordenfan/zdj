@@ -5,9 +5,9 @@
     <meta name="robots" content="all" />
     <meta name="author" content="宅当家[www.26632.com]" />
     <meta name="Copyright" content="Copyright 26632.com All Rights Reserved." />
-    <meta name="description" content="<{:C('WEB_SITE_DESCRIPTION')}>" />
-    <meta name="keywords" content="<{:C('WEB_SITE_KEYWORD')}>" />
-    <title>测试标题</title>
+    <meta name="description" content="<?php echo config_item(AREA.'SITE_DESCRIPTION')?>" />
+    <meta name="keywords" content="<?php echo config_item(AREA.'SITE_KEYWORD')?>" />
+    <title><?php echo config_item(AREA.'SITE_TITLE')?></title>
     <link type="text/css" rel="stylesheet" href="<?php echo base_url('static/css/base.css');?>" />
     <script type="text/javascript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
     <script src="<?php echo base_url('static/js/uaredirect.js');?>" type="text/javascript"></script>
