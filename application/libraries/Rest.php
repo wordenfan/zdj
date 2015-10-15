@@ -24,10 +24,11 @@ class REST {
 	private $Batch;  //时间戳
 	private $BodyType = "xml";//包体格式，可填值：json 、xml
 	private $enabeLog = true; //日志开关。可填值：true、
-	private $Filename=APPPATH."logs/sms_log.txt"; //日志文件
+	private $Filename = ''; //日志文件
 	private $Handle; 
 	function __construct($param)		
 	{
+        $this->Filename = APPPATH."logs/sms_log.txt";
 		$this->Batch = date("YmdHis");
 		$this->ServerIP = $param['serverIP'];
 		$this->ServerPort = $param['serverPort'];
