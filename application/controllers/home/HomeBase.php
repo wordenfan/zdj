@@ -37,7 +37,7 @@ class HomeBase extends MY_Controller
         //站点状态
         if(!$this->config->item(AREA.'SITE_CLOSE')){
             //TODO:站点关闭
-            show_message('',base_url(),3,'站点关闭，暂停访问');
+            show_message('',base_url(),300,'站点关闭，暂停访问');
             exit();
         }
     }

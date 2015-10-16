@@ -26,42 +26,42 @@
                     <div class="form-group">
                         <label for="" class="col-md-2 control-label">网站标题：</label>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" id="site_title"/>
                         </div>
                     </div>
                 <?php elseif ($value['name'] == AREA.'SITE_DESCRIPTION'):?>
                     <div class="form-group">
                         <label for="" class="col-md-2 control-label">网站描述：</label>
                         <div class="col-md-3">
-                            <textarea type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="标签" name="goods_tags"></textarea>
+                            <textarea type="text" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" id="site_summary"><?php echo $value['value'];?></textarea>
                         </div>
                     </div>
                 <?php elseif ($value['name'] == AREA.'SITE_KEYWORD'):?>
                     <div class="form-group">
                         <label for="" class="col-md-2 control-label">网站关键字：</label>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="" name="goods_name"/>
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" id="site_keyword"/>
                         </div>
                     </div>
                 <?php elseif ($value['name'] == AREA.'SERVICE_TIME'):?>
                     <div class="form-group">
                         <label for="" class="col-md-2 control-label">营业时间：</label>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="按此格式(10:00-20:00)输入" name="goods_name"/>
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="按此格式(10:00-20:00)输入" id="site_bussiness_hour"/>
                         </div>
                     </div>
                 <?php elseif ($value['name'] == AREA.'SERVICE_PHONE'):?>
                     <div class="form-group">
                         <label for="" class="col-md-2 control-label">客服电话：</label>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="商品名称" name="goods_name"/>
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" id="site_tel"/>
                         </div>
                     </div>
                 <?php elseif ($value['name'] == AREA.'SERVICE_AREA'):?>
                     <div class="form-group">
                         <label for="" class="col-md-2 control-label">配送区域：</label>
                         <div class="col-md-3">
-                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="" name="goods_name"/>
+                            <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" id="site_area"/>
                         </div>
                     </div>
                 <?php endif;?>
@@ -69,7 +69,7 @@
 			
 			<div class="col-md-offset-2 col-md-6">
 				<input type="hidden" name="goods_id" value="0"/>
-				<button type="button" class="btn btn-primary ladda-button" id="addGoodsBtn">
+				<button type="button" class="btn btn-primary ladda-button" id="addConfigBtn">
 					<span class="ladda-label">提交</span>
 				</button>
 				<button type="button" class="btn btn-success ladda-button" id="callBackGoodsBtn">
@@ -82,19 +82,22 @@
 <script Language="JavaScript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
 <script type="text/javascript">
 $(function(){
-    $("#addOrderBtn").click(function(){
+    $("#addConfigBtn").click(function(){
+        var title           = $('#site_title').val();
+        var summary         = $('#site_summary').val();
+        var keyword         = $('#site_keyword').val();
+        var bussiness_hour  = $('#site_bussiness_hour').val();
+        var tel             = $('#site_tel').val();
+        var area            = $('#site_area').val();
 		
+		$.post('/admin/system/conf_other',{title:title,summary:summary,keyword:keyword,bussiness_hour:bussiness_hour,area:area,tel:tel},function(data){
+            if(data.status == 1){
+                window.location.Reload()
+            }else{
+                alert('数据提交错误！')
+            }
+        },'json')
 	})
-    $("#searchBtn").click(function(){
-		$type = $.trim($('#search_type').val());
-		$type_str = String($type) == '0'?'otel':'oname';
-		$keyword = String($.trim($('#searchInput').val()));
-		if($keyword==''){
-			alert('搜索内容不能为空！')
-		}
-        $url = "<?php echo base_url('admin/order/olist/type');?>";
-        window.location.href = $url +'/'+$type_str+'/condition/'+$keyword+'';
-    })
 })
 </script>
 </body>
