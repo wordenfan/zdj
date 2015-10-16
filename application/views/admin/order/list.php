@@ -36,12 +36,13 @@
 							<div class="col-md-3" style="padding-left:0px">
 								<input type="text" name="keyword" class="form-control w250" placeholder="电话号码/用户名" id="searchInput">
 							</div>
-							<div class="col-md-5" style="">
+							<div class="col-md-3" style="">
 								<button type="button" class="btn btn-info ladda-button" id="searchBtn" >
 								<i class="glyphicon glyphicon-search mr5"></i>搜索
 								</button>
 							</div>
-							<div class="col-md-1" style="padding-left:0px">
+							<div class="col-md-3" style="padding-left:0px">	
+								<button type="button" style="margin-left:10px" class="btn btn-primary ladda-button pull-right" id="refreshOrderBtn" >刷新订单</button>
 								<button type="button" class="btn btn-success ladda-button pull-right" id="addOrderBtn" >添加订单</button>
 							</div>
 						</div>
@@ -132,8 +133,8 @@
 <script Language="JavaScript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
 <script type="text/javascript">
 $(function(){
-    $("#addOrderBtn").click(function(){
-		
+    $("#refreshOrderBtn").click(function(){
+		window.location.href = window.location.href;
 	})
     $("#searchBtn").click(function(){
 		$type = $.trim($('#search_type').val());

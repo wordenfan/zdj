@@ -38,23 +38,18 @@
                 <div class="form-group">
                     <label for="" class="col-md-2 control-label">公告内容：</label>
                     <div class="col-md-3">
-                        <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="当前订单较多，配送大约需要70分钟" name="goods_name"/>
-                    </div>
-                    <div class="col-md-2">	
-                        <div class="input-group">
-                            <input type="text" class="form-control" id="exampleInputAmount" placeholder="配送时间"><div class="input-group-addon">分钟</div>
-                        </div>
+                        <input type="text" value="<?php echo $value['value'];?>" class="form-control ng-pristine ng-invalid ng-invalid-required ng-valid-maxlength" placeholder="当前订单较多，配送大约需要70分钟" id="announcement"/>
                     </div>
                 </div>
                 <?php elseif ($value['name'] == AREA.'SITE_CLOSE'):?>
                 <div class="form-group">
-                    <label for="" class="col-md-2 control-label">暂停接单(全部关闭)：</label>
+                    <label for="" class="col-md-2 control-label">暂停接单：</label>
                     <div class="col-md-3">
                         <label class="radio-inline">
-                            <input type="radio" name="stop_receive" id="stop_receive_id1" <?php echo $value['value']==1?'checked=TRUE':'';?> value="1">开启
+                            <input type="radio" name="stop_receive" id="stop_receive_id1" <?php echo $value['value']==1?'checked=TRUE':'';?> value="1">开启接单
                         </label>
                         <label class="radio-inline">
-                            <input type="radio" name="stop_receive" id="stop_receive_id2" <?php echo $value['value']==1?'':'checked=TRUE';?> value="0">关闭
+                            <input type="radio" name="stop_receive" id="stop_receive_id2" <?php echo $value['value']==1?'':'checked=TRUE';?> value="0">关闭接单
                         </label>
                     </div>
                 </div>
@@ -63,7 +58,7 @@
             
 			<div class="col-md-offset-2 col-md-6">
 				<input type="hidden" name="goods_id" value="0"/>
-				<button type="button" class="btn btn-primary ladda-button" id="addGoodsBtn">
+				<button type="button" class="btn btn-primary ladda-button" id="addConfigBtn">
 					<span class="ladda-label">提交</span>
 				</button>
 				<button type="button" class="btn btn-success ladda-button" id="callBackGoodsBtn">
@@ -76,8 +71,17 @@
 <script Language="JavaScript" src="<?php echo base_url('static/js/jquery-1.11.0.min.js');?>"></script>
 <script type="text/javascript">
 $(function(){
-    $("#addOrderBtn").click(function(){
-		
+    $("#addConfigBtn").click(function(){
+		var announce        = $("input[name='open_announce']:checked").val();
+        var stop_receive    = $("input[name='stop_receive']:checked").val();
+        var announcement    = $("#announcement").val();
+		$.post('/admin/system/conf',{announce:announce,announcement:announcement,stop_receive:stop_receive},function(data){
+            if(data.status == 1){
+                window.location.Reload()
+            }else{
+                alert('数据提交错误！')
+            }
+        },'json')
 	})
     $("#searchBtn").click(function(){
 		$type = $.trim($('#search_type').val());
