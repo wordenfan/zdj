@@ -58,7 +58,7 @@
 </div>
 <footer class="footer">
 	<div class="cart">
-        <form  id="orderform" name="orderform" method="post" action="<?php echo base_url('m/order/index'); ?>" onsubmit="return submitOrder();">
+        <form  id="orderform" name="orderform" method="post" action="<?php echo base_url('order/index'); ?>" onsubmit="return submitOrder();">
 			<?php if($free_send ==1):?>
 			<input type="hidden" class="mian"/>
 			<?php endif;?>
@@ -79,7 +79,7 @@
 </footer>
 <script>
 	var food_sum = 0;//每次操作都会导致是否出现配送费的价格变动，所以此为变量
-	var app_url='/m/shop'; 
+	var app_url='/shop'; 
 	// var uname = '请登录';
 	// var ulink = '__APP__/User/login';
 	var send_prc = <?php echo $send_price;?>;
@@ -123,7 +123,14 @@
 						"icon": "chevron-left",         // 字体图标名称: 使用 Amaze UI 字体图标 http://www.amazeui.org/css/icon
 						"customIcon": ""    // 自定义图标 URL，设置此项后当前链接不再显示 icon
 					}],
-					"title": "<?php echo $name;?>"
+					"title": "<?php echo $name;?>",
+					"right": [{
+						"link": "javascript:void(0)",
+						"title": uname,
+						"icon": "user",
+						"customIcon": "",
+						"className": ""
+					}]
 				}
 			}
 		},
@@ -213,7 +220,7 @@
 		if(id==0)
 		{
 			alert('请先登录!');
-			window.location.href = '';
+			window.location.href = 'user/login';
 			return false;
 		}else if(food_sum < parseFloat(_start_price))
 		{

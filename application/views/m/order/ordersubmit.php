@@ -107,7 +107,7 @@
 				"theme": "",
 				"content": {
 					"left": [{
-						"link": app_url+"/Shop/shopinfo/shopid/<?php echo $shopid_tmp;?>",         // url : http://xxx.xxx.xxx
+						"link": "/Shop/shopinfo/shopid/<?php echo $shopid_tmp;?>",         // url : http://xxx.xxx.xxx
 						"title": "",        // 链接标题
 						"icon": "chevron-left",         // 字体图标名称: 使用 Amaze UI 字体图标 http://www.amazeui.org/css/icon
 						"customIcon": ""    // 自定义图标 URL，设置此项后当前链接不再显示 icon
@@ -129,7 +129,7 @@
 	//添加地址
 	$("#manage_address").click(function() 
 	{
-		window.location.href=app_url+'/user/manage_address';
+		window.location.href='/user/manage_address';
 	})
 	//提交菜品
 	$("#sub_order").click(function() 
@@ -148,9 +148,9 @@
 		}
 		//表单提交		
 		$('#sub_order').attr('disabled',"true");
-		$.post(app_url+'/order/dosubmit',{from_type:from_type,add_uname:add_uname,tel:tel,address:address,shopid:shopid,remark:remark},function(data)
+		$.post('/order/dosubmit',{from_type:from_type,add_uname:add_uname,tel:tel,address:address,shopid:shopid,remark:remark},function(data)
 		{
-			window.location.href=app_url+'/order/orderStatus?st='+data.status+'&msg='+data.msg;
+			window.location.href='/order/orderStatus?st='+data.status+'&msg='+data.msg;
 		},'json')
 		
 		

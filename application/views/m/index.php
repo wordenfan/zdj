@@ -36,7 +36,7 @@
 </section>
 <section class="product_wrap">
   <ul id="product_lst">
-	<?php foreach($shop_list as $k=>$vo):?>
+	<?php foreach($open_list as $k => $vo):?>
 	<li>
 	<a href="<?php echo base_url('/shop/shopinfo/id/'.$vo['id']);?>">
 		<div class="shop_logo">
@@ -52,11 +52,28 @@
 			</p>
 		</div>
 		<div class="shop_statu">		
-			<?php if($vo['open_close'] == 1):?>
-				<span class="open">营业</span>
-			<?php else:?>
-				<span class="close">休息</span>
-			<?php endif;?>
+			<span class="open">营业</span>
+		</div>
+	</a>
+	</li>
+	<?php endforeach;?>
+	<?php foreach($close_list as $k => $vo):?>
+	<li>
+	<a href="<?php echo base_url('/shop/shopinfo/id/'.$vo['id']);?>">
+		<div class="shop_logo">
+			<img width="56" height="56" src="<?php echo base_url($vo['logo']);?>" class="lst_logo">
+		</div>
+		<div class="home_text">
+			<h2><?php echo $vo['name'];?></h2>
+			<p>配送费：<?php echo $vo['send_price'];?>元</p>
+			<p>
+				<?php if($vo['free_send']==1):?>
+					<b class="mian"></b><span class="btip">(满<?php echo config_item(AREA.'FREE_SEND');?>免配送费)</span>
+				<?php endif;?>
+			</p>
+		</div>
+		<div class="shop_statu">	
+			<span class="close">休息</span>
 		</div>
 	</a>
 	</li>
@@ -67,7 +84,7 @@
 	$(document).ready(function(){
 		$("#nav_lst>span").click(function(){
 			var cateid = $(this).attr("id");
-			window.location.href=app_url+"/index?cateid="+cateid;
+			window.location.href="/home/index?cateid="+cateid;
 		})
 	})
 	$(function() {
@@ -82,7 +99,7 @@
 			},
 			navbar: {
 				"options": {
-				  "cols": "3",
+				  "cols": "2",
 				},
 				"content": [
 				  {
@@ -93,13 +110,7 @@
 				  },
 				  {
 					"title": "订单",
-					"link": "__APP__/Order/orderInfo",
-					"icon": "user-md",
-					"dataApi": ""
-				  },
-				  {
-					"title": "我的",
-					"link": "__APP__/User/ucenter",
+					"link": "/order/orderInfo",
 					"icon": "user-md",
 					"dataApi": ""
 				  }
