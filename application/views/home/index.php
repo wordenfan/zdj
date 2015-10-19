@@ -180,7 +180,7 @@
 					$(".lg_info_top").html("hi "+ json.data +"<a href='<?php echo base_url('home/user/logout');?>'>退出登录>></a>");
 				}else{
 					$("#pwd").val("")
-					alert('用户名或密码错误！');
+					alert('昵称、手机号或密码错误！');
 				}
 			},'json')
 		}

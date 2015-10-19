@@ -49,7 +49,7 @@
 <script>
 	$(function() {
 		//初始化
-		var app_url='/m/user';  
+		var app_url='/user';  
 		var screen_height = $(window).height();
 		$('.detail_wrap').css('height',screen_height-30);
 		//amaze

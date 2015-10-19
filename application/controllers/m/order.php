@@ -54,7 +54,7 @@
                     }
                     $this->load->view('m/order/ordersubmit',$data);
                 }else{
-                    redirect(base_url());
+                    redirect('http://'.$_SERVER['HTTP_HOST']);
                     exit;
                 }
             }

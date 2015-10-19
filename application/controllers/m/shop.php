@@ -31,7 +31,7 @@
                     $this->load->view('m/shop/shopinfo',$info);
                 }
             }else{
-                redirect(base_url());
+                redirect('http://'.$_SERVER['HTTP_HOST']);
                 exit;
             }
         }

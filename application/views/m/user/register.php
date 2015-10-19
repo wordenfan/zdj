@@ -46,7 +46,7 @@
 <script>
 	$(function() {
 		//初始化
-		var app_url='/m/user'; 
+		var app_url='/user'; 
 		var screen_height = $(window).height();
 		$('.detail_wrap').css('height',screen_height-30);
 		var validate = new validate_form(); 
@@ -82,7 +82,15 @@
 				alert('手机号必须为11位');
 				return;
 			}
-			$.post('/common/sms/send_reg_code',{reg_tel:$tel},function(data){
+			/*
+			var url = '';
+			var arr = String(location.host).split('.');
+			if(arr[0] == 'm'){
+				arr[0] = 'www';
+			}
+			url = 'http://'+arr.join('.');
+			*/
+			$.post('/sms/send_reg_code',{reg_tel:$tel},function(data){
 				if(data.status == 1){
 					alert(data.msg);
 				}else{

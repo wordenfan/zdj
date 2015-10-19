@@ -11,8 +11,12 @@ class MY_Controller extends CI_Controller
         {
             define('AREA','HD_');
             define('AREA_ID','1');
-//            define('AREA','SN_');
-//            define('AREA_ID','2');
+        }
+        //m站默认跳转
+        $url_arr = explode('.', $_SERVER['HTTP_HOST']);
+        $url = 'm.'.$url_arr[1].'.'.$url_arr[2];
+        if(rtrim($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'/') == $url){
+            redirect('http://'.$_SERVER['HTTP_HOST'].'/home/index');
         }
     }
 }

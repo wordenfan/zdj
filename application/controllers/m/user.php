@@ -57,7 +57,7 @@ class User extends MobileBase {
             if(0 < $uid)
             {
                 $this->umd->autoLogin($uid);
-                $this->retrieveJson(1,config_item('mobiel_url'),'注册成功');
+                $this->retrieveJson(1,'http://'.$_SERVER['HTTP_HOST'],'注册成功');
             } else {
                 $this->retrieveJson(0,'','注册失败');
             }
@@ -72,7 +72,7 @@ class User extends MobileBase {
     {
         if($_POST)
         {
-            $req_url = isset($_GET['req_url'])?$_GET['req_url']:base_url();
+            $req_url = isset($_GET['req_url'])?$_GET['req_url']:'http://'.$_SERVER['HTTP_HOST'];
             $i_keyword = $this->input->post('keyword',true);
             if(strlen($i_keyword) == 11 && intval($i_keyword)!=0){
                 $where['reg_tel'] = intval($i_keyword);
@@ -87,11 +87,11 @@ class User extends MobileBase {
                 $from=='shopinfo' ? echo_json(array('flag'=>'1','msg'=>'登陆成功')) : show_message('登录成功!',$req_url);
             }else{
                 switch($uid) {
-                    case -1: $error = '用户名或密码错误'; break; //用户不存在或被禁用！，系统级别禁用
+                    case -1: $error = '用户不存在或被禁用'; break; //用户不存在或被禁用！，系统级别禁用
                     case -2: $error = '用户名或密码错误'; break;//密码错误！
                     default: $error = '未知错误！'; break; // 0-接口参数错误（调试阶段使用）
                 }
-                $from=='shopinfo' ? echo_json(array('flag'=>'0','msg'=>$error)) : show_message('',base_url('home/user/login'),3,$error);
+                $from=='shopinfo' ? echo_json(array('flag'=>'0','msg'=>$error)) : show_message('','http://'.$_SERVER['HTTP_HOST'].'/user/login',3,$error);
             }
         }
         else {

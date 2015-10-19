@@ -33,6 +33,20 @@ class Home extends MobileBase {
             $all_arr = $all_arr_temp;
         }
         $data['shop_list'] = $all_arr;
+        //排序
+        $open_arr = array();
+        $close_arr = array();
+        for($i=0; $i<count($all_arr); $i++)
+        {
+            if($all_arr[$i]['open_close']==1)
+            {
+                array_push($open_arr, $all_arr[$i]);
+            }else{
+                array_push($close_arr, $all_arr[$i]);
+            }
+        }
+        $data['open_list'] = $open_arr;
+        $data['close_list'] = $close_arr;
         $this->load->view('m/index',$data);
     }
 }
