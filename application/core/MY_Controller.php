@@ -14,9 +14,14 @@ class MY_Controller extends CI_Controller
         }
         //m站默认跳转
         $url_arr = explode('.', $_SERVER['HTTP_HOST']);
-        $url = 'm.'.$url_arr[1].'.'.$url_arr[2];
-        if(rtrim($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'/') == $url){
+        $m_url = 'm.'.$url_arr[1].'.'.$url_arr[2];
+        if(rtrim($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'/') == $m_url){
             redirect('http://'.$_SERVER['HTTP_HOST'].'/home/index');
+        }
+        $z_url = 'z.'.$url_arr[1].'.'.$url_arr[2];
+        if(rtrim($_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'],'/') == $z_url){
+            echo '3333';
+            redirect('http://'.$_SERVER['HTTP_HOST'].'/order/index');
         }
     }
 }
