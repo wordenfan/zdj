@@ -137,8 +137,8 @@
 		html = template(data);
 		$tpl.before(html);
 		//读取原购物列表
-		//$cart = <{$shop_cart}>;
-　　		//showHtml($cart);
+		$cart = <?php echo $shop_cart; ?>;
+		showHtml($cart);
 		//类别点击
 		$(".food_lst:eq(0)").show();
 		$('#navlist>ul>li').on('click', function() 
