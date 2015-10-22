@@ -52,6 +52,12 @@ class Home extends HomeBase {
             $this->load->view('home/index',$data);
         }
     }
+    //导表
+    public function inserertSql(){
+        $this->load->helper('database');
+        inserertSql();
+    }
+    
 }
 
 
