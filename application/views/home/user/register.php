@@ -39,7 +39,7 @@
 				<div class="indenty_code l">
 					<input type="text" name="tel_code" id="tel_code_id" autocomplete="off" maxlength="4" placeholder="输入手机验证码" />
 				</div>
-				<div class="verify_code l"><a>获取手机验证码</a></div>
+				<button id="mgs_btn" class="verify_code l">获取手机验证码</button>
 				<div class="reg_tips l"><p id="checkcode_prompt"><span></span></p></div>
 			</div>
 			<div class="reg_item">
@@ -76,6 +76,9 @@ $(function() {
 			alert('手机号必须为11位');
 			return;
 		}
+		var code_btn = document.getElementById("mgs_btn");
+		test.init(code_btn);
+		return;
 		$.post('/common/sms/send_reg_code',{reg_tel:$tel},function(data){
 			if(data.status == 1){
 				alert(data.msg);
@@ -120,6 +123,31 @@ $(function() {
 			},'json')
 		}
 	})
+	//发送验证码
+	var test = {
+		node:null,
+		count:60,
+		start:function(){
+			//console.log(this.count);
+			if(this.count > 0){
+				this.node.innerHTML = '重新发送(' + this.count-- +')';
+				var _this = this;
+				setTimeout(function(){
+					_this.start();
+				},1000);
+			}else{
+				this.node.removeAttribute("disabled");
+				this.node.innerHTML = "再次发送";
+				this.count = 60;
+			}
+		},
+		//初始化
+		init:function(node){
+			this.node = node;
+			this.node.setAttribute("disabled",true);
+			this.start();
+		}
+    };
 });
 </script>
 <?php $this->load->view('home/common/footer');?>
