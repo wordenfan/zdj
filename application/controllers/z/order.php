@@ -31,8 +31,6 @@ class Order extends CI_Controller {
             $order_data['list']['data'][$k]['food_list'] = $list_str;
             
         }
-//        var_dump($order_data['list']['data']);
-//        exit;
         $this->load->view('z/order',$order_data);
     }
 }

@@ -34,6 +34,13 @@
 					<input type="password" name="repassword" id="repwd_id" autocomplete="off" maxlength="16" placeholder="确认密码" />
 				</div>
 			</div>
+            <div class="reg_item" id="code">
+                <span class="reg_name l">验&nbsp;证&nbsp;码：</span>
+                <div class="reg_input l" style="width:205px;margin-right:15px;">
+                    <input type="text" style="width:195px;margin-right:7px;" class="login-input login-google" maxlength="4" id="validcode" placeholder="验证码" />
+				</div>
+                <span class="login-google-tips" ><img src='<?php echo base_url('captcha_code');?>' id='verifyImg' onclick="this.src='<?php echo base_url('captcha_code');?>?'+Math.random();" style="cursor:pointer;"></span>
+			</div>
 			<div class="reg_item" id="yanzhCode">
 				<span class="reg_name l">手机验证码：</span>
 				<div class="indenty_code l">
