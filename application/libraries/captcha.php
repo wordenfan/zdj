@@ -3,7 +3,7 @@ class Captcha
 {
 	var $width='80';
 	var $num='4';
-	var $height='36';
+	var $height='30';
 	var $name='randcode';
 
 	public function __construct($conf="")
