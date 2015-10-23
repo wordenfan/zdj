@@ -15,4 +15,10 @@ class Captcha_code extends CI_Controller {
         //通过下面方法获取session
         //$this->session->userdata('yzm');
     }
+    function captcha_code_home()
+    {
+        $conf['name']='home_reg_yzm';
+        $this->load->library('captcha',$conf);
+        $this->captcha->show();
+    }
 }

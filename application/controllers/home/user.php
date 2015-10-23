@@ -88,16 +88,17 @@ class User extends HomeBase {
             }
         }
     }
+    
     //验证码校验
     public function check_captcha()
     {
-        $captcha = $this->input->post('ucode');
+        $captcha = $this->input->post('regcode');
         if($_POST && $captcha)
         {
-            if($this->session->userdata('yzm')!=strtolower($captcha)){
-                echo 'false';
+            if($this->session->userdata('home_reg_yzm')!=strtolower($captcha)){
+                $this->retrieveJson(0,'','图片验证码错误');
             } else{
-                echo 'true';
+                $this->retrieveJson(1,'','匹配成功');
             }
         }
     }
