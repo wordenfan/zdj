@@ -125,7 +125,7 @@
 					}],
 					"title": "<?php echo $name;?>",
 					"right": [{
-						"link": "javascript:void(0)",
+						"link": "/userlogin",
 						"title": uname,
 						"icon": "user",
 						"customIcon": "",
