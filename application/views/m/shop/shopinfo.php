@@ -80,7 +80,7 @@
 <script>
 	var food_sum = 0;//每次操作都会导致是否出现配送费的价格变动，所以此为变量
 	var app_url='/shop'; 
-	// var uname = '请登录';
+	var uname = '请登录';
 	// var ulink = '__APP__/User/login';
 	var send_prc = <?php echo $send_price;?>;
 	var login_status = <?php echo $login_status;?>;
