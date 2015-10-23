@@ -39,7 +39,7 @@
                 <div class="reg_input l" style="width:205px;margin-right:15px;">
                     <input type="text" style="width:195px;margin-right:7px;" class="login-input login-google" maxlength="4" id="validcode" placeholder="验证码" />
 				</div>
-                <span class="login-google-tips" ><img src='<?php echo base_url('captcha_code');?>' id='verifyImg' onclick="this.src='<?php echo base_url('captcha_code');?>?'+Math.random();" style="cursor:pointer;"></span>
+                <span class="login-google-tips" ><img src='<?php echo base_url('captcha_code/captcha_code_home');?>' id='verifyImg' onclick="this.src='<?php echo base_url('captcha_code/captcha_code_home');?>?'+Math.random();" style="cursor:pointer;"></span>
 			</div>
 			<div class="reg_item" id="yanzhCode">
 				<span class="reg_name l">手机验证码：</span>
@@ -74,6 +74,7 @@ $(function() {
 	//发送手机验证码
 	$('.verify_code').click(function()
 	{
+		$rcode = $('#validcode').val();
 		$tel = $('#reg_tel').val();
 		if(isNaN($tel)){
 			alert('手机号只能为数字');
@@ -83,16 +84,29 @@ $(function() {
 			alert('手机号必须为11位');
 			return;
 		}
-		var code_btn = document.getElementById("mgs_btn");
-		test.init(code_btn);
-		return;
-		$.post('/common/sms/send_reg_code',{reg_tel:$tel},function(data){
-			if(data.status == 1){
+		if($rcode.length<1){
+			alert('请先输入上方图片验证码');
+			return;
+		}
+		$.post('/home/user/check_captcha',{regcode:$rcode},function(data){
+			if(data.status == 0){
 				alert(data.msg);
+				$img_url = $("#verifyImg").attr('src')+"?"+Math.random();
+				$("#verifyImg").attr('src',$img_url); 
+				return;
 			}else{
-				alert(data.msg);
+				var code_btn = document.getElementById("mgs_btn");
+				test.init(code_btn);
+				$.post('/common/sms/send_reg_code',{reg_tel:$tel},function(data){
+					if(data.status == 1){
+						alert(data.msg);
+					}else{
+						alert(data.msg);
+					}
+				},'json');
 			}
 		},'json');
+		
 	})
 	//ajax表单提交注册
 	$('#login_submit').click(function()
