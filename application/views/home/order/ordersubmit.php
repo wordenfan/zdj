@@ -216,6 +216,7 @@ function hideLogin() {
 }
 //新增地址
 $('.add_new').click(function(){
+	alert('2222==33');
 	showAddressEdit();
 });
 </script>
