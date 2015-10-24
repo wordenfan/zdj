@@ -101,6 +101,7 @@ $(function(){
 function showAddressEdit() {
 	$("#bg").css("display","block");
 	$("#show_address_div").css("display","block");
+	alert('88899');
 }
 function hideAddress() {
 	document.getElementById("bg").style.display ='none';
