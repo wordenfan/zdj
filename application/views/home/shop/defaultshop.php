@@ -30,7 +30,7 @@
 				</div>
 			</div>
 			<div class="f_login_item">
-				<span class="f_login_span l">昵&nbsp;&nbsp;&nbsp;&nbsp;称：</span>
+				<span class="f_login_span l">昵称/手机号：</span>
 				<div class="l">
 					<input type="text" placeholder="填写昵称" maxlength="16" id="lg_uname_id" name="lg_uname">
 				</div>
@@ -336,7 +336,7 @@ function do_float_login()
 {
 	var luname = $("#lg_uname_id").val();
 	var lpwd = $("#lg_pwd_id").val();
-	$.post('/home/user/login',{uname:luname,pwd:lpwd,frompage:'shopinfo'},function(data){
+	$.post('/home/user/login',{keyword:luname,pwd:lpwd,frompage:'shopinfo'},function(data){
 		$(".lg_prompt").html(data['msg']);
 		if(data['flag']=='1')
 		{
