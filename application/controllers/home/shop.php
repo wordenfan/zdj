@@ -35,10 +35,6 @@ class Shop extends HomeBase {
         $sid =  intval($this->uri->segment(5));
         if($sid)
         {
-            $user = $this->session->userdata('user_auth');
-    var_dump($user);
-    var_dump(get_cookie('login_auto'));
-    
             $this->load->library('lib_shop','','lib_shop');
             $info = $this->lib_shop->shopinfo($sid);
             //加载原有物品
