@@ -51,10 +51,6 @@ class User extends HomeBase {
             $uid = $this->umd->login($where,$i_pwd);//
             if(0 < $uid)
             {
-                $userd = $this->session->userdata('user_auth');
-                echo '====###';
-    var_dump($userd);
-    var_dump(get_cookie('login_auto'));
                 $from=='shopinfo' ? echo_json(array('flag'=>'1','msg'=>'登陆成功')) : show_message('登录成功!',$req_url);
             }else{
                 switch($uid) {

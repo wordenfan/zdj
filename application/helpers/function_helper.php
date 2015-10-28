@@ -56,7 +56,7 @@ function getIPaddress()
 //检测登录状态
 function is_login()
 {
-    $ci = & get_instance();
+    $ci = &get_instance();
     $user = $ci->session->userdata('user_auth');
     var_dump($user);
     var_dump(get_cookie('login_auto'));
