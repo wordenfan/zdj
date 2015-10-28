@@ -48,6 +48,8 @@ class HomeBase extends MY_Controller
         {
             return UID;
         }else{
+            var_dump($ci->session->userdata('user_auth'));
+            exit;
             show_message('',base_url(),3,'请登录后访问');
             exit();
         }

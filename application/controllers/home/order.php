@@ -18,10 +18,7 @@ class Order extends HomeBase {
     {
         //未登录跳转
         $uid = $this->login_status();
-       
-	echo '========';
-	echo $uid;
-	if($uid)
+        if($uid)
         {
             $lib_data = $this->cart->getShopCart(); 
             $_list = $lib_data['all_shop'];

@@ -63,18 +63,23 @@ function is_login()
         $cookie_tmp = get_cookie('login_auto');
         if(isset($cookie_tmp) && $cookie_tmp!=NULL)
         {
+            echo '1';
             $cookie_data = explode('|',base64_decode($cookie_tmp));
             $ip = getIPaddress();
             if($cookie_data[2] == $ip){
+                echo '11';
                 $ci->load->model('userModel','umd');
                 return $ci->umd->autoLogin($cookie_data[0]);//cookie存在且数据库能查到
             }else{
+                echo '12';
                 return 0; //cookie存在，但与上次登录地址不一样
             }
         }else{
+            echo '13';
             return 0; //cookie和session都不存在            
         }
     } else {
+        echo '14';
         return $ci->session->userdata('user_auth_sign') == data_auth_sign($user) ? $user['uid'] : 0;
     }
 }
