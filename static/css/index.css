@@ -71,7 +71,7 @@ font-weight: 400; margin-left: 10px;text-indent:-999em;width:20px;height:10px;ov
 .product_in li{ width:310px; height:144px; padding-top:14px; border:1px solid #dedede; display:inline-block; float:left; margin-right:18px; margin-bottom:21px;}
 .product_in li:hover{ border-color:#ff6900;cursor:pointer}
 .product_in li.nm{ margin-right:0;}
-.reset_mask{padding-top:-14px;opacity:0.5;background-color:#ffffff;}
+.reset_mask{padding-top:-14px;filter:alpha(opacity=50);opacity:0.5;background-color:#ffffff;}
 .product_info{width:311px; height:98px; overflow:hidden;}
 .pdt_pic{width:127px; height:98px; display:block; margin:0 14px 0 11px;}
 .pdt_text h2{width:158px; overflow:hidden;margin:3px 0 10px 0; font-size:14px; }

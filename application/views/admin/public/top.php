@@ -61,7 +61,7 @@
 				}
 			},'json')
 		}
-		setInterval(refresh_orderlist,30000);
+		setInterval(refresh_orderlist,20000);
 	})
 </script>
 </body>

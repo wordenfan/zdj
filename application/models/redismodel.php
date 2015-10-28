@@ -11,7 +11,8 @@ class RedisModel extends MY_Model
         {
             $this->redis = new Redis();
             $this->redis->connect(config_item('REDIS_HOST'),config_item('REDIS_PORT'));
-        }
+       	    $this->redis->auth('zdj_redis_110');
+	 }
         return $this->redis;
     }
     //删除某键值

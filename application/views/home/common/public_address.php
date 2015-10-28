@@ -64,7 +64,7 @@
 			<div class="f_login_item">
 				<span class="f_login_span l">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 				<div class="">
-					<button type="button" id="save_address" onclick="do_float_login();">保 存</button>
+					<button type="button" id="save_address">保 存</button>
 				</div>
 			</div>
         </form>
@@ -78,7 +78,7 @@ $(function(){
 		var add_uname = $('#add_uname').val();
 		var tel = $('#tel').val();
 		var address = $('#address').val();
-		$.post('/home/user/add_address',{id,id,add_uname:add_uname,tel:tel,address:address},function(data){
+		$.post('/home/user/add_address',{id:id,add_uname:add_uname,tel:tel,address:address},function(data){
 			hideAddress();
 			if(data.status == 1){
 				window.location.href=window.location.href; 
@@ -101,7 +101,6 @@ $(function(){
 function showAddressEdit() {
 	$("#bg").css("display","block");
 	$("#show_address_div").css("display","block");
-	alert('88899');
 }
 function hideAddress() {
 	document.getElementById("bg").style.display ='none';
@@ -120,7 +119,7 @@ function addr_update(id,uname,tel,address){
 }
 //设为默认，点击li或设置默认的连接
 function addr_set_default(id){
-	$.post('/home/user/set_default_address',{id,id},function(data){
+	$.post('/home/user/set_default_address',{id:id},function(data){
 		if(data.status == 1){
 			window.location.href=window.location.href; 
 		}else{
@@ -130,7 +129,7 @@ function addr_set_default(id){
 }
 //删除(用户中心)
 function addr_remove(id){
-	$.post('/home/user/del_address',{id,id},function(data){
+	$.post('/home/user/del_address',{id:id},function(data){
 		if(data.status == 1){
 			window.location.href=window.location.href; 
 		}else{

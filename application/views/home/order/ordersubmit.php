@@ -13,8 +13,6 @@
 <!--Alipay-->
 <div id="show_login_div" class="show_float_div">
 	<div class="login_header">
-        <a href="../../../../../wwwroot/Application/Home/View/Order/index.html"></a>
-        <a href="../../../../../wwwroot/Application/Home/View/Shop/shopinfo.html"></a>
         <button class="login_close" type="button" onclick="hideLogin()">×</button>
         <h3>提示</h3>
     </div>
@@ -28,14 +26,14 @@
 				<div class="f_login_item">
 					<span class="f_login_span l">&nbsp;&nbsp;&nbsp;&nbsp;</span>
 					<div>
-						<button type="button" id="lgbt" onclick="do_float_alipay();">已完成付款</button>
+						<button type="button" id="lgbt" onclick="do_float_alipay()">已完成付款</button>
 					</div>
 				</div>
 			</div>
         </form>
     </div>
     <div style="" class="f_login_reg">
-        <a href="<{:U('User/register')}>">付款遇到问题? 联系客服0532-86941917</a>
+        <a href="">付款遇到问题? 联系客服0532-86941917</a>
     </div>
 </div>
 <div class="content">
@@ -94,7 +92,7 @@
 					<?php endforeach;?>
 					<?php if(count($address_array)<2):?>
 						<li class="addr-item addr_item_new">  
-							<span class="add_new" style="">新增送餐地址</span>
+							<span class="add_new" id='add_new' style="">新增送餐地址</span>
 						</li>
 					<?php endif;?>
 				</ul>
@@ -136,6 +134,7 @@
 			</form>
 		</div>
 	</div>
+</div>
 </div>
 <script>
 //防止表单重复提交
@@ -215,9 +214,10 @@ function hideLogin() {
     window.location.href='<?php echo base_url('home/user/myorder');?>';
 }
 //新增地址
-$('.add_new').click(function(){
-	alert('2222==33');
-	showAddressEdit();
-});
+$(function(){
+	$('#add_new').click(function(){
+		showAddressEdit();
+	});
+})
 </script>
 <?php $this->load->view('home/common/footer');?>
