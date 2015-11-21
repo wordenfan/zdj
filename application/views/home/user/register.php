@@ -95,10 +95,10 @@ $(function() {
 				$("#verifyImg").attr('src',$img_url); 
 				return;
 			}else{
-				var code_btn = document.getElementById("mgs_btn");
-				test.init(code_btn);
 				$.post('/common/sms/send_reg_code',{reg_tel:$tel},function(data){
 					if(data.status == 1){
+						var code_btn = document.getElementById("mgs_btn");
+						test.init(code_btn);
 						alert(data.msg);
 					}else{
 						alert(data.msg);
