@@ -60,8 +60,12 @@
 						</font><br>
 					食品清单：<br>
 					<?php echo $data[0]['food_list'];?>
-					<font style="color:#ff0000">备注：<?php echo $data[0]['remark'];?></font>
-					
+					<font color="red">备注：<?php echo $data[0]['remark'];?></font><br>
+                    <?php if($data[0]['user_status'] == 1):?>
+                    订单管理：<font size="16" color="red"><a href="http://www.163.com">撤销</a></font>
+					<?php else:?>
+                    订单管理：<font size="16" color="green"><a href="http://www.163.com">接单</a></font>
+					<?php endif;?>
 				</dd>
 			</dl>
 	</section>
