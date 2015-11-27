@@ -3,4 +3,6 @@
 # !lib.a    # 但 lib.a 除外
 # build/    # 忽略 build/ 目录下的所有文件
 /application/config/database.php
+/application/logs/
 /nbproject/
+/.gitignore
