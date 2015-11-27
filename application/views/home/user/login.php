@@ -40,7 +40,7 @@
 			<div class="reg_item">
 				<span class="reg_name l">&nbsp;&nbsp;</span>
 				<div class="reg_input l">
-					尚未注册？<a style="text-decoration:underline" href="<?php echo base_url('home/User/register')?>">点击注册</a>
+					尚未注册？<a style="text-decoration:underline" href="<?php echo base_url('home/user/register')?>">点击注册</a>
 				</div>
 			</div>
 		</div>

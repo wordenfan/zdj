@@ -7,7 +7,7 @@ class Sms extends CI_Controller{
     }
 
     //注册验证码
-    public function send_reg_code($tempId=14077) {
+    public function send_reg_code($tempId=46165) {
         $to = $this->input->post('reg_tel',true);
         $reg_id = $this->db->select('uid')->from('onethink_user')->where(array('reg_tel'=>$to))->get()->row_array();
         if($reg_id){

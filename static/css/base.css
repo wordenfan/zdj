@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 body{ background:#f2f2f2;color:#333;font-family:'微软雅黑','宋体';font-size:12px;}
 html,div,ul,li,a,span,input,button,em,h1,h2,h3,h4,strong,dl,dd,dt,img,p,body{margin:0;padding:0; list-style:none; border:0;font-size:12px;}
@@ -83,7 +83,7 @@ a.red:hover{ text-decoration:underline;}
 
 /*login 浮层*/
 .show_float_div{overflow:hidden;display:none;position:fixed !important; position:absolute;top:25%;left:50%;width:460px;height:270px;margin-left:-230px;border:5px solid #999;background-color:white;z-index:1002;overflow: auto;}
-.login_header{padding:9px 15px;background-color:#e94b36}
+.login_header{padding:8px 15px;background-color:#e94b36}
 .login_header h3{font-size:16px;line-height:30px;margin:0;color:#fff;}
 .login_close{margin-top:2px;padding:0;border:0 none;background:none;cursor:pointer;float:right;color:#fff;font-size:20px;line-height:20px;font-weight:bold;}
 .login_body{height:125px;position:relative;padding:0px 30px 60px 30px; width:400px; overflow:hidden;}
