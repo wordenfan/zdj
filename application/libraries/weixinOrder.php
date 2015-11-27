@@ -14,18 +14,24 @@ class WeixinOrder
 	}
 	
     public function sendOrderMsg($body_data) {
-        var_dump($body_data);
-        exit;
+        $order = $body_data['order'];
+        $shop  = $body_data['shop'];
+        $list  = $body_data['foodlist'];
+        $pay_receive = '收：支：';
+        $food_list = '';
+        foreach($list as $k=>$v){
+            $food_list.=$v['num'].'*'.$v['price']."   ".$v['name'].'<br>';
+        }
         $data = array(
-            'first'=>array('value'=>urlencode("来新订单了"),'color'=>"#743A3A"),
-            'keyword1'=>array('value'=>urlencode("订单编号01"),'color'=>"#743A3A"),
-            'keyword2'=>array('value'=>urlencode("联系信息02"),'color'=>'#00008B'),
-            'keyword3'=>array('value'=>urlencode('订单内容03'),'color'=>'#00008B'),
-            'keyword4'=>array('value'=>urlencode('订单地址04'),'color'=>'#00008B'),
-            'keyword5'=>array('value'=>urlencode('送达时间05'),'color'=>'#00008B'),
-            'remark'=>array('value'=>urlencode('备注信息'),'color'=>'#00008B'),
+            'first'=>array('value'=>urlencode($shop['name']."来新订单了"),'color'=>"#743A3A"),
+            'keyword1'=>array('value'=>urlencode("订单编号01"),'color'=>"#743A3A"),//订单编号
+            'keyword2'=>array('value'=>urlencode($order['ord_name'].' : '.$order['ord_tel']),'color'=>'#00008B'),//联系信息
+            'keyword3'=>array('value'=>urlencode($food_list),'color'=>'#00008B'),
+            'keyword4'=>array('value'=>urlencode($order['ord_address']),'color'=>'#00008B'),//订单地址
+            'keyword5'=>array('value'=>urlencode('送达时间05'),'color'=>'#00008B'),//送达时间
+            'remark'=>array('value'=>urlencode($order['ord_remark']),'color'=>'#00008B'),//备注
         );
-        $url = 'http://www.163.com';
+        $url = 'http://z.26632.com';
         $access_token = $this->getAuthToken(self::AppID,  self::AppSecret);
         //发送消息
         foreach ($this->opeid_arr as $k=>$v){

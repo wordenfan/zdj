@@ -101,7 +101,7 @@ class Lib_order
         {
             //异步发送微信订单通知
             $this->ci->load->library('weixinOrder','','lib_weixin');
-            $lib_weixin->sendOrderMsg(array($data,$shop_info,$list));
+            $lib_weixin->sendOrderMsg(array('order'=>$data,'shop'=>$shop_info,'foodlist'=>$list));
             sendWeixin(APPPATH.'controllers/common/weixinorder.php',$data);
             //
             $this->ci->lib_cart->clearCart();
