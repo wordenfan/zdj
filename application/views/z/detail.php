@@ -58,14 +58,15 @@
 						<a href="tel:<?php echo $to;?>"><?php echo $to;?></a>&nbsp&nbsp
 					<?php endforeach;?>
 						</font><br>
+                    <?php if($data[0]['user_status'] == 1):?>
+                    订单管理：<font color="red"><a href="http://www.163.com">撤销</a></font>
+					<?php else:?>
+                    订单管理：<font color="green"><a href="http://www.163.com">接单</a></font>
+					<?php endif;?>
 					食品清单：<br>
 					<?php echo $data[0]['food_list'];?>
-					<font color="red">备注：<?php echo $data[0]['remark'];?></font><br>
-                    <?php if($data[0]['user_status'] == 1):?>
-                    订单管理：<font size="12" color="red"><a href="http://www.163.com">撤销</a></font>
-					<?php else:?>
-                    订单管理：<font size="12" color="green"><a href="http://www.163.com">接单</a></font>
-					<?php endif;?>
+					<font color="red">备注：<?php echo $data[0]['remark'];?></font>
+                    
 				</dd>
 			</dl>
 	</section>
