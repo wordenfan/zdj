@@ -99,11 +99,6 @@ class Lib_order
         $res_arr = $this->add_order($data,$shop_info,$list);
         if($res_arr['status'] == 1)
         {
-            //异步发送微信订单通知
-            $this->ci->load->library('weixin_order','','lib_weixin');
-            $this->ci->lib_weixin->sendOrderMsg(array('order'=>$data,'shop'=>$shop_info,'foodlist'=>$list));
-            //sendWeixin(APPPATH.'controllers/common/weixinorder.php',$data);
-            //
             $this->ci->lib_cart->clearCart();
             //支付宝继续执行
             if(!empty($alipay_post)){
@@ -178,6 +173,12 @@ class Lib_order
         $res['msg'] = '订单提交成功,配送员即刻为您配送!';
         $res['data'] = array('snid'=>$snid);
         $res['status'] = 1;
+        
+        //可以改为异步发送微信订单通知
+        $this->ci->load->library('weixin_order','','lib_weixin');
+        $this->ci->lib_weixin->sendOrderMsg($data,$food_list);
+        //sendWeixin(APPPATH.'controllers/common/weixinorder.php',$data);
+
         return $res;
     }
     //
