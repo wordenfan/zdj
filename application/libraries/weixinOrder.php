@@ -13,11 +13,9 @@ class WeixinOrder
         $this->opeid_arr = array(self::opendi_fan,self::opendi_chen);
 	}
 	
-    public function sendOrderMsg() {
-        file_put_contents(base_url().'application/logs/weixin_order_log.txt', '>sendOrderMsg:======>',FILE_APPEND);
-        file_put_contents(base_url().'application/logs/weixin_order_log.txt', $_POST,FILE_APPEND);
+    public function sendOrderMsg($body_data) {
+        var_dump($body_data);
         exit;
-        
         $data = array(
             'first'=>array('value'=>urlencode("来新订单了"),'color'=>"#743A3A"),
             'keyword1'=>array('value'=>urlencode("订单编号01"),'color'=>"#743A3A"),

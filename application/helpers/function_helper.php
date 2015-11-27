@@ -262,20 +262,20 @@ function pagination_setting()
 }
 //异步发送socket请求数据
 //fsockopen需要 PHP.ini 中 allow_url_fopen 选项开启
-function sendWeixin($url,$body_data,$port=80){
-    echo base_url().'logs/weixin_order_log.txt';
-    file_put_contents(base_url().'logs/weixin_order_log.txt', 'sendWeixin:>>>');
-    $fp = fsockopen($url, $port, $errno, $errstr, 30);
-    if (!$fp) {
-        echo "$errstr ($errno)<br />\n";
-    } else {
-        $post_data = http_build_query($body_data);
-        $out  = "POST ".$url."  / HTTP/1.1\r\n";
-        $out .= "Host: ".$url."\r\n";
-        $out .= "Connection: Close\r\n\r\n";
-        $out .= $post_data."\r\n"; 
-
-        fwrite($fp, $out);
-        fclose($fp);
-    }
-}
+//function sendWeixin($url,$body_data,$port=80){
+//    echo base_url().'application/logs/weixin_order_log.txt';
+//    file_put_contents(base_url().'application/logs/weixin_order_log.txt', 'sendWeixin:>>>');
+//    $fp = fsockopen($url, $port, $errno, $errstr, 30);
+//    if (!$fp) {
+//        echo "$errstr ($errno)<br />\n";
+//    } else {
+//        $post_data = http_build_query($body_data);
+//        $out  = "POST ".$url."  / HTTP/1.1\r\n";
+//        $out .= "Host: ".$url."\r\n";
+//        $out .= "Connection: Close\r\n\r\n";
+//        $out .= $post_data."\r\n"; 
+//
+//        fwrite($fp, $out);
+//        fclose($fp);
+//    }
+//}

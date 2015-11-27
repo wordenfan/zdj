@@ -100,7 +100,10 @@ class Lib_order
         if($res_arr['status'] == 1)
         {
             //异步发送微信订单通知
+            $this->ci->load->library('weixinOrder','','lib_weixin');
+            $lib_weixin->sendOrderMsg(array($data,$shop_info,$list));
             sendWeixin(APPPATH.'controllers/common/weixinorder.php',$data);
+            //
             $this->ci->lib_cart->clearCart();
             //支付宝继续执行
             if(!empty($alipay_post)){
