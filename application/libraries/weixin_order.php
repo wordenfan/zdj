@@ -35,7 +35,7 @@ class Weixin_order
         $access_token = $this->getAuthToken(self::AppID,  self::AppSecret);
         //发送消息
         foreach ($this->opeid_arr as $k=>$v){
-            $res = $this->doSend($access_token,$openid,self::TemplateD,$url,$data);
+            $res = $this->doSend($access_token,$v,self::TemplateD,$url,$data);
         }
     }
     private function getAuthToken($AppID, $AppSecret){
@@ -59,7 +59,8 @@ class Weixin_order
 
         $url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" . $access_token;
         $dataRes = $this->https_post($url,urldecode($json_template));
-        if ($dataRes['errcode'] == 0) {
+	$dataRes = json_decode($dataRes,true);
+	if ($dataRes['errcode'] == 0) {
                  return true;
         } else {
                  return false;
