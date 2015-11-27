@@ -28,43 +28,42 @@
   </div>
 </section>
 <div class="detail_wrap">
-	<section data-am-widget="accordion" class="am-accordion am-accordion-default" data-am-accordion='{ "multiple": true }'>
-		<?php foreach($list['data'] as $k=>$mo):?>
+	<section data-am-widget="accordion" class="am-accordion am-accordion-default">
+		
 			<dl class="am-accordion-item">
 				<dt class="am-accordion-title">
-					<?php echo date('H:i',$mo['opublish']);?>_<?php echo $mo['oshop_name']?>
-					<span style="float:right;color:#ff0000;"><?php echo $mo['oname']?></span>
+					<?php echo date('H:i',$data[0]['opublish']);?>_<?php echo $data[0]['oshop_name']?>
+					<span style="float:right;color:#ff0000;"><?php echo $data[0]['oname']?></span>
 				</dt>
 				<dd class="am-accordion-content am-collapse ">
 					订单状态：
-					<?php if($mo['order_status'] == 1):?>
+					<?php if($data[0]['order_status'] == 1):?>
 						<font color="green">成功</font>
-					<?php elseif($mo['order_status'] == 2):?>
+					<?php elseif($data[0]['order_status'] == 2):?>
 						<font color="red">取消</font>
 					<?php else:?>
 						<font color="gray">未受理</font>
 					<?php endif;?>
 					&nbsp&nbsp&nbsp&nbsp				
 					用户状态：
-					<?php if($mo['user_status'] == 1):?>
+					<?php if($data[0]['user_status'] == 1):?>
 						<font color="red">新用户</font>
 					<?php else:?>
 						<font color="green">老用户</font>
 					<?php endif;?><br>
-					用户电话：<font color="red"><a href="tel:<?php echo $mo['otel'];?>"><?php echo $mo['otel'];?></a></font>&nbsp&nbsp&nbsp&nbsp收取：<font color="green"><?php echo $mo['osum'];?></font><br>
-					用户地址：<font color="red"><?php echo $mo['oaddress'];?></font><br>
+					用户电话：<font color="red"><a href="tel:<?php echo $data[0]['otel'];?>"><?php echo $data[0]['otel'];?></a></font>&nbsp&nbsp&nbsp&nbsp收取：<font color="green"><?php echo $data[0]['osum'];?></font><br>
+					用户地址：<font color="red"><?php echo $data[0]['oaddress'];?></font><br>
 					商家电话：<font color="gray">
-					<?php foreach($mo['oshop_tel'] as $k=>$to):?>
+					<?php foreach($data[0]['oshop_tel'] as $k=>$to):?>
 						<a href="tel:<?php echo $to;?>"><?php echo $to;?></a>&nbsp&nbsp
 					<?php endforeach;?>
 						</font><br>
 					食品清单：<br>
-					<?php echo $mo['food_list'];?>
-					<font style="color:#ff0000">备注：<?php echo $mo['remark'];?></font>
+					<?php echo $data[0]['food_list'];?>
+					<font style="color:#ff0000">备注：<?php echo $data[0]['remark'];?></font>
 					
 				</dd>
 			</dl>
-		<?php endforeach;?>
 	</section>
 </div>
 <script>
@@ -79,7 +78,7 @@
 			header: {
 				"theme": "",
 				"content": {
-					"title": "<?php echo $riqi?>-订单"
+					"title": "<?php echo $data[0]['oshop_name']; ?>-订单"
 				}
 			},
 			navbar: {
@@ -89,14 +88,14 @@
 				},
 				"content": [
 				  {
-					"title": "呼叫总部",
-					"link": "tel:18561527901",
+					"title": "呼叫用户",
+					"link": "tel:<?php echo $data[0]['otel']; ?>",
 					"icon": "phone",
 					"dataApi": ""
 				  },
 				  {
-					"title": "查看后台",
-					"link": "http://www.26632.com/zAdmin/",
+					"title": "订单列表",
+					"link": "http://z.26632.com/",
 					"icon": "share-square-o",
 					"dataApi": ""
 				  }

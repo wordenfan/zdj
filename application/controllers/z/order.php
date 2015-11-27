@@ -35,18 +35,13 @@ class Order extends CI_Controller {
     }
     //微信跳转详情
     public function detail(){
-        $snid = $this->uri->segment(3);
+//        $snid = $this->uri->segment(3);
+        $snid = 7308;
         
         $order_list = $this->lib_order->getOrderList(1,1,array('snid'=>$snid));
-//        $order_data['list']['data'][$k]['oshop_tel'] = explode(';', $order_list[0]['oshop_tel']);
+        $order_list['data'][0]['oshop_tel'] = explode(';', $order_list['data'][0]['oshop_tel']);
         $food_list = $this->olmd->getOrderListInfo(array('snid'=>$snid));
-        
-        echo '==========';
-        var_dump($snid);
-        var_dump($order_list);
-        var_dump($food_list);
-        exit;
-        
+        echo '123====';
         $list_str = '';
         foreach ($food_list as $m => $n) {
             $num = $list_str.$n['fnum'];
@@ -55,6 +50,8 @@ class Order extends CI_Controller {
             }
             $list_str = $num.'*'.$n['fprice'].'&nbsp&nbsp&nbsp&nbsp'.$n['fname'].'<br>';
         }
-        $order_data['list']['data'][$k]['food_list'] = $list_str;
+        $order_list['data'][0]['food_list'] = $list_str;
+        
+        $this->load->view('z/detail',$order_list);
     }
 }
