@@ -115,32 +115,6 @@ class Order extends HomeBase {
         }
     }
     public function test() {
-        $this->load->library('lib_order','','lib_order');
-		$this->load->model('orderlistmodel','olmd');
-//        log_message('Error', 'nnnotifyurl改变==交易状态');
-        $order_list = $this->lib_order->getOrderList(3,1);
-//        var_dump($order_list);
-//        exit;
-//        $snid = $this->uri->segment(3);
-        $snid = 7308;
-        
-        $order_list = $this->lib_order->getOrderList(5,1,array('snid'=>$snid));
-        $order_info = $order_list['data'][0];
-        $order_list['data'][0]['oshop_tel'] = explode(';', $order_info['oshop_tel']);
-        $food_list = $this->olmd->getOrderListInfo(array('snid'=>$snid));
-        
-        $list_str = '';
-        foreach ($food_list as $m => $n) {
-            $num = $list_str.$n['fnum'];
-            if($n['fnum']>1){
-                $num = $list_str.'<font color="red">'.$n['fnum'].'</font>';
-            }
-            $list_str = $num.'*'.$n['fprice'].'&nbsp&nbsp&nbsp&nbsp'.$n['fname'].'<br>';
-        }
-        $order_list['data'][0]['food_list'] = $list_str;
-        
-        var_dump($order_list);exit;
-        
-        $this->load->view('z/order',$order_list);
+        log_message('Error', 'nnnotifyurl改变==交易状态');
     }
 }

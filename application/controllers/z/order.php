@@ -41,7 +41,9 @@ class Order extends CI_Controller {
         $order_list = $this->lib_order->getOrderList(1,1,array('snid'=>$snid));
         $order_list['data'][0]['oshop_tel'] = explode(';', $order_list['data'][0]['oshop_tel']);
         $food_list = $this->olmd->getOrderListInfo(array('snid'=>$snid));
-        echo '123====';
+        
+        $order_list['riqi'] = date('Y-m-d',$_SERVER['REQUEST_TIME']);
+        $order_list['shijian'] = date('H:i:s',$_SERVER['REQUEST_TIME']);
         $list_str = '';
         foreach ($food_list as $m => $n) {
             $num = $list_str.$n['fnum'];
