@@ -1,5 +1,5 @@
 <?php 
-class WeixinOrder
+class Weixin_order
 {
 	const opendi_fan  = 'oiylOuHVvT7L2fYIQ46SJIwVuN0Q';
 	const opendi_chen = 'oiylOuHhaEc-cRE8cgBkveeas94w';
