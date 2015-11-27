@@ -13,23 +13,21 @@ class Weixin_order
         $this->opeid_arr = array(self::opendi_fan,self::opendi_chen);
 	}
 	
-    public function sendOrderMsg($body_data) {
-        $order = $body_data['order'];
-        $shop  = $body_data['shop'];
-        $list  = $body_data['foodlist'];
-        $pay_receive = '收：支：';
+    public function sendOrderMsg($order_data,$list) {
+        $pay_receive = '收：'.$order_data['sum'].'支：'.$order_data['opay'];
         $food_list = '';
         foreach($list as $k=>$v){
-            $food_list.=$v['num'].'*'.$v['price']."   ".$v['name'].'<br>';
+            $food_list.=$v['num'].'*'.$v['price']."   ".$v['name'].' / ';
         }
+        $food_list = rtrim($food_list,' / ');
         $data = array(
-            'first'=>array('value'=>urlencode($shop['name']."来新订单了"),'color'=>"#743A3A"),
-            'keyword1'=>array('value'=>urlencode("订单编号01"),'color'=>"#743A3A"),//订单编号
-            'keyword2'=>array('value'=>urlencode($order['ord_name'].' : '.$order['ord_tel']),'color'=>'#00008B'),//联系信息
-            'keyword3'=>array('value'=>urlencode($food_list),'color'=>'#00008B'),
-            'keyword4'=>array('value'=>urlencode($order['ord_address']),'color'=>'#00008B'),//订单地址
-            'keyword5'=>array('value'=>urlencode('送达时间05'),'color'=>'#00008B'),//送达时间
-            'remark'=>array('value'=>urlencode($order['ord_remark']),'color'=>'#00008B'),//备注
+            'first'   =>array('color'=>"#333",'value'=>urlencode($order_data['oshop_name'])),
+            'keyword1'=>array('color'=>"#333",'value'=>urlencode($pay_receive)),                                         //订单编号
+            'keyword2'=>array('color'=>"#333",'value'=>urlencode($order_data['uname'].' 电话：'.$order_data['otel'])),    //联系信息
+            'keyword3'=>array('color'=>'#00008B','value'=>urlencode($food_list)),                                        //订单内容
+            'keyword4'=>array('color'=>'#743A3A','value'=>urlencode($order_data['oaddress'])),                           //订单地址
+            'keyword5'=>array('color'=>'#333','value'=>urlencode(date('Y-m-d H:i',$_SERVER['REQUEST_TIME']+1000*60*45))),//送达时间
+            'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
         );
         $url = 'http://z.26632.com';
         $access_token = $this->getAuthToken(self::AppID,  self::AppSecret);
