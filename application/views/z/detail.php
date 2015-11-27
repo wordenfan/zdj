@@ -31,11 +31,11 @@
 	<section data-am-widget="accordion" class="am-accordion am-accordion-default">
 		
 			<dl class="am-accordion-item">
-				<dt class="am-accordion-title">
+                <dt class="am-accordion-title" style="background-color:#EEEEEE;color:#e65210">
 					<?php echo date('H:i',$data[0]['opublish']);?>_<?php echo $data[0]['oshop_name']?>
 					<span style="float:right;color:#ff0000;"><?php echo $data[0]['oname']?></span>
 				</dt>
-				<dd class="am-accordion-content am-collapse ">
+				<dd class="am-accordion-content">
 					订单状态：
 					<?php if($data[0]['order_status'] == 1):?>
 						<font color="green">成功</font>
