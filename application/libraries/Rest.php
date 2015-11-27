@@ -7,7 +7,7 @@
  *  that can be found in the LICENSE file in the root of the web site.
  *
  *   http://www.yuntongxun.com
- *
+ *   容联云通讯
  *  An additional intellectual property rights grant can be found
  *  in the file PATENTS.  All contributing project authors may
  *  be found in the AUTHORS file in the root of the source tree.
