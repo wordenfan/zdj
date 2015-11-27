@@ -6,6 +6,7 @@ class Weixin_order
     const AppID       = 'wxa2b35971c5193836';
 	const AppSecret   = 'a15953c26f78a991175d2be86336d2bc';
 	const TemplateD   = 'pJmonxTzZTTBX72OrkFEIbvLfKuXwSak1EgYllOISJ0';
+    const detail_url  = 'http://z.26632.com';
     var $openid_arr = array();
 
 	public function __construct()
@@ -13,23 +14,22 @@ class Weixin_order
         $this->opeid_arr = array(self::opendi_fan,self::opendi_chen);
 	}
 	
-    public function sendOrderMsg($order_data,$list) {
-        $pay_receive = '收：'.$order_data['sum'].'支：'.$order_data['opay'];
+    public function sendOrderMsg($order_data,$list,$snid) {
+        $pay_receive = '收：'.$order_data['osum'].'支：'.$order_data['opay'];
         $food_list = '';
         foreach($list as $k=>$v){
-            $food_list.=$v['num'].'*'.$v['price']."   ".$v['name'].' / ';
+            $food_list.='<'.$v['num'].'*'.$v['price']."   ".$v['name'].'>';
         }
-        $food_list = rtrim($food_list,' / ');
         $data = array(
             'first'   =>array('color'=>"#333",'value'=>urlencode($order_data['oshop_name'])),
             'keyword1'=>array('color'=>"#333",'value'=>urlencode($pay_receive)),                                         //订单编号
             'keyword2'=>array('color'=>"#333",'value'=>urlencode($order_data['uname'].' 电话：'.$order_data['otel'])),    //联系信息
             'keyword3'=>array('color'=>'#00008B','value'=>urlencode($food_list)),                                        //订单内容
             'keyword4'=>array('color'=>'#743A3A','value'=>urlencode($order_data['oaddress'])),                           //订单地址
-            'keyword5'=>array('color'=>'#333','value'=>urlencode(date('Y-m-d H:i',$_SERVER['REQUEST_TIME']+1000*60*45))),//送达时间
+            'keyword5'=>array('color'=>'#333','value'=>urlencode(date('Y-m-d H:i',$_SERVER['REQUEST_TIME']+60*45))),//送达时间
             'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
         );
-        $url = 'http://z.26632.com';
+        $url = self::detail_url.'/detail/snid/'.$snid;
         $access_token = $this->getAuthToken(self::AppID,  self::AppSecret);
         //发送消息
         foreach ($this->opeid_arr as $k=>$v){
@@ -57,8 +57,8 @@ class Weixin_order
 
         $url = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=" . $access_token;
         $dataRes = $this->https_post($url,urldecode($json_template));
-	$dataRes = json_decode($dataRes,true);
-	if ($dataRes['errcode'] == 0) {
+        $dataRes = json_decode($dataRes,true);
+        if ($dataRes['errcode'] == 0) {
                  return true;
         } else {
                  return false;
