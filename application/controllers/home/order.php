@@ -115,6 +115,8 @@ class Order extends HomeBase {
         }
     }
     public function test() {
+        $this->load->library('lib_order','','lib_order');
+		$this->load->model('orderlistmodel','olmd');
 //        log_message('Error', 'nnnotifyurl改变==交易状态');
         $order_list = $this->lib_order->getOrderList(2,1);
         var_dump($order_list);
