@@ -118,13 +118,13 @@ class Order extends HomeBase {
         $this->load->library('lib_order','','lib_order');
 		$this->load->model('orderlistmodel','olmd');
 //        log_message('Error', 'nnnotifyurl改变==交易状态');
-//        $order_list = $this->lib_order->getOrderList(2,1);
-//        var_dump($order_list);
+        $order_list = $this->lib_order->getOrderList(3,1);
+        var_dump($order_list);
 //        exit;
 //        $snid = $this->uri->segment(3);
         $snid = 7903;
         
-        $order_list = $this->lib_order->getOrderList(1,1,array('snid'=>$snid));
+        $order_list = $this->lib_order->getOrderList(5,1,array('snid'=>$snid));
 //        $order_data['list']['data'][$k]['oshop_tel'] = explode(';', $order_list[0]['oshop_tel']);
         $food_list = $this->olmd->getOrderListInfo(array('snid'=>$snid));
         
