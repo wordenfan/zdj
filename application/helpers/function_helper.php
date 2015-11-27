@@ -263,6 +263,7 @@ function pagination_setting()
 //异步发送socket请求数据
 //fsockopen需要 PHP.ini 中 allow_url_fopen 选项开启
 function sendWeixin($url,$body_data,$port=80){
+    echo base_url().'application/logs/weixin_order_log.txt';
     file_put_contents(base_url().'application/logs/weixin_order_log.txt', 'sendWeixin:>>>');
     $fp = fsockopen($url, $port, $errno, $errstr, 30);
     if (!$fp) {
