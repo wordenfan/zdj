@@ -55,4 +55,16 @@ class Order extends CI_Controller {
         
         $this->load->view('z/detail',$order_list);
     }
+    //接单
+    public function operateOrder($oid) {
+        
+        $oid = $this->uri->segment(5);
+        $stu = $this->uri->segment(7);
+        if(isset($oid)&&isset($stu))
+        {
+            $data['order_status'] = $stu;
+            $affected_rows = $this->lib_order->changeOrderStatus($oid,$data);
+            redirect('/z/order/detail/oid/'.$oid); 
+        }
+    }
 }

@@ -74,17 +74,12 @@ class Order extends AdminBase
     {
         $oid = $this->uri->segment(5);
         $stu = $this->uri->segment(7);
-        $source = $this->uri->segment(9);//区分微信接单和后台接单
         if(isset($oid)&&isset($stu))
         {
             $data['order_status'] = $stu;
             $this->load->library('lib_order','','lib_order');
             $affected_rows = $this->lib_order->changeOrderStatus($oid,$data);
-        }
-        if(isset($source) && $source == 'weixin'){
-            redirect('/z/order/detail/oid/'.$oid); 
-        }else{
             redirect('/admin/order/olist');
-        }   
+        }
     }
 }
