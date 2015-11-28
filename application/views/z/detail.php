@@ -12,9 +12,7 @@
 	<link rel="stylesheet" href="<?php echo base_url('static/mobile_assets/css/amazeui.min.css');?>">
 	<link rel="stylesheet" href="<?php echo base_url('static/mobile_assets/css/app.css');?>">
 	<link rel="stylesheet" href="<?php echo base_url('static/mobile_assets/css/mobile.css');?>">
-    <script src="<?php echo base_url('static/mobile_assets/js/zepto.min.js?ver=1.1.3');?>"></script>
 	<script src="<?php echo base_url('static/mobile_assets/js/amazeui.js');?>"></script>
-	<script src="<?php echo base_url('static/mobile_assets/js/handlebars.min.js');?>"></script>
 	<script src="<?php echo base_url('static/mobile_assets/js/amazeui.widgets.helper.js');?>"></script>
 </head>
 <body>
