@@ -59,9 +59,9 @@
 					<?php endforeach;?>
 						</font><br>
                     <?php if($data[0]['user_status'] == 1):?>
-                    订单管理：<font color="red"><a href="http://www.163.com">☜撤销☞</a></font>
+                    订单管理：<font color="#333333"><a href="http://www.163.com">☜撤销☞</a></font>
 					<?php else:?>
-                    订单管理：<font color="green"><a href="http://www.163.com">☜接单☞</a></font>
+                    订单管理：<font color="#0000CD"><a href="http://www.163.com">☜接单☞</a></font>
 					<?php endif;?><br>
 					食品清单：<br>
 					<?php echo $data[0]['food_list'];?>
