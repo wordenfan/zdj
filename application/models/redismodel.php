@@ -53,6 +53,10 @@ class RedisModel extends MY_Model
         $data = $this->redis->lLen($key);
         return $data;
     }
+    //删减键值
+    public function lrem($oid) {
+        $this->redis->lrem('order',$oid,1);
+    }
     //==================无序===========
     //集合_设置
     public function sadd($key,$val){

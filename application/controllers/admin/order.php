@@ -30,9 +30,9 @@ class Order extends AdminBase
             $_url = '/admin/order/olist/'.$js_type.'/'.$js_condition.'/page/'.$cur_page;
         }else{
             //每次刷新都会清空redis的list
-            $this->load->model('redismodel','redis_m');
-            $this->redis_m->del('order');
-            $_url = '/admin/order/olist/page';
+//            $this->load->model('redismodel','redis_m');
+//            $this->redis_m->del('order');
+//            $_url = '/admin/order/olist/page';
         }
         //
         $o_list = $this->omd->orderList($per_page,$cur_page,$where);
@@ -74,13 +74,17 @@ class Order extends AdminBase
     {
         $oid = $this->uri->segment(5);
         $stu = $this->uri->segment(7);
+        $source = $this->uri->segment(9);//区分微信接单和后台接单
         if(isset($oid)&&isset($stu))
         {
             $data['order_status'] = $stu;
             $this->load->library('lib_order','','lib_order');
             $affected_rows = $this->lib_order->changeOrderStatus($oid,$data);
-            //CacheData::reset_order_cache();
-            redirect('/admin/order/olist');
         }
+        if($isset($source) && $source == 'weixin'){
+            redirect('/z/order/detail/oid/'.$oid); 
+        }else{
+            redirect('/admin/order/olist');
+        }   
     }
 }

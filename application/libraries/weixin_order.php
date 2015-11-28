@@ -14,7 +14,7 @@ class Weixin_order
         $this->opeid_arr = array(self::opendi_fan,self::opendi_chen);
 	}
 	
-    public function sendOrderMsg($order_data,$list,$snid) {
+    public function sendOrderMsg($order_data,$list,$oid) {
         $pay_receive = '收：'.$order_data['osum'].'     支：'.$order_data['opay'];
         $food_list = '';
         foreach($list as $k=>$v){
@@ -29,7 +29,7 @@ class Weixin_order
             'keyword5'=>array('color'=>'#333','value'=>urlencode(date('Y-m-d H:i',$_SERVER['REQUEST_TIME']+60*45))),//送达时间
             'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
         );
-        $url = self::detail_url.'/detail/snid/'.$snid;
+        $url = self::detail_url.'/detail/oid/'.$oid;
         $access_token = $this->getAuthToken(self::AppID,  self::AppSecret);
         //发送消息
         foreach ($this->opeid_arr as $k=>$v){

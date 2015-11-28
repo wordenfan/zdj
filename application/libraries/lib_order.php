@@ -176,7 +176,7 @@ class Lib_order
         
         //可以改为异步发送微信订单通知
         $this->ci->load->library('weixin_order','','lib_weixin');
-        $this->ci->lib_weixin->sendOrderMsg($data,$food_list,$snid);
+        $this->ci->lib_weixin->sendOrderMsg($data,$food_list,$data['oid']);
         //sendWeixin(APPPATH.'controllers/common/weixinorder.php',$data);
 
         return $res;
@@ -189,6 +189,10 @@ class Lib_order
     //修改订单状态
     public function changeOrderStatus($oid,$data) {
         $this->ci->load->model('ordermodel','omd');
-        return $this->ci->omd->changeOrderStatus($oid,$data);
+        $order_md = $this->ci->omd->changeOrderStatus($oid,$data);
+        
+        $this->load->model('redismodel','redis_m');
+        $this->ci->redis_m->lrem($oid);
+        return $order_md;
     }
 }

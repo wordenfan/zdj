@@ -35,12 +35,11 @@ class Order extends CI_Controller {
     }
     //微信跳转详情
     public function detail(){
-//        $snid = $this->uri->segment(3);
-        $snid = 7308;
+        $oid = $this->uri->segment(3);
         
-        $order_list = $this->lib_order->getOrderList(1,1,array('snid'=>$snid));
+        $order_list = $this->lib_order->getOrderList(1,1,array('oid'=>$oid));
         $order_list['data'][0]['oshop_tel'] = explode(';', $order_list['data'][0]['oshop_tel']);
-        $food_list = $this->olmd->getOrderListInfo(array('snid'=>$snid));
+        $food_list = $this->olmd->getOrderListInfo(array('oid'=>$oid));
         
         $order_list['riqi'] = date('Y-m-d',$_SERVER['REQUEST_TIME']);
         $order_list['shijian'] = date('H:i:s',$_SERVER['REQUEST_TIME']);
