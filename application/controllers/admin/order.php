@@ -32,7 +32,7 @@ class Order extends AdminBase
             //每次刷新都会清空redis的list
 //            $this->load->model('redismodel','redis_m');
 //            $this->redis_m->del('order');
-//            $_url = '/admin/order/olist/page';
+            $_url = '/admin/order/olist/page';
         }
         //
         $o_list = $this->omd->orderList($per_page,$cur_page,$where);
