@@ -55,7 +55,7 @@ class orderModel extends MY_Model
         if($insert_d = $this->db->insert_id())
         {
             $this->load->model('redismodel','redis_m');
-            $this->redis_m->rpush('order',$insert_d);
+            $this->redis_m->rpush('order',$idata['oid']);
             return $insert_d;
         } else {
             log_message('Error', 'ordermodel写入数据失败=/='.$this->db->last_query());

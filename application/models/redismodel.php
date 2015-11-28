@@ -45,8 +45,8 @@ class RedisModel extends MY_Model
     }
     //==================列表===========
     //
-    public function rpush($key,$val){
-        $this->redis->rPush($key,$val);
+    public function rpush($key,$oid){
+        $this->redis->rPush($key,$oid);
     }
     //获取长度
     public function llen($key){
