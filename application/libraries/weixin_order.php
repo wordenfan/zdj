@@ -27,7 +27,8 @@ class Weixin_order
             'keyword3'=>array('color'=>'#333','value'=>urlencode($food_list)),                                        //订单内容
             'keyword4'=>array('color'=>'#743A3A','value'=>urlencode($order_data['oaddress'])),                           //订单地址
             'keyword5'=>array('color'=>'#333','value'=>urlencode(date('Y-m-d H:i',$_SERVER['REQUEST_TIME']+60*45))),//送达时间
-            'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
+//            'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
+            'remark'  =>array('color'=>'#333','value'=>urlencode(self::detail_url.'/detail/oid/'.$oid)),                                //备注
         );
         $url = self::detail_url.'/detail/oid/'.$oid;
         $access_token = $this->getAuthToken(self::AppID,  self::AppSecret);

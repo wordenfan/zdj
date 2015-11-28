@@ -191,7 +191,7 @@ class Lib_order
         $this->ci->load->model('ordermodel','omd');
         $order_md = $this->ci->omd->changeOrderStatus($oid,$data);
         
-        $this->load->model('redismodel','redis_m');
+        $this->ci->load->model('redismodel','redis_m');
         $this->ci->redis_m->lrem($oid);
         return $order_md;
     }
