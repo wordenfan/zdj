@@ -52,8 +52,8 @@
 						<font color="green">老用户</font>
 					<?php endif;?><br>
 					用户电话：<font color="red"><a href="tel:<?php echo $data[0]['otel'];?>"><?php echo $data[0]['otel'];?></a></font>&nbsp&nbsp&nbsp&nbsp收取：<font color="green"><?php echo $data[0]['osum'];?></font><br>
-					用户地址：<font color="red"><?php echo $data[0]['oaddress'];?></font><br>
-					商家电话：<font color="gray">
+					用户地址：<font color="#333"><?php echo $data[0]['oaddress'];?></font><br>
+					商家电话：<font>
 					<?php foreach($data[0]['oshop_tel'] as $k=>$to):?>
 						<a href="tel:<?php echo $to;?>"><?php echo $to;?></a>&nbsp&nbsp
 					<?php endforeach;?>
