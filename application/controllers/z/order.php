@@ -35,7 +35,7 @@ class Order extends CI_Controller {
     }
     //微信跳转详情
     public function detail(){
-        $oid = $this->uri->segment(3);
+        $oid = $this->uri->segment(4);
         
         $order_list = $this->lib_order->getOrderList(1,1,array('oid'=>$oid));
         $order_list['data'][0]['oshop_tel'] = explode(';', $order_list['data'][0]['oshop_tel']);

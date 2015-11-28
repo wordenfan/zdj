@@ -30,7 +30,7 @@ class Weixin_order
 //            'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
             'remark'  =>array('color'=>'#333','value'=>urlencode(self::detail_url.'/detail/oid/'.$oid)),                                //备注
         );
-        $url = self::detail_url.'/detail/oid/'.$oid;
+        $url = self::detail_url.'/order/detail/oid/'.$oid;
         $access_token = $this->getAuthToken(self::AppID,  self::AppSecret);
         //发送消息
         foreach ($this->opeid_arr as $k=>$v){
