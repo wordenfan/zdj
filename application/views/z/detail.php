@@ -45,7 +45,7 @@
 						<font color="gray">未受理</font>
 					<?php endif;?>
 					&nbsp&nbsp&nbsp&nbsp	
-                    <?php if($data[0]['user_status'] == 1):?>
+                    <?php if($data[0]['order_status'] == 1):?>
                     订单管理：<a href="<?php echo base_url('admin/order/operate/oid/'.$data[0]['oid'].'/stu/2/source/weixin');?>" style="color:#ff0000;text-decoration:underline">☜撤销☞</a>
 					<?php else:?>
                     订单管理：<a href="<?php echo base_url('admin/order/operate/oid/'.$data[0]['oid'].'/stu/1/source/weixin');?>" style="color:#008000;text-decoration:underline">☜接单☞</a>
