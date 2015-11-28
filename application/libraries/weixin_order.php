@@ -26,7 +26,7 @@ class Weixin_order
             'keyword2'=>array('color'=>"#333",'value'=>urlencode($order_data['uname'].'     电话:'.$order_data['otel'])),    //联系信息
             'keyword3'=>array('color'=>'#0000FF','value'=>urlencode($food_list)),                                        //订单内容
             'keyword4'=>array('color'=>'#8B0000','value'=>urlencode($order_data['oaddress'])),                           //订单地址
-            'keyword5'=>array('color'=>'#333','value'=>urlencode(date('Y-m-d H:i',$_SERVER['REQUEST_TIME']+60*45))),//送达时间
+            'keyword5'=>array('color'=>'#333','value'=>urlencode(date('h:i',$_SERVER['REQUEST_TIME']).'<==>'.date('h:i',$_SERVER['REQUEST_TIME']+60*45))),//送达时间
             'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
         );
         $url = self::detail_url.'/order/detail/oid/'.$oid;
