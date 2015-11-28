@@ -18,11 +18,11 @@ class Weixin_order
         $pay_receive = '收：'.$order_data['osum'].'     支：'.$order_data['opay'];
         $food_list = '';
         foreach($list as $k=>$v){
-            $food_list.='     <'.$v['num'].'*'.$v['name'].'>';
+            $food_list.=' ('.$v['num'].'*'.$v['name'].')';
         }
         $data = array(
             'first'   =>array('color'=>"#333",'value'=>urlencode($order_data['oshop_name'])),
-            'keyword1'=>array('color'=>"#333",'value'=>urlencode($pay_receive)),                                         //订单编号
+            'keyword1'=>array('color'=>"#8B0000",'value'=>urlencode($pay_receive)),                                         //订单编号
             'keyword2'=>array('color'=>"#333",'value'=>urlencode($order_data['uname'].' 电话：'.$order_data['otel'])),    //联系信息
             'keyword3'=>array('color'=>'#333','value'=>urlencode($food_list)),                                        //订单内容
             'keyword4'=>array('color'=>'#743A3A','value'=>urlencode($order_data['oaddress'])),                           //订单地址
