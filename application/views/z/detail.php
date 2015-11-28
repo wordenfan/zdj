@@ -46,9 +46,9 @@
 					<?php endif;?>
 					&nbsp&nbsp&nbsp&nbsp	
                     <?php if($data[0]['order_status'] == 1):?>
-                    订单管理：<a href="<?php echo base_url('admin/order/operate/oid/'.$data[0]['oid'].'/stu/2/source/weixin');?>" style="color:#ff0000;text-decoration:underline">☜撤销☞</a>
+                    订单管理：<a href="<?php echo $_SERVER['HTTP_HOST'].'admin/order/operate/oid/'.$data[0]['oid'].'/stu/2/source/weixin';?>" style="color:#ff0000;text-decoration:underline">☜撤销☞</a>
 					<?php else:?>
-                    订单管理：<a href="<?php echo base_url('admin/order/operate/oid/'.$data[0]['oid'].'/stu/1/source/weixin');?>" style="color:#008000;text-decoration:underline">☜接单☞</a>
+                    订单管理：<a href="<?php echo $_SERVER['HTTP_HOST'].'admin/order/operate/oid/'.$data[0]['oid'].'/stu/1/source/weixin';?>" style="color:#008000;text-decoration:underline">☜接单☞</a>
 					<?php endif;?><br>
 					用户电话：<font color="red"><a href="tel:<?php echo $data[0]['otel'];?>"><?php echo $data[0]['otel'];?></a></font>&nbsp&nbsp&nbsp&nbsp收取：<font color="green"><?php echo $data[0]['osum'];?></font><br>
 					用户状态：
