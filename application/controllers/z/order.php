@@ -13,6 +13,12 @@ class Order extends CI_Controller {
     //
     public function index()
     {
+        echo '===';
+        echo $_SERVER['HTTP_HOST'];
+        echo $_SERVER['SERVER_NAME'];
+        echo ltrim($_SERVER['SERVER_NAME'],'z');
+        exit;
+        
         $order_list = $this->lib_order->getOrderList(10,1);
         $order_data['riqi'] = date('Y-m-d',$_SERVER['REQUEST_TIME']);
         $order_data['shijian'] = date('H:i:s',$_SERVER['REQUEST_TIME']);
