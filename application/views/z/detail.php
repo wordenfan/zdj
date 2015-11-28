@@ -44,25 +44,26 @@
 					<?php else:?>
 						<font color="gray">未受理</font>
 					<?php endif;?>
-					&nbsp&nbsp&nbsp&nbsp				
+					&nbsp&nbsp&nbsp&nbsp	
+                    <?php if($data[0]['user_status'] == 1):?>
+                    订单管理：<a href="http://www.163.com" style="color:#ff0000;text-decoration:underline">☜撤销☞</a>
+					<?php else:?>
+                    订单管理：<a href="http://www.163.com" style="color:#008000;text-decoration:underline">☜接单☞</a>
+					<?php endif;?><br>
+					用户电话：<font color="red"><a href="tel:<?php echo $data[0]['otel'];?>"><?php echo $data[0]['otel'];?></a></font>&nbsp&nbsp&nbsp&nbsp收取：<font color="green"><?php echo $data[0]['osum'];?></font><br>
 					用户状态：
 					<?php if($data[0]['user_status'] == 1):?>
 						<font color="red">新用户</font>
 					<?php else:?>
 						<font color="green">老用户</font>
 					<?php endif;?><br>
-					用户电话：<font color="red"><a href="tel:<?php echo $data[0]['otel'];?>"><?php echo $data[0]['otel'];?></a></font>&nbsp&nbsp&nbsp&nbsp收取：<font color="green"><?php echo $data[0]['osum'];?></font><br>
-					用户地址：<font color="#333"><?php echo $data[0]['oaddress'];?></font><br>
+                    用户地址：<font color="grey"><?php echo $data[0]['oaddress'];?></font><br>
 					商家电话：<font>
 					<?php foreach($data[0]['oshop_tel'] as $k=>$to):?>
 						<a href="tel:<?php echo $to;?>"><?php echo $to;?></a>&nbsp&nbsp
 					<?php endforeach;?>
 						</font><br>
-                    <?php if($data[0]['user_status'] == 1):?>
-                    订单管理：<a href="http://www.163.com" style="color:#ff0000;text-decoration:underline">☜撤销☞</a>
-					<?php else:?>
-                    订单管理：<a href="http://www.163.com" style="color:#008000;text-decoration:underline">☜接单☞</a>
-					<?php endif;?><br>
+                    
 					食品清单：<br>
 					<?php echo $data[0]['food_list'];?>
 					<font color="red">备注：<?php echo $data[0]['remark'];?></font>
