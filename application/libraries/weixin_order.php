@@ -15,20 +15,19 @@ class Weixin_order
 	}
 	
     public function sendOrderMsg($order_data,$list,$oid) {
-        $pay_receive = '收：'.$order_data['osum'].'     支：'.$order_data['opay'];
+        $pay_receive = '收:'.$order_data['osum'].'     支:'.$order_data['opay'];
         $food_list = '';
         foreach($list as $k=>$v){
             $food_list.='  ('.$v['num'].'*'.$v['name'].')';
         }
         $data = array(
             'first'   =>array('color'=>"#333",'value'=>urlencode($order_data['oshop_name'])),
-            'keyword1'=>array('color'=>"#743A3A",'value'=>urlencode($pay_receive)),                                         //订单编号
-            'keyword2'=>array('color'=>"#333",'value'=>urlencode($order_data['uname'].' 电话：'.$order_data['otel'])),    //联系信息
+            'keyword1'=>array('color'=>"#8B0000",'value'=>urlencode($pay_receive)),                                         //订单编号
+            'keyword2'=>array('color'=>"#333",'value'=>urlencode($order_data['uname'].'     电话:'.$order_data['otel'])),    //联系信息
             'keyword3'=>array('color'=>'#0000FF','value'=>urlencode($food_list)),                                        //订单内容
-            'keyword4'=>array('color'=>'#743A3A','value'=>urlencode($order_data['oaddress'])),                           //订单地址
+            'keyword4'=>array('color'=>'#8B0000','value'=>urlencode($order_data['oaddress'])),                           //订单地址
             'keyword5'=>array('color'=>'#333','value'=>urlencode(date('Y-m-d H:i',$_SERVER['REQUEST_TIME']+60*45))),//送达时间
-//            'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
-            'remark'  =>array('color'=>'#333','value'=>urlencode(self::detail_url.'/detail/oid/'.$oid)),                                //备注
+            'remark'  =>array('color'=>'#333','value'=>urlencode($order_data['remark'])),                                //备注
         );
         $url = self::detail_url.'/order/detail/oid/'.$oid;
         $access_token = $this->getAuthToken(self::AppID,  self::AppSecret);
