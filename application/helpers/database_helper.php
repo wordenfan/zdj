@@ -6,12 +6,12 @@
         $new_db = $ci->load->database('default',true);
         $pre_db = $ci->load->database('previous',true);
         
-//        insert_user($new_db, $pre_db);
-//        insert_user_address($new_db, $pre_db);
-//        insert_user_old($new_db, $pre_db);
-//        insert_order($new_db, $pre_db);
-//        insert_order_list($new_db, $pre_db);
-//        insert_food($new_db, $pre_db);
+        insert_user($new_db, $pre_db);
+        insert_user_address($new_db, $pre_db);
+        insert_user_old($new_db, $pre_db);
+        insert_order($new_db, $pre_db);
+        insert_order_list($new_db, $pre_db);
+        insert_food($new_db, $pre_db);
     }
     //
     function insert_food($new_db,$pre_db) {
