@@ -11,7 +11,8 @@ class Weixin_order
 
 	public function __construct()
 	{
-        $this->opeid_arr = array(self::opendi_fan,self::opendi_chen);
+//        $this->opeid_arr = array(self::opendi_fan,self::opendi_chen);
+        $this->opeid_arr = array(self::opendi_fan);
 	}
 	
     public function sendOrderMsg($order_data,$list,$oid) {
